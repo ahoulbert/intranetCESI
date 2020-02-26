@@ -39,7 +39,7 @@
 
         $bdd = connexionBdd();
 
-        $statement = $bdd->prepare("UPDATE eleve SET mailCESI = :mailCESI,
+        $statement = $bdd->prepare("UPDATE eleve SET
                                     mdp = :mdp,
                                     nom = :nom,
                                     prenom = :prenom,
@@ -52,7 +52,7 @@
                                     idEntreprise = :idEntreprise,
                                     idPromotion = :idPromotion
                                     idTypeEleve = :idTypeEleve,
-                                    idSexeEleve = :idSexeEleve");
+                                    idSexeEleve = :idSexeEleve WHERE mailCESI = :mailCESI");
 
         $statement->bindParam(':mailCESI', $mailCESI);
         $statement->bindParam(':mdp', $mdp);
