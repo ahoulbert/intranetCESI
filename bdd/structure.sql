@@ -54,6 +54,7 @@ CREATE TABLE `Tag` (
 
 CREATE TABLE `Eleve` (
     `mailCESI` VARCHAR(50) NOT NULL PRIMARY KEY,
+    `mdp` VARCHAR(250) NOT NULL,
     `nom` VARCHAR(50),
     `prenom` VARCHAR(50),
     `dateNaissance` DATE,
