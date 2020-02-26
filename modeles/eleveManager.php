@@ -2,7 +2,7 @@
     require_once('connexionBdd.php');
 
     // Recuperation de tous les eleves
-    function getAllEleve() 
+    function getAllEleves() 
     {
         $bdd = connexionBdd();
 
@@ -35,11 +35,12 @@
     }
 
     // mise a jour d un eleve
-    function updateEleve($mailCESI, $nom, $prenom, $dateNaissance, $tel, $ville, $description, $lienLinkedin, $imgProfil, $idEntreprise, $idPromotion, $idTypeEleve, $idSexeEleve) {
+    function updateEleve($mailCESI, $mdp, $nom, $prenom, $dateNaissance, $tel, $ville, $description, $lienLinkedin, $imgProfil, $idEntreprise, $idPromotion, $idTypeEleve, $idSexeEleve) {
 
         $bdd = connexionBdd();
 
         $statement = $bdd->prepare("UPDATE eleve SET mailCESI = :mailCESI,
+                                    mdp = :mdp,
                                     nom = :nom,
                                     prenom = :prenom,
                                     dateNaissance = :dateNaissance,
@@ -54,6 +55,7 @@
                                     idSexeEleve = :idSexeEleve");
 
         $statement->bindParam(':mailCESI', $mailCESI);
+        $statement->bindParam(':mdp', $mdp);
         $statement->bindParam(':nom', $nom);
         $statement->bindParam(':prenom', $prenom);
         $statement->bindParam(':dateNaissance', $dateNaissance);
@@ -75,11 +77,12 @@
     }
 
     // Ajoute un eleve
-    function createEleve($mailCESI, $nom, $prenom, $dateNaissance, $tel, $ville, $description, $lienLinkedin, $imgProfil, $idEntreprise, $idPromotion, $idTypeEleve, $idSexeEleve) {
+    function createEleve($mailCESI, $mdp, $nom, $prenom, $dateNaissance, $tel, $ville, $description, $lienLinkedin, $imgProfil, $idEntreprise, $idPromotion, $idTypeEleve, $idSexeEleve) {
 
         $bdd = connexionBdd();
 
         $statement = $bdd->prepare("INSERT INTO eleve VALUES (:mailCESI,
+                                    :mdp,
                                     :nom,
                                     :prenom,
                                     :dateNaissance,
@@ -94,6 +97,7 @@
                                     :idSexeEleve)");
 
         $statement->bindParam(':mailCESI', $mailCESI);
+        $statement->bindParam(':mdp', $mdp);
         $statement->bindParam(':nom', $nom);
         $statement->bindParam(':prenom', $prenom);
         $statement->bindParam(':dateNaissance', $dateNaissance);
