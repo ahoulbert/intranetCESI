@@ -160,3 +160,19 @@ CREATE TABLE `EleveRoleGroupeEvenement` (
     FOREIGN KEY (`idGroupe`) REFERENCES `Groupe` (`idGroupe`),
     FOREIGN KEY (`idRole`) REFERENCES `Role` (`idRole`)
 );
+
+INSERT INTO EnumSexeEleve 
+VALUES 
+(1, "Homme"),
+(2, "Femme");
+
+INSERT INTO EnumStatutAmitier
+VALUES
+(1, "Accepté"),
+(2, "En attente"),
+(3, "Refusé");
+
+INSERT INTO EnumTypeEleve
+VALUES
+(1, "Etudiant"),
+(2, "Alternant");
