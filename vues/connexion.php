@@ -1,4 +1,4 @@
-<html>
+<html lang='fr'>
     <head>
         <title>Connexion - Intranet CESI</title>
         <?php
@@ -20,7 +20,6 @@
                 flex-direction: column;
                 font-family: 'Montserrat', sans-serif;
                 height: 100vh;
-                margin: -20px 0 50px;
             }
 
             h1 {
@@ -257,44 +256,203 @@
                 color: #3c97bf;
                 text-decoration: none;
             }
+
+            /*Background*/
+            @import url('https://fonts.googleapis.com/css?family=Exo:400,700');
+
+            *{
+                margin: 0px;
+                padding: 0px;
+            }
+
+            body{
+                font-family: 'Exo', sans-serif;
+            }
+
+
+            .context {
+                width: 100%;
+                position: absolute;
+                top:50vh;
+
+            }
+
+            .area{
+                background: #7d97a5;  
+                background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);  
+                width: 100%;
+                height:100vh;
+
+
+            }
+
+            .circles{
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+            }
+
+            .circles li{
+                position: absolute;
+                display: block;
+                list-style: none;
+                width: 20px;
+                height: 20px;
+                background: rgba(255, 255, 255, 0.2);
+                animation: animate 25s linear infinite;
+                bottom: -150px;
+
+            }
+
+            .circles li:nth-child(1){
+                left: 25%;
+                width: 80px;
+                height: 80px;
+                animation-delay: 0s;
+            }
+
+
+            .circles li:nth-child(2){
+                left: 10%;
+                width: 20px;
+                height: 20px;
+                animation-delay: 2s;
+                animation-duration: 12s;
+            }
+
+            .circles li:nth-child(3){
+                left: 70%;
+                width: 20px;
+                height: 20px;
+                animation-delay: 4s;
+            }
+
+            .circles li:nth-child(4){
+                left: 40%;
+                width: 60px;
+                height: 60px;
+                animation-delay: 0s;
+                animation-duration: 18s;
+            }
+
+            .circles li:nth-child(5){
+                left: 65%;
+                width: 20px;
+                height: 20px;
+                animation-delay: 0s;
+            }
+
+            .circles li:nth-child(6){
+                left: 75%;
+                width: 110px;
+                height: 110px;
+                animation-delay: 3s;
+            }
+
+            .circles li:nth-child(7){
+                left: 35%;
+                width: 150px;
+                height: 150px;
+                animation-delay: 7s;
+            }
+
+            .circles li:nth-child(8){
+                left: 50%;
+                width: 25px;
+                height: 25px;
+                animation-delay: 15s;
+                animation-duration: 45s;
+            }
+
+            .circles li:nth-child(9){
+                left: 20%;
+                width: 15px;
+                height: 15px;
+                animation-delay: 2s;
+                animation-duration: 35s;
+            }
+
+            .circles li:nth-child(10){
+                left: 85%;
+                width: 150px;
+                height: 150px;
+                animation-delay: 0s;
+                animation-duration: 11s;
+            }
+
+
+
+            @keyframes animate {
+
+                0%{
+                    transform: translateY(0) rotate(0deg);
+                    opacity: 1;
+                    border-radius: 0;
+                }
+
+                100%{
+                    transform: translateY(-1000px) rotate(720deg);
+                    opacity: 0;
+                    border-radius: 50%;
+                }
+
+            }
         </style>
     </head>
     <body>
-        <div class="container" id="container">
-            <div class="form-container sign-up-container">
-                <form action="#">
-                    <input type="text" placeholder="Nom" />
-                    <input type="text" placeholder="Prénom" />
-                    <input type="email" placeholder="Entrer votre adresse mail du CESI" />
-                    <input type="password" placeholder="Mot de passe" />
-                    <input type="password" placeholder="Confirmer votre mot de passe" />
-                    <button>Créer un compte</button>
-                </form>
-            </div>
-            <div class="form-container sign-in-container">
-                <form action="#">
-                    <h1>Connexion</h1>
-                    <input type="email" placeholder="Entrer votre email du cesi" />
-                    <input type="password" placeholder="Entrer votre mot de passe" />
-                    <a href="#">Mot de passe oublié ?</a>
-                    <button>Se connecter</button>
-                </form>
-            </div>
-            <div class="overlay-container">
-                <div class="overlay">
-                    <div class="overlay-panel overlay-left">
-                        <h1>Vous avez déja un compte ?</h1>
-                        <p>Connecter vous au site en cliquant sur le bouton ci-dessous</p>
-                        <button class="ghost" id="signIn">Se connecter</button>
-                    </div>
-                    <div class="overlay-panel overlay-right">
-                        <h1>Créer un compte</h1>
-                        <p>Entrer les données correspondantes au CESI</p>
-                        <button class="ghost" id="signUp">S'inscrire</button>
+        <div class="area" >
+            <ul style='margin-bottom:0px;' class="circles">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+            <div class="container" id="container" style='margin-top:7.5%;'>
+                <div class="form-container sign-up-container">
+                    <form action="#">
+                        <input type="text" placeholder="Nom" />
+                        <input type="text" placeholder="PrÃ©nom" />
+                        <input type="email" placeholder="Entrer votre adresse mail du CESI" />
+                        <input type="password" placeholder="Mot de passe" />
+                        <input type="password" placeholder="Confirmer votre mot de passe" />
+                        <button>CrÃ©er un compte</button>
+                    </form>
+                </div>
+                <div class="form-container sign-in-container">
+                    <form action="#">
+                        <h1>Connexion</h1>
+                        <input type="email" placeholder="Entrer votre email du cesi" />
+                        <input type="password" placeholder="Entrer votre mot de passe" />
+                        <a href="#">Mot de passe oubliÃ© ?</a>
+                        <button>Se connecter</button>
+                    </form>
+                </div>
+                <div class="overlay-container">
+                    <div class="overlay">
+                        <div class="overlay-panel overlay-left">
+                            <h1>Vous avez dÃ©ja un compte ?</h1>
+                            <p>Connecter vous au site en cliquant sur le bouton ci-dessous</p>
+                            <button class="ghost" id="signIn">Se connecter</button>
+                        </div>
+                        <div class="overlay-panel overlay-right">
+                            <h1>CrÃ©er un compte</h1>
+                            <p>Entrer les donnÃ©es correspondantes au CESI</p>
+                            <button class="ghost" id="signUp">S'inscrire</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+
+        </div >
     </body>
 </html>
 
