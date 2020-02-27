@@ -5,6 +5,7 @@ class Evenement
     private $_titre;
     private $_description;
     private $_date;
+    private $_dateCreation;
     private $_lieu;
 
     public function __construct(array $donnees)
@@ -44,6 +45,10 @@ class Evenement
         return $this->_date;
     }
 
+    public function getDateCreation() {
+        return $this->_dateCreation;
+    }
+
     public function getLieu() {
         return $this->_lieu;
     }
@@ -71,6 +76,10 @@ class Evenement
 
     public function setDate(/* String */ $date) {
         $this->_date = date_create($date);
+    }
+
+    public function setDateCreation($dateCreation) {
+        $this->_dateCreation = date_create($dateCreation);
     }
 
    public function setLieu($lieu) {
