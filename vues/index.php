@@ -1,3 +1,16 @@
+<?php
+session_start();
+
+require_once '../modeles/connexionBdd.php';
+require_once '../modeles/EleveManager.php';
+
+//On va chercher l'objet eleve
+$bdd = connexionBdd();
+$manager = new EleveManager($bdd);
+$eleve = $manager->getEleveByMailCESI($_SESSION['mail_cesi']);
+
+var_dump($eleve);
+?>
 <!DOCTYPE html>
 <html>
 
