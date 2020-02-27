@@ -30,8 +30,8 @@ class Eleve
             // Si le setter correspondant existe.
             if (method_exists($this, $method))
             {
-            // On appelle le setter.
-            $this->$method($value);
+                // On appelle le setter.
+                $this->$method($value);
             }
         }
     }
