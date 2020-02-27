@@ -1,3 +1,15 @@
+<?php
+//On demarre la session
+session_start();
+//Fichiers inclut
+require_once '../controleurs/EleveControlleur.php';
+//Infos eleves
+$infosEleve=infosEleve($_SESSION['mail_cesi']);
+var_dump($infosEleve);
+
+$eleve = $infosEleve['0']['eleve'];
+?>
+
 <head>
     <?php
     include_once("navBar.php");
@@ -25,12 +37,12 @@
                                 <div class="row row-space">
                                     <div class="col-2">
                                         <div class="input-group-desc">
-                                            <input placeholder="Entrez votre nom" class="input--style-5" type="text" required name="nom">
+                                            <input placeholder="Entrez votre nom" class="input--style-5" type="text" value="<?php echo $eleve->getNom(); ?>" required name="nom" />
                                         </div>
                                     </div>
                                     <div class="col-2">
                                         <div class="input-group-desc">
-                                            <input placeholder="Entrez votre prénom" class="input--style-5" type="text" required name="prenom">
+                                            <input placeholder="Entrez votre prénom" class="input--style-5" type="text" value="<?php echo $eleve->getPrenom(); ?>" required name="prenom" />
                                         </div>
                                     </div>
                                 </div>
@@ -40,7 +52,7 @@
                             <div class="name">Email</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <input placeholder="Adresse email" class="input--style-5" required type="email" name="email">
+                                    <input placeholder="Adresse email" class="input--style-5" required type="email" value="<?php echo $eleve->getMailCESI(); ?>"name="email" />
                                 </div>
                             </div>
                         </div>
@@ -48,7 +60,7 @@
                             <div class="name">Téléphone</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <input placeholder="Numéro de téléphone" class="input--style-5" required type="text" name="numTel">
+                                    <input placeholder="Numéro de téléphone" class="input--style-5" required type="text" value="<?php echo $eleve->getTel(); ?>" name="numTel" />
                                 </div>
                             </div>
                         </div>
@@ -56,7 +68,7 @@
                             <div class="name">Entreprise</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <input placeholder="Nom de mon entreprise" class="input--style-5" type="text" name="entreprise">
+                                    <input placeholder="Nom de mon entreprise" class="input--style-5" type="text" value="<?php echo $infosEleve['0']['entreprise']->getDesignation(); ?>" name="entreprise" />
                                 </div>
                             </div>
                         </div>
@@ -64,7 +76,7 @@
                             <div class="name">Ville</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <input placeholder="Ville de mon entreprise" class="input--style-5" type="text" name="villeEntreprise">
+                                    <input placeholder="Ville de mon entreprise" class="input--style-5" type="text" value="<?php echo $eleve->getVille(); ?>" name="villeEntreprise">
                                 </div>
                             </div>
                         </div>
@@ -72,7 +84,7 @@
                             <div class="name">Description</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <textarea placeholder="Quelques mots à propos de moi ..." class="area--style-5" type="text" name="description" id="story" name="story"></textarea>
+                                    <textarea placeholder="Quelques mots à propos de moi ..." class="area--style-5" type="text" name="description" id="story"  name="story"><?php echo $eleve->getDescription(); ?></textarea>
                                 </div>
                             </div>
                         </div>
@@ -85,9 +97,21 @@
                                             <div class="input-group">
                                                 <div class="select--no-search">
                                                     <div class="p-t-15">
-                                                        <select name="subject" class="custom-select sources" placeholder="Choix">
-                                                            <option>Alternant</option>
-                                                            <option>Etudiant</option>
+                                                        <select name="subject" class="custom-select sources" id="select_type" placeholder="Choix">
+                                                            <option value="2"
+                                                                <?php
+                                                                    if($eleve->getIdTypeEleve() == 2) {
+                                                                        echo 'selected';
+                                                                    }
+                                                                ?>
+                                                            >Alternant</option>
+                                                            <option value="1"
+                                                            <?php
+                                                                if($eleve->getIdTypeEleve() == 1) {
+                                                                    echo 'selected';
+                                                                }
+                                                            ?>
+                                                            >Etudiant</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -98,11 +122,23 @@
                                         <label class="label label--block">Sexe</label>
                                         <div class="p-t-15">
                                             <label class="radio-container m-r-55">Homme
-                                                <input type="radio" checked="checked" name="exist">
+                                                <input type="radio" name="exist"
+                                                <?php
+                                                    if($eleve->getIdSexeEleve() == 1) {
+                                                        echo 'checked';
+                                                    }
+                                                ?>
+                                                >
                                                 <span class="checkmark"></span>
                                             </label>
                                             <label class="radio-container">Femme
-                                                <input type="radio" name="exist">
+                                                <input type="radio" name="exist"
+                                                <?php
+                                                    if($eleve->getIdSexeEleve() == 2) {
+                                                        echo 'checked';
+                                                    }
+                                                ?>
+                                                >
                                                 <span class="checkmark"></span>
                                             </label>
                                         </div>
