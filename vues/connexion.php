@@ -488,7 +488,7 @@
             success: function (data) {
                 console.log(data);
                 if (data) {
-                    document.location.href="../index.php";
+                    document.location.href="../vues/index.php";
                 } else {
                     console.log('Cet email et ce mot de passe ne nous permettent pas de vous autotrisez à vous connecter');
                     //On affiche un message d'erreur qui dit qu le mot de passe et l'email ne correspond à aucun compte
