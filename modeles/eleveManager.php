@@ -1,133 +1,129 @@
 <?php
-    require_once('connexionBdd.php');
+    require_once('entity/Eleve.php');
 
-    // Recuperation de tous les eleves
-    function getAllEleves() 
+    class EleveManager
     {
-        $bdd = connexionBdd();
+        private $_db;
 
-        $statement = $bdd->prepare("SELECT * FROM eleve");
+        public function __construct($db)
+        {
+            $this->setDb($db);
+        }
 
-        $statement->execute() or die(print_r($statement->errorInfo()));
+        // Recuperation de tous les eleves
+        public function getAllEleves() 
+        {
+            $result = [];
 
-        $result = $statement->fetchAll();
+            $statement = $this->_db->prepare('SELECT * FROM eleve ORDER BY nom');
 
-        $bdd = null;
+            $statement->execute() or die(print_r($statement->errorInfo()));
 
-        return $result;
-    }
+            while ($donnees = $statement->fetch(PDO::FETCH_ASSOC))
+            {
+                $result[] = new Eleve($donnees);
+            }
 
-    // Recuperation d un eleve par id
-    function getEleveById($mailCESI) {
+            var_dump($result);
 
-        $bdd = connexionBdd();
+            return $result;
+        }
 
-        $statement = $bdd->prepare("SELECT * FROM eleve where mailCESI = :mailCESI");
-        $statement->bindParam(':mailCESI', $mailCESI);
+        // Recuperation d un eleve par son mail
+        public function getEleveByMailCESI($mailCESI) {
+            $statement = $this->_db->prepare('SELECT * FROM eleve WHERE mailCESI = :mailCESI');
+            $statement->bindParam(':mailCESI',$mailCESI);
 
-        $statement->execute() or die(print_r($statement->errorInfo()));
+            $statement->execute() or die(print_r($statement->errorInfo()));
 
-        $result = $statement->fetch();
+            $donnees = $statement->fetch(PDO::FETCH_ASSOC);
 
-        $bdd = null;
+            return new Eleve($donnees);
+        }
 
-        return $result;
-    }
+        // mise a jour d un eleve
+        public function updateEleve(Eleve $eleve) {
 
-    // mise a jour d un eleve
-    function updateEleve($mailCESI, $mdp, $nom, $prenom, $dateNaissance, $tel, $ville, $description, $lienLinkedin, $imgProfil, $idEntreprise, $idPromotion, $idTypeEleve, $idSexeEleve) {
+            $statement = $this->_db->prepare("UPDATE eleve SET
+                                        mdp = :mdp,
+                                        nom = :nom,
+                                        prenom = :prenom,
+                                        dateNaissance = :dateNaissance,
+                                        tel = :tel,
+                                        ville = :ville,
+                                        description = :description,
+                                        lienLinkedin = :lienLinkedin,
+                                        imgProfil = :imgProfil,
+                                        idEntreprise = :idEntreprise,
+                                        idPromotion = :idPromotion
+                                        idTypeEleve = :idTypeEleve,
+                                        idSexeEleve = :idSexeEleve WHERE mailCESI = :mailCESI");
 
-        $bdd = connexionBdd();
+            $statement->bindParam(':mailCESI', $eleve->getMailCESI(), PDO::PARAM_STR);
+            $statement->bindParam(':mdp', $eleve->getMdp(), PDO::PARAM_STR);
+            $statement->bindParam(':nom', $eleve->getNom(), PDO::PARAM_STR);
+            $statement->bindParam(':prenom', $eleve->getPrenom(), PDO::PARAM_STR);
+            $statement->bindParam(':dateNaissance', $eleve->getDateNaissance);
+            $statement->bindParam(':tel', $eleve->getTel(), PDO::PARAM_STR);
+            $statement->bindParam(':ville', $eleve->getVille(), PDO::PARAM_STR);
+            $statement->bindParam(':description', $eleve->getDescription(), PDO::PARAM_STR);
+            $statement->bindParam(':lienLinkedin', $eleve->getLienLinkedin(), PDO::PARAM_STR);
+            $statement->bindParam(':imgProfil', $eleve->getImgProfil(), PDO::PARAM_STR);
+            $statement->bindParam(':idEntreprise', $eleve->getIdEntreprise(), PDO::PARAM_INT);
+            $statement->bindParam(':idPromotion', $eleve->getIdPromotion(), PDO::PARAM_INT);
+            $statement->bindParam(':idTypeEleve', $eleve->getIdTypeEleve(), PDO::PARAM_INT);
+            $statement->bindParam(':idSexeEleve', $eleve->getIdSexeEleve(), PDO::PARAM_INT);
 
-        $statement = $bdd->prepare("UPDATE eleve SET
-                                    mdp = :mdp,
-                                    nom = :nom,
-                                    prenom = :prenom,
-                                    dateNaissance = :dateNaissance,
-                                    tel = :tel,
-                                    ville = :ville,
-                                    description = :description,
-                                    lienLinkedin = :lienLinkedin,
-                                    imgProfil = :imgProfil,
-                                    idEntreprise = :idEntreprise,
-                                    idPromotion = :idPromotion
-                                    idTypeEleve = :idTypeEleve,
-                                    idSexeEleve = :idSexeEleve WHERE mailCESI = :mailCESI");
+            $statement->execute() or die(print_r($statement->errorInfo()));
+        }
 
-        $statement->bindParam(':mailCESI', $mailCESI);
-        $statement->bindParam(':mdp', $mdp);
-        $statement->bindParam(':nom', $nom);
-        $statement->bindParam(':prenom', $prenom);
-        $statement->bindParam(':dateNaissance', $dateNaissance);
-        $statement->bindParam(':tel', $tel);
-        $statement->bindParam(':ville', $ville);
-        $statement->bindParam(':description', $description);
-        $statement->bindParam(':lienLinkedin', $lienLinkedin);
-        $statement->bindParam(':imgProfil', $imgProfil);
-        $statement->bindParam(':idEntreprise', $idEntreprise);
-        $statement->bindParam(':idPromotion', $idPromotion);
-        $statement->bindParam(':idTypeEleve', $idTypeEleve);
-        $statement->bindParam(':idSexeEleve', $idSexeEleve);
+        // Ajoute un eleve
+        public function createEleve(Eleve $eleve) {
 
-        $statement->execute() or die(print_r($statement->errorInfo()));
+            $statement = $this->_db->prepare("INSERT INTO eleve VALUES (:mailCESI,
+                                        :mdp,
+                                        :nom,
+                                        :prenom,
+                                        :dateNaissance,
+                                        :tel,
+                                        :ville,
+                                        :description,
+                                        :lienLinkedin,
+                                        :imgProfil,
+                                        :idEntreprise,
+                                        :idPromotion
+                                        :idTypeEleve,
+                                        :idSexeEleve)");
 
-        $bdd = null;
+            $statement->bindParam(':mailCESI', $eleve->getMailCESI(), PDO::PARAM_STR);
+            $statement->bindParam(':mdp', $eleve->getMdp(), PDO::PARAM_STR);
+            $statement->bindParam(':nom', $eleve->getNom(), PDO::PARAM_STR);
+            $statement->bindParam(':prenom', $eleve->getPrenom(), PDO::PARAM_STR);
+            $statement->bindParam(':dateNaissance', $eleve->getDateNaissance);
+            $statement->bindParam(':tel', $eleve->getTel(), PDO::PARAM_STR);
+            $statement->bindParam(':ville', $eleve->getVille(), PDO::PARAM_STR);
+            $statement->bindParam(':description', $eleve->getDescription(), PDO::PARAM_STR);
+            $statement->bindParam(':lienLinkedin', $eleve->getLienLinkedin(), PDO::PARAM_STR);
+            $statement->bindParam(':imgProfil', $eleve->getImgProfil(), PDO::PARAM_STR);
+            $statement->bindParam(':idEntreprise', $eleve->getIdEntreprise(), PDO::PARAM_INT);
+            $statement->bindParam(':idPromotion', $eleve->getIdPromotion(), PDO::PARAM_INT);
+            $statement->bindParam(':idTypeEleve', $eleve->getIdTypeEleve(), PDO::PARAM_INT);
+            $statement->bindParam(':idSexeEleve', $eleve->getIdSexeEleve(), PDO::PARAM_INT);
 
-        return true;
-    }
+            $statement->execute() or die(print_r($statement->errorInfo()));
+        }
 
-    // Ajoute un eleve
-    function createEleve($mailCESI, $mdp, $nom, $prenom, $dateNaissance, $tel, $ville, $description, $lienLinkedin, $imgProfil, $idEntreprise, $idPromotion, $idTypeEleve, $idSexeEleve) {
+        public function deleteEleve($mailCESI) {
 
-        $bdd = connexionBdd();
+            $statement = $this->_db->prepare("DELETE FROM eleve where mailCESI = :mailCESI");
+            $statement->bindParam(':mailCESI', $mailCESI);
 
-        $statement = $bdd->prepare("INSERT INTO eleve VALUES (:mailCESI,
-                                    :mdp,
-                                    :nom,
-                                    :prenom,
-                                    :dateNaissance,
-                                    :tel,
-                                    :ville,
-                                    :description,
-                                    :lienLinkedin,
-                                    :imgProfil,
-                                    :idEntreprise,
-                                    :idPromotion
-                                    :idTypeEleve,
-                                    :idSexeEleve)");
+            $statement->execute() or die(print_r($statement->errorInfo()));
+        }
 
-        $statement->bindParam(':mailCESI', $mailCESI);
-        $statement->bindParam(':mdp', $mdp);
-        $statement->bindParam(':nom', $nom);
-        $statement->bindParam(':prenom', $prenom);
-        $statement->bindParam(':dateNaissance', $dateNaissance);
-        $statement->bindParam(':tel', $tel);
-        $statement->bindParam(':ville', $ville);
-        $statement->bindParam(':description', $description);
-        $statement->bindParam(':lienLinkedin', $lienLinkedin);
-        $statement->bindParam(':imgProfil', $imgProfil);
-        $statement->bindParam(':idEntreprise', $idEntreprise);
-        $statement->bindParam(':idPromotion', $idPromotion);
-        $statement->bindParam(':idTypeEleve', $idTypeEleve);
-        $statement->bindParam(':idSexeEleve', $idSexeEleve);
-
-        $statement->execute() or die(print_r($statement->errorInfo()));
-
-        $bdd = null;
-
-        return true;
-    }
-
-    function deleteEleve($mailCESI) {
-        $bdd = connexionBdd();
-
-        $statement = $bdd->prepare("DELETE FROM eleve where mailCESI = :mailCESI");
-        $statement->bindParam(':mailCESI', $mailCESI);
-
-        $statement->execute() or die(print_r($statement->errorInfo()));
-
-        $bdd = null;
-
-        return true;
+        public function setDb(PDO $db)
+        {
+            $this->_db = $db;
+        }
     }
 ?>
