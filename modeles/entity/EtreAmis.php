@@ -1,8 +1,8 @@
 <?php
 class EtreAmis
 {
-    private $_mailCESI;
-    private $_mailCESI_Eleve;
+    private $_mailCESIDemandeur;
+    private $_mailCESIReceveur;
     private $_idStatut;
 
     public function __construct(array $donnees)
@@ -26,28 +26,30 @@ class EtreAmis
     }
 
     /* GETTERS */
-    public function getMailCESI() {
-        return $this->_mailCESI;
-    }
-
-    public function getMailCESI_Eleve() {
-        return $this->_mailCESI_Eleve;
-    }
-
     public function getIdStatut() {
         return $this->_idStatut;
     }
 
+    public function getMailCESIDemandeur() {
+        return $this->_mailCESIDemandeur;
+    }
+
+    public function getMailCESIReceveur() {
+        return $this->_mailCESIReceveur;
+    }
+
+
+
     /* SETTERS */
-    public function setMailCESI($mailCESI) {
-        if(is_string($mailCESI)) {
-            $this->_mailCESI = $mailCESI;
+    public function setMailCESI($mailCESIDemandeur) {
+        if(is_string($mailCESIDemandeur)) {
+            $this->_mailCESIDemandeur = $mailCESIDemandeur;
         }
     }
 
-    public function setMailCESI_Eleve($mailCESI_Eleve) {
-        if(is_string($mailCESI_Eleve)) {
-            $this->_mailCESI_Eleve = $mailCESI_Eleve;
+    public function setMailCESI_Eleve($mailCESIReceveur) {
+        if(is_string($mailCESIReceveur)) {
+            $this->_mailCESIReceveur = $mailCESIReceveur;
         }
     }
 
