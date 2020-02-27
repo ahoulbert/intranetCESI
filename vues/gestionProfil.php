@@ -1,6 +1,6 @@
 <head>
     <?php
-    include_once("./navbar.php");
+    include_once("navBar.php");
     ?>
     <title>Mon profil</title>
 </head>
@@ -14,7 +14,7 @@
                 </div>
                 <div class="card-body">
                     <div class="form-row">
-                        <img src="vues/images/logoCesi.jpg" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px;">
+                        <img src="images/logoCesi.jpg" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px;">
                         <input id="inputChangePicture" type="file" style="display: none" accept="image/png, image/jpeg" />
                         <button id="changePicture" class="btn btn--change-photo  btn--dark">Changer de photo</button>
                     </div>
@@ -127,7 +127,7 @@
 <script src="vendor/select2/select2.min.js"></script>
 <script src="vendor/datepicker/moment.min.js"></script>
 <script src="vendor/datepicker/daterangepicker.js"></script>
-<script src="vues/js/gestionProfil.js"></script>
+<script src="js/gestionProfil.js"></script>
 
 <!-- Main JS-->
 <script src="js/global.js"></script>
