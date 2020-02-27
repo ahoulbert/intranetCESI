@@ -1,5 +1,5 @@
 <?php
-    require_once('./entity/Entreprise.php');
+    require_once('entity/Entreprise.php');
 
     class EntrepriseManager
     {
@@ -14,7 +14,7 @@
         public function getAllEntreprises() {
             $result = [];
 
-            $statement = $this->_db->prepare('SELECT * FROM entreprise ORDER BY nom');
+            $statement = $this->_db->prepare('SELECT * FROM entreprise ORDER BY designation');
 
             $statement->execute() or die(print_r($statement->errorInfo()));
 
