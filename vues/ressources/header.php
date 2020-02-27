@@ -14,6 +14,6 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 <!-- Font special for pages-->
 <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
 <!-- Main CSS-->
-<link href="vues/css/main.css" rel="stylesheet" media="all">
-<link rel="shortcut icon" href="vues/images/logoCesi.jpg">
+<link href="css/main.css" rel="stylesheet" media="all">
+<link rel="shortcut icon" href="images/logoCesi.jpg">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

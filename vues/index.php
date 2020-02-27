@@ -1,9 +1,22 @@
+<?php
+session_start();
+
+require_once '../modeles/connexionBdd.php';
+require_once '../modeles/EleveManager.php';
+
+//On va chercher l'objet eleve
+$bdd = connexionBdd();
+$manager = new EleveManager($bdd);
+$eleve = $manager->getEleveByMailCESI($_SESSION['mail_cesi']);
+
+var_dump($eleve);
+?>
 <!DOCTYPE html>
 <html>
 
 <head>
   <?php
-  include_once("./navbar.php");
+  include_once("navBar.php");
   ?>
   <title>Intranet du CESI</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -23,7 +36,7 @@
         <div class="w3-card w3-round w3-white">
           <div class="w3-container">
             <h4 class="w3-center">Mon profil</h4>
-            <p class="w3-center"><img src="vues/images/jul.jpg" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
+            <p class="w3-center"><img src="images/jul.jpg" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
             <hr>
             <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> Designer, UI</p>
             <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> London, UK</p>
@@ -215,7 +228,7 @@
   </footer>
 
   <footer class="w3-container w3-theme-d5">
-    <p>Site réalisé par MCMA Dev <img style="width:20px;height:auto;" src="./vues/images/logoMCMA.svg" /></p>
+    <p>Site réalisé par MCMA Dev <img style="width:20px;height:auto;" src="images/logoMCMA.svg" /></p>
   </footer>
 
   <script>
