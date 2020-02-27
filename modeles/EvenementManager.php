@@ -49,31 +49,31 @@
                                         lieu = :lieu
                                         WHERE idEvenement = :idEvenement");
 
-            $statement->bindParam(':titre', $event->getTitre());
-            $statement->bindParam(':description', $event->getDescription());
+            $statement->bindParam(':titre', $event->getTitre(), PDO::PARAM_STR);
+            $statement->bindParam(':description', $event->getDescription(), PDO::PARAM_STR);
             $statement->bindParam(':date', $event->getDate());
             $statement->bindParam(':dateCreation', $event->getDateCreation());
-            $statement->bindParam(':lieu', $event->getLieu());
-            $statement->bindParam(':idEvenement', $event->getIdEvenement());
+            $statement->bindParam(':lieu', $event->getLieu(), PDO::PARAM_STR);
+            $statement->bindParam(':idEvenement', $event->getIdEvenement(), PDO::PARAM_INT);
 
             $statement->execute() or die(print_r($statement->errorInfo()));
         }
 
         public function createEvenement(Evenement $event) {
-            $statement = $this->_db->prepare("INSERT INTO evenement VALUES (
+            $statement = $this->_db->prepare("INSERT INTO
+                                            evenement (titre, description, date, dateCreation, lieu) 
+                                            VALUES (
                                             :titre,
                                             :description,
                                             :date,
                                             :dateCreation,
-                                            :lieu,
-                                            :idEvenement)");
+                                            :lieu)");
 
-            $statement->bindParam(':titre', $event->getTitre());
-            $statement->bindParam(':description', $event->getDescription());
+            $statement->bindParam(':titre', $event->getTitre(), PDO::PARAM_STR);
+            $statement->bindParam(':description', $event->getDescription(), PDO::PARAM_STR);
             $statement->bindParam(':date', $event->getDate());
             $statement->bindParam(':dateCreation', $event->getDateCreation());
-            $statement->bindParam(':lieu', $event->getLieu());
-            $statement->bindParam(':idEvenement', $event->getIdEvenement());
+            $statement->bindParam(':lieu', $event->getLieu(), PDO::PARAM_STR);
 
             $statement->execute() or die(print_r($statement->errorInfo()));
         }

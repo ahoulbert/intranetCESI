@@ -57,11 +57,10 @@
 
         //creation d une entreprise
         public function createEntreprise(Entreprise $entreprise) {
-            $statement = $this->_db->prepare("INSERT INTO entreprise VALUES (:idEntreprise, :designation, :siteWeb)");
+            $statement = $this->_db->prepare("INSERT INTO entreprise (designation, siteWeb) VALUES (:designation, :siteWeb)");
 
             $statement->bindParam(':designation', $entreprise->getDesignation(), PDO::PARAM_STR);
             $statement->bindParam(':siteWeb', $entreprise->getSiteWeb(), PDO::PARAM_STR);
-            $statement->bindParam(':idEntreprise', $entreprise->getIdEntreprise(), PDO::PARAM_INT);
 
             $statement->execute() or die(print_r($statement->errorInfo()));
         }
