@@ -1,3 +1,4 @@
+
 <html lang='fr'>
     <head>
         <title>Connexion - Intranet CESI</title>
@@ -487,14 +488,14 @@
             success: function (data) {
                 console.log(data);
                 if (data) {
-                    console.log('Vous êtes bien connecté');
-                    //On envoie vers le site web le client
+                    document.location.href="../index.php";
                 } else {
                     console.log('Cet email et ce mot de passe ne nous permettent pas de vous autotrisez à vous connecter');
                     //On affiche un message d'erreur qui dit qu le mot de passe et l'email ne correspond à aucun compte
                 }
             },
             error: function () {
+                console.log("Il y'a eu une erreur dans l'exécution de l'ajax");
                 //On affiche un message d'erreur comme quoi il est impossible de se connecter et de réessayer plus tard 
             }
         });
