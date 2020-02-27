@@ -79,7 +79,7 @@ CREATE TABLE `EtreAmis` (
     `mailCESIReceveur` VARCHAR(50) NOT NULL,
     `idStatut` INT(11) NOT NULL,
 
-    PRIMARY KEY (`mailCESIDemandeur`, `mailCESIReceveur`, `idStatut`),
+    PRIMARY KEY (`mailCESIDemandeur`, `mailCESIReceveur`),
 
     FOREIGN KEY (`mailCESIDemandeur`) REFERENCES `Eleve` ( mailCESI),
     FOREIGN KEY (`mailCESIReceveur`) REFERENCES `Eleve` (mailCESI),
