@@ -5,11 +5,13 @@
  */
 require_once '../modeles/connexionBdd.php';
 require_once '../modeles/EleveManager.php';
+require_once '../modeles/EntrepriseManager.php';
 
 /**
  * Routing
  */
-switch ($_POST['fonctionValeur']) {
+if(isset($_POST['fonctionValeur'])){
+    switch ($_POST['fonctionValeur']) {
     case 'connexionClient':
         connexionClient();
         break;
@@ -20,6 +22,8 @@ switch ($_POST['fonctionValeur']) {
         deconnexion();
         break;
 }
+} 
+
 
 /**
  * Function 
@@ -90,4 +94,17 @@ function deconnexion() {
   unset($_SESSION);
   //Redirection vers la page de connexion
   header('Location: ../vues/connexion.php');
+}
+
+function infosEleve($identifiant)
+{
+//On va chercher l'objet eleve
+$bdd = connexionBdd();
+$manager = new EleveManager($bdd);
+$eleve = $manager->getEleveByMailCESI($identifiant);
+
+$manager = new EntrepriseManager($bdd);
+$entreprise = $manager->getEntrepriseById($eleve->getIdEntreprise());
+
+return array(['eleve' => $eleve, 'entreprise' => $entreprise]);
 }

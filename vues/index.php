@@ -1,15 +1,10 @@
 <?php
+//On demarre la session
 session_start();
-
-require_once '../modeles/connexionBdd.php';
-require_once '../modeles/EleveManager.php';
-
-//On va chercher l'objet eleve
-$bdd = connexionBdd();
-$manager = new EleveManager($bdd);
-$eleve = $manager->getEleveByMailCESI($_SESSION['mail_cesi']);
-
-var_dump($eleve);
+//Fichiers inclut
+require_once '../controleurs/EleveControlleur.php';
+//Infos eleves
+$infosEleve=infosEleve($_SESSION['mail_cesi']);
 ?>
 <!DOCTYPE html>
 <html>
@@ -38,9 +33,9 @@ var_dump($eleve);
             <h4 class="w3-center">Mon profil</h4>
             <p class="w3-center"><img src="images/jul.jpg" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
             <hr>
-            <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> <?php echo $eleve->getDateNaissance(); ?></p>
-            <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> <?php echo $eleve->getVille(); ?></p>
-            <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> April 1, 1988</p>
+            <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> <?php echo date_format($infosEleve['0']['eleve']->getDateNaissance(), 'd/m/y'); ?></p>
+            <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> <?php echo $infosEleve['0']['eleve']->getVille(); ?></p>
+            <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> <?php echo$infosEleve['0']['entreprise']->getDesignation(); ?></p>
           </div>
         </div>
         <br>
