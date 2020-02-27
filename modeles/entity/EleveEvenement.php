@@ -1,11 +1,8 @@
 <?php
-class Evenement
+class EleveEvenement
 {
     private $_idEvenement;
-    private $_titre;
-    private $_description;
-    private $_date;
-    private $_lieu;
+    private $_mailCESI;
 
     public function __construct(array $donnees)
     {
@@ -32,24 +29,12 @@ class Evenement
         return $this->_idEvenement;
     }
 
-    public function getTitre() {
-        return $this->_titre;
-    }
-
-    public function getDescription() {
-        return $this->_description;
-    }
-
-    public function getDate() {
-        return $this->_date;
-    }
-
-    public function getLieu() {
-        return $this->_lieu;
+    public function getMailCESI() {
+        return $this->_mailCESI;
     }
 
     /* SETTERS */
-    public function setIdEvenenement($idEvenement) {
+    public function setIdEvenement($idEvenement) {
     // Convertit en int, si ce n'est pas un entier il le met à 0
         $idEvenement = (int) $idEvenement;
         if($idEvenement > 0) {
@@ -57,25 +42,9 @@ class Evenement
         }
     }
 
-    public function setTitre($titre) {
-        if(is_string($titre)) {
-            $this->_titre = $titre;
-        }
-    }
-
-    public function setDescription($description) {
-        if(is_string($description)) {
-            $this->_description = $description;
-        }
-    }
-
-    public function setDate(/* String */ $date) {
-        $this->_date = date_create($date);
-    }
-
-   public function setLieu($lieu) {
-        if(is_string($lieu)) {
-            $this->_lieu = $lieu;
+    public function setMailCESI($mailCESI) {
+        if(is_string($mailCESI)) {
+            $this->_mailCESI = $mailCESI;
         }
     }
 }
