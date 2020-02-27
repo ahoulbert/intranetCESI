@@ -5,10 +5,10 @@ INSERT INTO entreprise VALUES
 (2, "STUDEFI", null);
 
 INSERT INTO eleve VALUES
-("clement.azibeiro@viacesi.fr",	"", "AZIBEIRO", "Clément", "1999-07-13", "0611363675", "Le Mans", "En alternance chez Vinci", null, null, 1, 1, 2, 1),
-("maxime.villermin@viacesi.fr",	"", "VILLERMIN", "Maxime", "1998-10-26", "0611459875", "Le Mans", "En alternance chez Vinci", null, null, 1, 1, 2, 1),
-("antoine.houlbert@viacesi.fr",	"", "HOULBERT", "Antoine", "1999-01-01", "0611125675", "Spay", "En alternance chez Studefi", null, null, 2, 2, 1),
-("marvyn.rocher@viacesi.fr", "", "AZIBEIRO", "Clément", "1999-01-01", "06765475", "Le Mans", "En alternance chez ta darone", null, null, null, 1, 2, 1);
+("clement.azibeiro@viacesi.fr",	"$2y$10$YrkJTI7FX9jouSI/dUEOnOOXLXLxSJSwjHvnqQ/ipJL48kfeqDDPy", "AZIBEIRO", "Clément", "1999-07-13", "0611363675", "Le Mans", "En alternance chez Vinci", null, null, 1, 1, 2, 1),
+("maxime.villermin@viacesi.fr",	"$2y$10$YrkJTI7FX9jouSI/dUEOnOOXLXLxSJSwjHvnqQ/ipJL48kfeqDDPy", "VILLERMIN", "Maxime", "1998-10-26", "0611459875", "Le Mans", "En alternance chez Vinci", null, null, 1, 1, 2, 1),
+("antoine.houlbert@viacesi.fr",	"$2y$10$YrkJTI7FX9jouSI/dUEOnOOXLXLxSJSwjHvnqQ/ipJL48kfeqDDPy", "HOULBERT", "Antoine", "1999-01-01", "0611125675", "Spay", "En alternance chez Studefi", null, null, 2, 2, 1),
+("marvyn.rocher@viacesi.fr", "$2y$10$YrkJTI7FX9jouSI/dUEOnOOXLXLxSJSwjHvnqQ/ipJL48kfeqDDPy", "AZIBEIRO", "Clément", "1999-01-01", "06765475", "Le Mans", "En alternance chez ta darone", null, null, null, 1, 2, 1);
 
 INSERT INTO groupe VALUES (1, "ALL", "2020-02-27", "ALL");
 
