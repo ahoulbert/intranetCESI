@@ -32,7 +32,11 @@
             $statement = $this->_db->prepare('SELECT * FROM eleve WHERE mailCESI = :mailCESI');
             $statement->bindParam(':mailCESI',$mailCESI);
 
-            $statement->execute() or die(print_r($statement->errorInfo()));
+            try {
+                $statement->execute();
+            } catch (Exception $ex) {
+                throw new Exception("Imposible d'éxecuter la requete", 500);
+            }
 
             $donnees = $statement->fetch(PDO::FETCH_ASSOC);
 
