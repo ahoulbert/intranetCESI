@@ -16,6 +16,9 @@ switch ($_POST['fonctionValeur']) {
     case 'creationCompte':
         creationCompte();
         break;
+    case 'deconnexion':
+        deconnexion();
+        break;
 }
 
 /**
@@ -63,7 +66,7 @@ function creationCompte() {
 
     //On appelle le manager 
     $bdd = connexionBdd();
-    $manager = new EleveManger($bdd);
+    $manager = new EleveManager($bdd);
     $eleve = new Eleve();
     //Setter Eleve remplissage des champs pour hydrater l'objet
     $eleve->setMailCESI($email);
@@ -73,4 +76,18 @@ function creationCompte() {
     $eleve->setDateNaissance('1999-04-11');
 
     $eleve = $manager->setcreateEleve($eleve);
+}
+
+function deconnexion() {
+  // Démarrage ou restauration de la session
+  session_start();
+  // Réinitialisation du tableau de session
+  // On le vide intégralement
+  $_SESSION = array();
+  // Destruction de la session
+  session_destroy();
+  // Destruction du tableau de session
+  unset($_SESSION);
+  //Redirection vers la page de connexion
+  header('Location: ../vues/connexion.php');
 }
