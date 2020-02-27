@@ -1,5 +1,5 @@
 <?php 
-require_once("vues/ressources/header.php");
+require_once("ressources/header.php");
 ?>
 
 <style>
@@ -10,7 +10,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 <div class="w3-top">
  <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
   <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
-  <a href="./index.php" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><img style='height : 23px; width:auto;' src='vues/images/logoCesi.jpg' /></a>
+  <a href="./index.php" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><img style='height : 23px; width:auto;' src='images/logoCesi.jpg' /></a>
   <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="News"><i class="fa fa-globe"></i></a>
   <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Messages"><i class="fa fa-envelope"></i></a>
   <div class="w3-dropdown-hover w3-hide-small">
@@ -27,7 +27,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
     </button>  
   <div class="w3-dropdown-content w3-bar-block w3-border" style="right:0">
   <a href="./gestionProfil.php" class="w3-bar-item w3-button">Modifier mon profil</a>
-      <a href="vues/connexion.php" class="w3-bar-item w3-button">Se déconnecter</a>
+      <a href="connexion.php" class="w3-bar-item w3-button">Se déconnecter</a>
   </div>
 </div>
   </a>
