@@ -1,8 +1,8 @@
 <?php
 define('SERVEURBDD', 'localhost');
-define('LOGIN', 'ROOT');
+define('LOGIN', 'root');
 define('PASSWORD', '');
-define('NOMDELABASE', 'intranetcesi');
+define('NOMDELABASE', 'intranetCesi');
 
 function connexionBdd() {
     try {

@@ -416,16 +416,14 @@
                 <li></li>
                 <li></li>
             </ul>
-            <div class="container" id="container" style='margin-top:7.5%;'>
+            <div class="container" id="container" style='margin-top:7.5%;margin-left:20%;'>
                 <div class="form-container sign-up-container">
-                    <form action="../controleurs/EleveControlleur.php" method="POST">
-                        <input type='hidden' name='fonctionValeur' value='creationCompte' />
+                    <form action="creationCompte.php" method="POST">
+                        <input type='hidden' name='fonctionValeur' value='continueCreationCompte' />
                         <input type="text" name="nom_creationEleve" placeholder="Nom" />
                         <input type="text" name="prenom_creationEleve" placeholder="Prénom" />
                         <input type="email" name="email_creationEleve" placeholder="Entrer votre adresse mail du CESI" />
-                        <input type="password" name="mdp_creationEleve"placeholder="Mot de passe" />
-                        <input type="password" name="confirmMdp_creationEleve" placeholder="Confirmer votre mot de passe" />
-                        <input class="button" type="submit" value="Créer un compte" />
+                        <input type="submit" class="button"  value="Créer un compte" />
                     </form>
                 </div>
                 <div class="form-container sign-in-container">
@@ -501,4 +499,5 @@
             }
         });
     }
+    
 </script>
