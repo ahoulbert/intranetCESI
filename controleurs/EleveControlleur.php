@@ -31,7 +31,7 @@ if(isset($_POST['fonctionValeur'])){
 //Function avec le ajax pour tester la connexion
 function connexionClient() {
     $isCompteExiste = false;
-    //Récupération des champs du formulaire
+    //RÃ©cupÃ©ration des champs du formulaire
     $email = $_POST['email_connexion'];
     $mdp = $_POST['mdp_connexion'];
 
@@ -39,27 +39,27 @@ function connexionClient() {
     $bdd = connexionBdd();
     $manager = new EleveManager($bdd);
     $eleve = $manager->getEleveByMailCESI($email);
-    //Si un élève existe avec cette adresse mail alors
+    //Si un Ã©lÃ¨ve existe avec cette adresse mail alors
     if ($eleve !== false) {
-        //On récupère son mot de passe de la base de données
+        //On rÃ©cupÃ¨re son mot de passe de la base de donnÃ©es
         $verifMdp = $eleve->getMdp();
-        //Et on vérifie si son mot de passe est correct
+        //Et on vÃ©rifie si son mot de passe est correct
         $isCompteExiste = password_verify($mdp, $verifMdp);
     }
-    //On ferme la base de données
+    //On ferme la base de donnÃ©es
     $bdd = null;
 
     if ($isCompteExiste) {
         session_start();
         $_SESSION['mail_cesi'] = $email;
     }
-    //On retourne un booleen avec true si l'identifiant et le mot de passe sont bon et false si il y' a eu un problème dans la connexion
+    //On retourne un booleen avec true si l'identifiant et le mot de passe sont bon et false si il y' a eu un problÃ¨me dans la connexion
     header('Content-Type: application/json;charset=utf-8');
     echo json_encode($isCompteExiste);
 }
 
 function creationCompte() {
-    //On récupère le champ du formulaire
+    //On rÃ©cupÃ¨re le champ du formulaire
     $email = $_POST['email_creationEleve'];
     $mdp = $_POST['mdp_creationEleve'];
     $nom = $_POST['nom_creationEleve'];
@@ -83,10 +83,10 @@ function creationCompte() {
 }
 
 function deconnexion() {
-  // Démarrage ou restauration de la session
+  // DÃ©marrage ou restauration de la session
   session_start();
-  // Réinitialisation du tableau de session
-  // On le vide intégralement
+  // RÃ©initialisation du tableau de session
+  // On le vide intÃ©gralement
   $_SESSION = array();
   // Destruction de la session
   session_destroy();

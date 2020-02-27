@@ -417,7 +417,10 @@
                 <li></li>
                 <li></li>
             </ul>
-            <div class="container" id="container" style='margin-top:7.5%;margin-left:20%;'>
+            <div id='containerAlert' style='display : none;position:absolute;width : 45%; margin-left : 27.5%;' class="w3-container">
+                <!-- Champ affichage des alertes -->
+            </div>
+            <div class="container" id="container" style='margin-top:8%;margin-left:22.5%;'>
                 <div class="form-container sign-up-container">
                     <form action="creationCompte.php" method="POST">
                         <input type='hidden' name='fonctionValeur' value='continueCreationCompte' />
@@ -488,17 +491,19 @@
             success: function (data) {
                 console.log(data);
                 if (data) {
-                    document.location.href="../vues/index.php";
+                    document.location.href = "../vues/index.php";
                 } else {
-                    console.log('Cet email et ce mot de passe ne nous permettent pas de vous autotrisez à vous connecter');
-                    //On affiche un message d'erreur qui dit qu le mot de passe et l'email ne correspond à aucun compte
+                    $('#containerAlert').empty();
+                    $('#containerAlert').append('<div class="w3-panel w3-red w3-display-container w3-card-4"><span id="btnAlertClose" onclick="this.parentElement.style.display=\'none\'"class="w3-button w3-large w3-display-topright">&times;</span><p>Votre email et votre mot de passe ne nous permettent pas de vous connecter.</p></div>');
+                    $('#containerAlert').show(200);
                 }
             },
             error: function () {
-                console.log("Il y'a eu une erreur dans l'exécution de l'ajax");
-                //On affiche un message d'erreur comme quoi il est impossible de se connecter et de réessayer plus tard 
+                $('#containerAlert').empty();
+                $('#containerAlert').append('<div class="w3-panel w3-red w3-display-container w3-card-4"><span id="btnAlertClose" onclick="this.parentElement.style.display=\'none\'"class="w3-button w3-large w3-display-topright">&times;</span><p>Un problÃ¨me est survenue sur le site merci de recharger la page et de rÃ©essayer.</p></div>');
+                $('#containerAlert').show(200);
             }
         });
     }
-    
+
 </script>
