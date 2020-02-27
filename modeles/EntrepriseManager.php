@@ -35,7 +35,11 @@
 
             $donnees = $statement->fetch(PDO::FETCH_ASSOC);
 
-            return new Entreprise($donnees);
+            if($donnees) {
+                return new Entreprise($donnees);
+            } else {
+                return false;
+            }
         }
 
         // mise a jour d une entreprise

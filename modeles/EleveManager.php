@@ -39,8 +39,12 @@
             }
 
             $donnees = $statement->fetch(PDO::FETCH_ASSOC);
-
-            return new Eleve($donnees);
+            
+            if($donnees) {
+                return new Eleve($donnees);
+            } else {
+                return false;
+            }
         }
 
         // mise a jour d un eleve
