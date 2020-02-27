@@ -50,7 +50,7 @@
                 margin: 15px 0;
             }
 
-            button {
+            .button {
                 border-radius: 20px;
                 border: 1px solid #4d636f;
                 background-color: #4d636f;
@@ -63,15 +63,15 @@
                 transition: transform 80ms ease-in;
             }
 
-            button:active {
+            .button:active {
                 transform: scale(0.95);
             }
 
-            button:focus {
+            .button:focus {
                 outline: none;
             }
 
-            button.ghost {
+            .button.ghost {
                 background-color: transparent;
                 border-color: #FFFFFF;
             }
@@ -418,22 +418,24 @@
             </ul>
             <div class="container" id="container" style='margin-top:7.5%;'>
                 <div class="form-container sign-up-container">
-                    <form action="#">
-                        <input type="text" placeholder="Nom" />
-                        <input type="text" placeholder="Pr√©nom" />
-                        <input type="email" placeholder="Entrer votre adresse mail du CESI" />
-                        <input type="password" placeholder="Mot de passe" />
-                        <input type="password" placeholder="Confirmer votre mot de passe" />
-                        <button>Cr√©er un compte</button>
+                    <form action="../controleurs/EleveControlleur.php" method="POST">
+                        <input type='hidden' name='fonctionValeur' value='creationCompte' />
+                        <input type="text" name="nom_creationEleve" placeholder="Nom" />
+                        <input type="text" name="prenom_creationEleve" placeholder="Pr√©nom" />
+                        <input type="email" name="email_creationEleve" placeholder="Entrer votre adresse mail du CESI" />
+                        <input type="password" name="mdp_creationEleve"placeholder="Mot de passe" />
+                        <input type="password" name="confirmMdp_creationEleve" placeholder="Confirmer votre mot de passe" />
+                        <input class="button" type="submit" value="Cr√©er un compte" />
                     </form>
                 </div>
                 <div class="form-container sign-in-container">
-                    <form action="#">
+                    <form method="POST" id="formulaireConnexionClient">
                         <h1>Connexion</h1>
-                        <input type="email" placeholder="Entrer votre email du cesi" />
-                        <input type="password" placeholder="Entrer votre mot de passe" />
+                        <input type='hidden' name='fonctionValeur' value='connexionClient' />
+                        <input type="email" name="email_connexion" placeholder="Entrer votre email du cesi" />
+                        <input type="password" name="mdp_connexion" placeholder="Entrer votre mot de passe" />
                         <a href="#">Mot de passe oubli√© ?</a>
-                        <button>Se connecter</button>
+                        <input type="button" name='btnConnexionClient' class="button" id="btnConnexionClient" value="Se connecter"  />
                     </form>
                 </div>
                 <div class="overlay-container">
@@ -441,12 +443,12 @@
                         <div class="overlay-panel overlay-left">
                             <h1>Vous avez d√©ja un compte ?</h1>
                             <p>Connecter vous au site en cliquant sur le bouton ci-dessous</p>
-                            <button class="ghost" id="signIn">Se connecter</button>
+                            <button class="button ghost" id="signIn">Se connecter</button>
                         </div>
                         <div class="overlay-panel overlay-right">
                             <h1>Cr√©er un compte</h1>
                             <p>Entrer les donn√©es correspondantes au CESI</p>
-                            <button class="ghost" id="signUp">S'inscrire</button>
+                            <button class="button ghost" id="signUp">S'inscrire</button>
                         </div>
                     </div>
                 </div>
@@ -468,4 +470,35 @@
     signInButton.addEventListener('click', () => {
         container.classList.remove("right-panel-active");
     });
+
+    $(document).ready(function () {
+        $('#btnConnexionClient').on('click', function ()
+        {
+            testConnexionClient();
+        });
+    });
+
+    function testConnexionClient()
+    {
+        $.ajax({
+            url: '../controleurs/EleveControlleur.php',
+            data: $('#formulaireConnexionClient').serialize(),
+            type: 'POST',
+            dataType: 'json',
+            timeout: 3000,
+            success: function (data) {
+                console.log(data);
+                if (data) {
+                    console.log('Vous Ítes bien connectÈ');
+                    //On envoie vers le site web le client
+                } else {
+                    console.log('Cet email et ce mot de passe ne nous permettent pas de vous autotrisez ‡ vous connecter');
+                    //On affiche un message d'erreur qui dit qu le mot de passe et l'email ne correspond ‡ aucun compte
+                }
+            },
+            error: function () {
+                //On affiche un message d'erreur comme quoi il est impossible de se connecter et de rÈessayer plus tard 
+            }
+        });
+    }
 </script>
