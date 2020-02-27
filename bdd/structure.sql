@@ -154,7 +154,7 @@ CREATE TABLE `EleveRoleGroupeEvenement` (
     `idEvenement` INT(11),
     `idGroupe` INT(11),
 
-    PRIMARY KEY (`idRole`, `mailCESI`, `idEvenement`, `idGroupe`),
+    PRIMARY KEY (`idRole`, `mailCESI`),
 
     FOREIGN KEY (`mailCESI`) REFERENCES `Eleve` (`mailCESI`),
     FOREIGN KEY (`idEvenement`) REFERENCES `Evenement` (`idEvenement`),
