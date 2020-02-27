@@ -129,6 +129,4 @@
 <script src="vendor/datepicker/daterangepicker.js"></script>
 <script src="js/gestionProfil.js"></script>
 
-<!-- Main JS-->
-<script src="js/global.js"></script>
 <!-- end document-->
