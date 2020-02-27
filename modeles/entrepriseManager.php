@@ -1,83 +1,79 @@
 <?php
-    require_once('connexionBdd.php');
+    require_once('./entity/Entreprise.php');
 
-    // recupere toutes les entreprises
-    function getAllEntreprises() {
-        $bdd = connexionBdd();
+    class EntrepriseManager
+    {
+        private $_db;
 
-        $statement = $bdd->prepare("SELECT * FROM entreprise");
+        public function __construct($db)
+        {
+            $this->setDb($db);
+        }
 
-        $statement->execute() or die(print_r($statement->errorInfo()));
+        // recupere toutes les entreprises
+        public function getAllEntreprises() {
+            $result = [];
 
-        $result = $statement->fetchAll();
+            $statement = $this->_db->prepare('SELECT * FROM entreprise ORDER BY nom');
 
-        $bdd = null;
+            $statement->execute() or die(print_r($statement->errorInfo()));
 
-        return $result;
-    }
+            while ($donnees = $statement->fetch(PDO::FETCH_ASSOC))
+            {
+                $result[] = new Entreprise($donnees);
+            }
 
-    // recupere une entreprise avec son id
-    function getEntrepriseById($idEntreprise) {
-        $bdd = connexionBdd();
+            return $result;
+        }
 
-        $statement = $bdd->prepare("SELECT * FROM entreprise where idEntreprise = :idEntreprise");
-        $statement->bindParam(':idEntreprise', $idEntreprise);
+        // recupere une entreprise avec son id
+        public function getEntrepriseById($idEntreprise) {
+            $statement = $this->_db->prepare('SELECT * FROM entreprise WHERE idEntreprise = :idEntreprise');
+            $statement->bindParam(':idEntreprise',$idEntreprise);
 
-        $statement->execute() or die(print_r($statement->errorInfo()));
+            $statement->execute() or die(print_r($statement->errorInfo()));
 
-        $result = $statement->fetch();
+            $donnees = $statement->fetch(PDO::FETCH_ASSOC);
 
-        $bdd = null;
+            return new Entreprise($donnees);
+        }
 
-        return $result;
-    }
+        // mise a jour d une entreprise
+        public function updateEntreprise(Entreprise $entreprise) {
 
-    // mise a jour d une entreprise
-    function updateEntreprise($idEntreprise, $designation, $siteWeb) {
-        $bdd = connexionBdd();
+            $statement = $this->_db->prepare("UPDATE entreprise SET designation = :designation,
+                                        siteWeb = :siteWeb WHERE idEntreprise = :idEntreprise");
 
-        $statement = $bdd->prepare("UPDATE entreprise SET designation = :designation,
-                                    siteWeb = :siteWeb WHERE idEntreprise = :idEntreprise");
+            $statement->bindParam(':designation', $entreprise->getDesignation(), PDO::PARAM_STR);
+            $statement->bindParam(':siteWeb', $entreprise->getSiteWeb(), PDO::PARAM_STR);
+            $statement->bindParam(':idEntreprise', $entreprise->getIdEntreprise(), PDO::PARAM_INT);
 
-        $statement->bindParam(':designation', $designation);
-        $statement->bindParam(':siteWeb', $siteWeb);
-        $statement->bindParam(':idEntreprise', $idEntreprise);
+            $statement->execute() or die(print_r($statement->errorInfo()));
+        }
 
-        $statement->execute() or die(print_r($statement->errorInfo()));
+        //creation d une entreprise
+        public function createEntreprise(Entreprise $entreprise) {
+            $statement = $this->_db->prepare("INSERT INTO entreprise VALUES (:idEntreprise, :designation, :siteWeb)");
 
-        $bdd = null;
+            $statement->bindParam(':designation', $entreprise->getDesignation(), PDO::PARAM_STR);
+            $statement->bindParam(':siteWeb', $entreprise->getSiteWeb(), PDO::PARAM_STR);
+            $statement->bindParam(':idEntreprise', $entreprise->getIdEntreprise(), PDO::PARAM_INT);
 
-        return true;
-    }
+            $statement->execute() or die(print_r($statement->errorInfo()));
+        }
 
-    //creation d une entreprise
-    function createEntreprise($idEntreprise, $designation, $siteWeb) {
-        $bdd = connexionBdd();
+        // Supprime une entreprise avec son id
+        public function deleteEntreprise($idEntreprise) {
 
-        $statement = $bdd->prepare("INSERT INTO entreprise VALUES (:idEntreprise, :designation, :siteWeb)");
+            $statement = $this->_db->prepare("DELETE FROM entreprise where idEntreprise = :idEntreprise");
+            $statement->bindParam(':idEntreprise', $idEntreprise);
 
-        $statement->bindParam(':designation', $designation);
-        $statement->bindParam(':siteWeb', $siteWeb);
-        $statement->bindParam(':idEntreprise', $idEntreprise);
+            $statement->execute() or die(print_r($statement->errorInfo()));
+        }
 
-        $statement->execute() or die(print_r($statement->errorInfo()));
-
-        $bdd = null;
-
-        return true;
-    }
-
-    // Supprime une entreprise avec son id
-    function deleteEntreprise($idEntreprise) {
-        $bdd = connexionBdd();
-
-        $statement = $bdd->prepare("DELETE FROM entreprise where idEntreprise = :idEntreprise");
-        $statement->bindParam(':idEntreprise', $idEntreprise);
-
-        $statement->execute() or die(print_r($statement->errorInfo()));
-
-        $bdd = null;
-
-        return true;
+        public function setDb(PDO $db)
+        {
+            $this->_db = $db;
+        }
     }
 ?>

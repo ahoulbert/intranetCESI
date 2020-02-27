@@ -24,8 +24,6 @@
                 $result[] = new Eleve($donnees);
             }
 
-            var_dump($result);
-
             return $result;
         }
 
