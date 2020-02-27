@@ -27,7 +27,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
     </button>  
   <div class="w3-dropdown-content w3-bar-block w3-border" style="right:0">
   <a href="./gestionProfil.php" class="w3-bar-item w3-button">Modifier mon profil</a>
-      <a href="#" class="w3-bar-item w3-button">Se déconnecter</a>
+      <a href="vues/connexion.php" class="w3-bar-item w3-button">Se déconnecter</a>
   </div>
 </div>
   </a>
