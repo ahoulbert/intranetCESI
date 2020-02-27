@@ -1,21 +1,10 @@
-<?php
-include_once("./navbar.php");
-?>
-<html>
 <head>
-    <!-- Required meta tags-->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Title Page-->
+    <?php
+    include_once("./navbar.php");
+    ?>
     <title>Mon profil</title>
-    <!-- Icons font CSS-->
-    <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
-    <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
-    <!-- Font special for pages-->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
-    <!-- Main CSS-->
-    <link href="css/main.css" rel="stylesheet" media="all">
 </head>
+
 <body>
     <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
         <div class="wrapper wrapper--w790">
@@ -25,7 +14,7 @@ include_once("./navbar.php");
                 </div>
                 <div class="card-body">
                     <div class="form-row">
-                        <img src="vues/images/jul.jpg" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px;">
+                        <img src="vues/images/logoCesi.jpg" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px;">
                         <input id="inputChangePicture" type="file" style="display: none" accept="image/png, image/jpeg" />
                         <button id="changePicture" class="btn btn--change-photo  btn--dark">Changer de photo</button>
                     </div>
@@ -130,6 +119,7 @@ include_once("./navbar.php");
         </div>
     </div>
 </body>
+
 </html>
 <!-- Jquery JS-->
 <script src="vendor/jquery/jquery.min.js"></script>
