@@ -424,6 +424,7 @@
                 <div class="form-container sign-up-container">
                     <form action="creationCompte.php" method="POST">
                         <input type='hidden' name='fonctionValeur' value='continueCreationCompte' />
+                        <h1>Créer mon compte</h1>
                         <input type="text" name="nom_creationEleve" placeholder="Nom" />
                         <input type="text" name="prenom_creationEleve" placeholder="Prénom" />
                         <input type="email" name="email_creationEleve" placeholder="Entrer votre adresse mail du CESI" />

@@ -37,12 +37,12 @@ $eleve = $infosEleve['0']['eleve'];
                                 <div class="row row-space">
                                     <div class="col-2">
                                         <div class="input-group-desc">
-                                            <input placeholder="Entrez votre nom" class="input--style-5" type="text" value="<?php echo $eleve->getNom(); ?>" required name="nom" />
+                                            <input placeholder="Entrer votre nom" class="input--style-5" type="text" value="<?php echo $eleve->getNom(); ?>" required name="nom" />
                                         </div>
                                     </div>
                                     <div class="col-2">
                                         <div class="input-group-desc">
-                                            <input placeholder="Entrez votre prénom" class="input--style-5" type="text" value="<?php echo $eleve->getPrenom(); ?>" required name="prenom" />
+                                            <input placeholder="Entrer votre prénom" class="input--style-5" type="text" value="<?php echo $eleve->getPrenom(); ?>" required name="prenom" />
                                         </div>
                                     </div>
                                 </div>
@@ -146,9 +146,24 @@ $eleve = $infosEleve['0']['eleve'];
                                 </div>
                             </div>
                         </div>
-                        <div>
-                            <button class="btn btn--dark" type="submit">Enregistrer</button>
-                        </div>
+
+                        <div class="form-row m-b-55" style="padding-top: 40px;">
+                                <div class="name"></div>
+                                <div class="value">
+                                    <div class="row row-space">
+                                        <div class="col-2">
+                                            <div class="input-group-desc" >
+                                            <input type="submit" class="btn btn--dark"  value="Enregistrer" />
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="input-group-desc" ">
+                                            <input type="button" class="btn btn--dark" onclick="history.go(-1)"  value="Retour" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                     </form>
                 </div>
             </div>
