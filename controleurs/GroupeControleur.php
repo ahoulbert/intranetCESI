@@ -2,9 +2,9 @@
     /**
      * Import fichier
      */
-    require_once '../modeles/connexionBdd.php';
-    require_once '../modeles/GroupeManager.php';
-    require_once '../modeles/GroupeEleveManager.php';
+    require_once __DIR__.'/../modeles/connexionBdd.php';
+    require_once __DIR__.'/../modeles/GroupeManager.php';
+    require_once __DIR__.'/../modeles/GroupeEleveManager.php';
 
     define('ID_GROUPE_ALL', 1);
 

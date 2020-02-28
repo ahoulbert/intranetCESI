@@ -8,10 +8,10 @@
 html, body, h1, h2, h3, h4, h5 {font-family: 'Exo', sans-serif !important;}
 </style>
 <!-- Icons font CSS-->
-<link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
-<link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+<link href="<?php  echo "http://".$_SERVER['HTTP_HOST']; ?>/intranetCESI/vues/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+<link href="<?php  echo "http://".$_SERVER['HTTP_HOST']; ?>/intranetCESI/vues/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
 <!-- Font special for pages-->
 <!-- Main CSS-->
-<link href="css/main.css" rel="stylesheet" media="all">
-<link rel="shortcut icon" href="images/logoCesi.jpg">
+<link href="<?php  echo "http://".$_SERVER['HTTP_HOST']; ?>/intranetCESI/vues/css/main.css" rel="stylesheet" media="all">
+<link rel="shortcut icon" href="<?php  echo "http://".$_SERVER['HTTP_HOST']; ?>/intranetCESI/vues/images/logoCesi.jpg">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>

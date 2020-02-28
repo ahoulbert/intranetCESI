@@ -3,9 +3,9 @@
 /**
  * Import fichier
  */
-require_once '../modeles/connexionBdd.php';
-require_once '../modeles/EleveManager.php';
-require_once '../modeles/EntrepriseManager.php';
+require_once __DIR__.'/../modeles/connexionBdd.php';
+require_once __DIR__.'/../modeles/EleveManager.php';
+require_once __DIR__.'/../modeles/EntrepriseManager.php';
 
 /**
  * Routing
