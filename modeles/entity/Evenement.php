@@ -54,7 +54,7 @@ class Evenement
     }
 
     /* SETTERS */
-    public function setIdEvenenement($idEvenement) {
+    public function setIdEvenement($idEvenement) {
     // Convertit en int, si ce n'est pas un entier il le met à 0
         $idEvenement = (int) $idEvenement;
         if($idEvenement > 0) {
