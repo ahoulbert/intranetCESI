@@ -19,7 +19,7 @@
                 justify-content: center;
                 align-items: center;
                 flex-direction: column;
-                font-family: 'Montserrat', sans-serif;
+                font-family: 'Exo', sans-serif;
                 height: 100vh;
             }
 
@@ -266,9 +266,7 @@
                 padding: 0px;
             }
 
-            body{
-                font-family: 'Exo', sans-serif;
-            }
+        
 
 
             .context {
