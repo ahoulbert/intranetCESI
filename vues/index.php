@@ -23,7 +23,7 @@
   <?php
   include_once("navBar.php");
   ?>
-  <title>Intranet du CESI</title>
+  <title>Intranet CESI</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -53,21 +53,26 @@
         <!-- Accordion -->
         <div class="w3-card w3-round">
           <div class="w3-white">
-            <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> Mes groupes</button>
-            <div id="Demo1" class="w3-hide w3-container">
-              <p>Some text..</p>
-            </div>
-            <?php
-                foreach(getAllGroupeByEleve($_SESSION['mail_cesi']) as $value) {
-                  echo '<div id="'.$value->getIdGroupe().'" class="w3-hide w3-container"><p>'.utf8_encode($value->getNom()).'</p></div>';
+            <button onclick="deplierAccordeon('group')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i> Mes groupes</button>
+            <div id="group" class="w3-hide w3-container">
+              <?php
+                $groups = getAllGroupeByEleve($_SESSION['mail_cesi']);
+                //var_dump($groups);
+                if(!empty($groups)) {
+                  foreach($groups as $value) {
+                    echo '<p>'.utf8_encode($value->getNom()).'</p>';
+                  }
+                } else {
+                  echo '<p>Vous n\'avez pas de groupe</p>';
                 }
               ?>
-            <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i> Mes événements</button>
-            <div id="Demo2" class="w3-hide w3-container">
+            </div>
+            <button onclick="deplierAccordeon('event')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i> Mes événements</button>
+            <div id="event" class="w3-hide w3-container">
               <p>Some other text..</p>
             </div>
-            <button onclick="myFunction('Demo3')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i> Mes photos</button>
-            <div id="Demo3" class="w3-hide w3-container">
+            <button onclick="deplierAccordeon('image')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-image fa-fw w3-margin-right"></i> Mes photos</button>
+            <div id="image" class="w3-hide w3-container">
               <div class="w3-row-padding">
                 <br>
                 <div class="w3-half">
@@ -101,7 +106,7 @@
             <p>
               <?php
                 $tags = getAllTagByEleve($_SESSION['mail_cesi']);
-                
+
                 if(!empty($tags)){
                   foreach($tags as $value) {
                     echo '<span class="w3-tag w3-small w3-theme-l1">'.utf8_encode($value->getLibelle()).'</span>&nbsp;';
@@ -250,30 +255,8 @@
     <p>Site réalisé par MCMA Dev <img style="width:20px;height:auto;" src="images/logoMCMA.svg" /></p>
   </footer>
 
-  <script>
-    // Accordion
-    function myFunction(id) {
-      var x = document.getElementById(id);
-      if (x.className.indexOf("w3-show") == -1) {
-        x.className += " w3-show";
-        x.previousElementSibling.className += " w3-theme-d1";
-      } else {
-        x.className = x.className.replace("w3-show", "");
-        x.previousElementSibling.className =
-          x.previousElementSibling.className.replace(" w3-theme-d1", "");
-      }
-    }
-
-    // Used to toggle the menu on smaller screens when clicking on the menu button
-    function openNav() {
-      var x = document.getElementById("navDemo");
-      if (x.className.indexOf("w3-show") == -1) {
-        x.className += " w3-show";
-      } else {
-        x.className = x.className.replace(" w3-show", "");
-      }
-    }
-  </script>
+  <!-- Import du JS perso -->s
+  <script src="js/index.js"></script>
 
 </body>
 

@@ -6,6 +6,8 @@
     require_once '../modeles/GroupeManager.php';
     require_once '../modeles/GroupeEleveManager.php';
 
+    define('ID_GROUPE_ALL', 1);
+
     /**
      * Instance du manager
      */
@@ -31,7 +33,9 @@
 
         if(!empty($groupEleve)) {
             foreach($groupEleve as $group) {
-                array_push($groups, getGroupeManager()->getGroupeById($group->getIdGroupe()));
+                if($group->getIdGroupe() != ID_GROUPE_ALL) {
+                    array_push($groups, getGroupeManager()->getGroupeById($group->getIdGroupe()));
+                }
             }
         }
 
