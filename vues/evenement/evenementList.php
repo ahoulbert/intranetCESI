@@ -1,5 +1,5 @@
 <?php
-    //On demarre la session
+  //On demarre la session
   session_start();
 
   // On teste si la variable de session existe et contient une valeur
@@ -14,8 +14,13 @@
   require_once '../../controleurs/EleveControlleur.php';
   require_once '../../controleurs/TagControleur.php';
   require_once '../../controleurs/GroupeControleur.php';
+  require_once '../../controleurs/EvenementControleur.php';
+
   //Infos eleves
   $infosEleve=infosEleve($_SESSION['mail_cesi']);
+
+  var_dump(getAllEvenementAVenir());
+  var_dump(getAllEvenementPasses());
 ?>
 
 <!DOCTYPE html>
@@ -57,8 +62,19 @@
       <!-- Middle Column -->
       <div class="w3-col m7">
 
-        <div class="w3-container w3-card w3-white w3-round w3-margin w3-center w3-col m3" style="margin-top:0px!important"><br>
-          
+        <div class="w3-container w3-card w3-white w3-round w3-margin w3-center" style="margin-top:0px!important">
+          <div class="w3-row w3-opacity">
+            <div class="w3-half">
+              <button class="w3-button w3-block w3-theme w3-section" title="Accept"><i class="fa fa-calendar-check-o"></i>&nbsp;À venir</button>
+            </div>
+            <div class="w3-half">
+              <button class="w3-button w3-block w3-theme w3-section" title="Accept"><i class="fa fa-hourglass-end"></i>&nbsp;Passés</button>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="w3-container w3-card w3-white w3-round w3-margin w3-center"><br>
         </div>
 
         <!-- End Middle Column -->

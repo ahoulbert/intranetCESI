@@ -27,7 +27,7 @@
         }
 
         // recupere un EleveEvenement avec son id
-        public function getEleveEvenementById($idEvenement, $mailCESI ) {
+        public function getEleveEvenementById($idEvenement, $mailCESI) {
             $statement = $this->_db->prepare('SELECT * FROM EleveEvenement WHERE idEvenement = :idEvenement AND mailCESI = :mailCESI');
             $statement->bindParam(':idEvenement',$idEvenement);
             $statement->bindParam(':mailCESI',$mailCESI);
