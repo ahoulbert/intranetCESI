@@ -52,3 +52,9 @@ INSERT INTO tag (libelle) VALUES
 ("Photos");
 
 INSERT INTO groupe VALUES (2, "PFR Madera", "2020-02-28", "C'est un groupe pour le PFR");
+
+INSERT INTO evenement (titre, description, date, dateCreation, lieu)
+VALUES
+("Vacances", "C'est bientôt les vacances", "2020-02-17", NOW(), "Le Mans"),
+("Grosse soirée", "pump it up", "2020-04-17", NOW(), "Le Mans"),
+("24h", "24h du mans", "2020-06-13", NOW(), "Le Mans");
