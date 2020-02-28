@@ -47,8 +47,6 @@
 
         //creation d'une relation EtreAmis
         public function createEleveRoleGroupeEvenement(EleveRoleGroupeEvenement $eleveRoleGroupeEvenement) {
-            $statement = $this->_db->prepare("INSERT INTO EtreAmis VALUES (:mailCESIDemandeur, :mailCESIReceveur, :idStatut)");
-
             $statement = $this->_db->prepare("INSERT INTO EleveRoleGroupeEvenement VALUES (:idRole, :mailCESI, :idEvenement, :idGroupe)");
 
             $statement->bindParam(':idRole', $eleveRoleGroupeEvenement->getIdRole(), PDO::PARAM_INT);
