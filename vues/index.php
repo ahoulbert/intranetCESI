@@ -140,7 +140,7 @@
     <p>Site réalisé par MCMA Dev <img style="width:20px;height:auto;" src="images/logoMCMA.svg" /></p>
   </footer>
 
-  <!-- Import du JS perso -->s
+  <!-- Import du JS perso -->
   <script src="js/index.js"></script>
 
 </body>
