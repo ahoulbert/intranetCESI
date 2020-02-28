@@ -26,9 +26,9 @@
         }
 
         public function getTagEleveById($idTag, $mailCESI) {
-            $statement = $this->_db->prepare('SELECT * FROM tageleve WHERE idPost = :idPost and mailCESI = :mailCESI');
+            $statement = $this->_db->prepare('SELECT * FROM tageleve WHERE idTag = :idTag and mailCESI = :mailCESI');
             $statement->bindParam(':mailCESI', $mailCESI, PDO::PARAM_STR);
-            $statement->bindParam(':idGroupe', $idTag, PDO::PARAM_INT);
+            $statement->bindParam(':idTag', $idTag, PDO::PARAM_INT);
 
             $statement->execute() or die(print_r($statement->errorInfo()));
 
@@ -61,7 +61,7 @@
                                             VALUES (:idTag, :mailCESI)");
 
             $statement->bindParam(':mailCESI', $tagEleve->getMailCESI(), PDO::PARAM_STR);
-            $statement->bindParam(':idGroupe', $tagEleve->getIdTag(), PDO::PARAM_INT);
+            $statement->bindParam(':idTag', $tagEleve->getIdTag(), PDO::PARAM_INT);
 
             $statement->execute() or die(print_r($statement->errorInfo()));
         }
