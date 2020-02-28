@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <?php
 //On demarre la session
 session_start();
@@ -5,8 +6,6 @@ session_start();
 require_once '../controleurs/EleveControlleur.php';
 //Infos eleves
 $infosEleve=infosEleve($_SESSION['mail_cesi']);
-var_dump($infosEleve);
-
 $eleve = $infosEleve['0']['eleve'];
 ?>
 
