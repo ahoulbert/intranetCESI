@@ -167,6 +167,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="area">
         <ul style='margin-bottom:0px;' class="circles">
@@ -199,7 +200,7 @@
                                     <div class="row row-space">
                                         <div class="col-2">
                                             <div class="input-group-desc">
-                                                <input placeholder="Entrer votre nom" class="input--style-5" type="text" required name="nom" value="<?php echo $_GET['Nom']; ?>"/>
+                                                <input placeholder="Entrer votre nom" class="input--style-5" type="text" required name="nom" value="<?php echo $_GET['Nom']; ?>" />
                                             </div>
                                         </div>
                                         <div class="col-2">
@@ -214,7 +215,7 @@
                                 <div class="name">Email <span class="obligatoire">*</span></div>
                                 <div class="value">
                                     <div class="input-group">
-                                        <input placeholder="Adresse email" class="input--style-5" required type="email" name="mailCESI" value="<?php echo $_GET['mail']; ?>"/>
+                                        <input placeholder="Adresse email" class="input--style-5" required type="email" name="mailCESI" value="<?php echo $_GET['mail']; ?>" />
                                     </div>
                                 </div>
                             </div>
@@ -304,16 +305,17 @@
                                         </div>
                                         <div class="col-2">
                                             <div class="input-group-desc" ">
-                                                <input  class="button-style" onclick="history.go(-1)" type="button" value="Retour" />
+                                                <input  class=" button-style" onclick="history.go(-1)" type="button" value="Retour" />
                                         </div>
                                     </div>
                                 </div>
                             </div>
                     </div>
-                    </form>
                 </div>
+                </form>
             </div>
         </div>
+    </div>
     </div>
     </div>
 </body>

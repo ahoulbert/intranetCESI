@@ -152,17 +152,19 @@ $eleve = $infosEleve['0']['eleve'];
                                     <div class="row row-space">
                                         <div class="col-2">
                                             <div class="input-group-desc" >
-                                            <input type="submit" class="btn btn--dark"  value="Enregistrer" />
+                                            <input type="submit" class="btn--arrondi btn--dark"  value="Enregistrer" />
                                             </div>
                                         </div>
                                         <div class="col-2">
                                             <div class="input-group-desc" ">
-                                            <input type="button" class="btn btn--dark" onclick="history.go(-1)"  value="Retour" />
+                                            <input type="button" class="btn--arrondi btn--dark" onclick="history.go(-1)"  value="Retour" />
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                                </div>
                             </div>
+                            
                     </form>
                 </div>
             </div>

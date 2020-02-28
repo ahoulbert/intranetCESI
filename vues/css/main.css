@@ -251,7 +251,8 @@
   }
 
   p {
-    padding-top: 12px;
+    padding-top: 12px !important;
+    font-size: 13px;
   }
   
   h1 {
@@ -394,20 +395,20 @@
   /* ==========================================================================
      #BUTTON
      ========================================================================== */
-  .btn {
-    display: inline-block;
-    line-height: 30px;
-    padding: 0 50px;
-    -webkit-transition: all 0.4s ease;
-    -o-transition: all 0.4s ease;
-    -moz-transition: all 0.4s ease;
-    transition: all 0.4s ease;
-    cursor: pointer;
+  .btn--arrondi {
+    border-radius: 20px;
+    border: 1px solid #4d636f;
+    background-color: #4d636f;
+    color: #FFFFFF;
     font-size: 10px;
+    font-weight: bold;
+    padding-top: 12px;
+    padding-right: 15px;
+    padding-bottom: 12px;
+    padding-left: 15px;
+    letter-spacing: 1px;
     text-transform: uppercase;
-    font-weight: 500;
-    color: #fff;
-    font-family: inherit;
+    transition: transform 80ms ease-in;
   }
 
   .btn--change-photo {
