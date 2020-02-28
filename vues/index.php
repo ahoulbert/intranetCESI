@@ -12,6 +12,7 @@
   //Fichiers inclut
   require_once '../controleurs/EleveControlleur.php';
   require_once '../controleurs/TagControleur.php';
+  require_once '../controleurs/GroupeControleur.php';
   //Infos eleves
   $infosEleve=infosEleve($_SESSION['mail_cesi']);
 ?>
@@ -39,12 +40,12 @@
         <!-- Profile -->
         <div class="w3-card w3-round w3-white">
           <div class="w3-container">
-            <h4 class="w3-center"><?php echo $infosEleve['0']['eleve']->getPrenom(); ?> <?php echo $infosEleve['0']['eleve']->getNom(); ?> </h4>
+            <h4 class="w3-center"><?php echo utf8_encode($infosEleve['0']['eleve']->getPrenom()); ?> <?php echo utf8_encode($infosEleve['0']['eleve']->getNom()); ?> </h4>
             <p class="w3-center"><img src="images/jul.jpg" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
             <hr>
             <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> <?php echo date_format($infosEleve['0']['eleve']->getDateNaissance(), 'd-M-Y'); ?></p>
-            <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> <?php echo $infosEleve['0']['eleve']->getVille(); ?></p>
-            <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> <?php echo$infosEleve['0']['entreprise']->getDesignation(); ?></p>
+            <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> <?php echo utf8_encode($infosEleve['0']['eleve']->getVille()); ?></p>
+            <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> <?php echo utf8_encode($infosEleve['0']['entreprise']->getDesignation()); ?></p>
           </div>
         </div>
         
@@ -56,6 +57,11 @@
             <div id="Demo1" class="w3-hide w3-container">
               <p>Some text..</p>
             </div>
+            <?php
+                foreach(getAllGroupeByEleve($_SESSION['mail_cesi']) as $value) {
+                  echo '<div id="'.$value->getIdGroupe().'" class="w3-hide w3-container"><p>'.utf8_encode($value->getNom()).'</p></div>';
+                }
+              ?>
             <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i> Mes événements</button>
             <div id="Demo2" class="w3-hide w3-container">
               <p>Some other text..</p>
@@ -91,11 +97,25 @@
         <!-- Interests -->
         <div class="w3-card w3-round w3-white w3-hide-small">
           <div class="w3-container">
-            <p>Tags</p>
+            <p>Mes Tags</p>
+            <p>
+              <?php
+                $tags = getAllTagByEleve($_SESSION['mail_cesi']);
+                
+                if(!empty($tags)){
+                  foreach($tags as $value) {
+                    echo '<span class="w3-tag w3-small w3-theme-l1">'.utf8_encode($value->getLibelle()).'</span>&nbsp;';
+                  }
+                }
+              ?>
+            </p>
+          </div>
+          <div class="w3-container">
+            <p>Tags disponibles</p>
             <p>
               <?php
                 foreach(getAllTag() as $value) {
-                  echo '<span class="w3-tag w3-small w3-theme-l1">'.$value->getLibelle().'</span>&nbsp;';
+                  echo '<span class="w3-tag w3-small w3-theme-l1">'.utf8_encode($value->getLibelle()).'</span>&nbsp;';
                 }
               ?>
             </p>

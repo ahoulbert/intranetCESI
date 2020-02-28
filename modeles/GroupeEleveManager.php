@@ -26,6 +26,22 @@
             return $result;
         }
 
+        public function getAllGroupeEleveByEleve($mailCESI) {
+            $result = [];
+
+            $statement = $this->_db->prepare('SELECT * FROM GroupeEleve WHERE mailCESI = :mailCESI');
+            $statement->bindParam(':mailCESI',$mailCESI, PDO::PARAM_STR);
+
+            $statement->execute() or die(print_r($statement->errorInfo()));
+
+            while ($donnees = $statement->fetch(PDO::FETCH_ASSOC))
+            {
+                $result[] = new GroupeEleve($donnees);
+            }
+
+            return $result;
+        }
+
         // recupere un groupe avec son id
         public function getGroupeEleveById($idGroupe, $mailCESI) {
             $statement = $this->_db->prepare('SELECT * FROM GroupeEleve WHERE idGroupe = :idGroupe AND mailCESI = :mailCESI');

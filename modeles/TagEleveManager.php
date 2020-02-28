@@ -1,5 +1,5 @@
 <?php
-    require_once('entity/TagEleve.php.php');
+    require_once('entity/TagEleve.php');
 
     class TagEleveManager 
     {
@@ -42,18 +42,19 @@
         }
 
         public function getTagEleveByMail($mailCESI) {
+            $result = [];
+
             $statement = $this->_db->prepare('SELECT * FROM tageleve WHERE mailCESI = :mailCESI');
             $statement->bindParam(':mailCESI', $mailCESI, PDO::PARAM_STR);
 
             $statement->execute() or die(print_r($statement->errorInfo()));
 
-            $donnees = $statement->fetch(PDO::FETCH_ASSOC);
-
-            if($donnees) {
-                return new TagEleve($donnees);
-            } else {
-                return false;
+            while ($donnees = $statement->fetch(PDO::FETCH_ASSOC))
+            {
+                $result[] = new TagEleve($donnees);
             }
+
+            return $result;
         }
 
         public function createTagEleve(TagEleve $tagEleve) {

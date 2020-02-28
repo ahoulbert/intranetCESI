@@ -50,3 +50,5 @@ INSERT INTO tag (libelle) VALUES
 ("Design"),
 ("Art"),
 ("Photos");
+
+INSERT INTO groupe VALUES (2, "PFR Madera", "2020-02-28", "C'est un groupe pour le PFR");
