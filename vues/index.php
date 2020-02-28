@@ -37,106 +37,19 @@
     <div class="w3-row">
       <!-- Left Column -->
       <div class="w3-col m3">
-        <!-- Profile -->
-        <div class="w3-card w3-round w3-white">
-          <div class="w3-container">
-            <h4 class="w3-center"><?php echo utf8_encode($infosEleve['0']['eleve']->getPrenom()); ?> <?php echo utf8_encode($infosEleve['0']['eleve']->getNom()); ?> </h4>
-            <p class="w3-center"><img src="images/jul.jpg" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
-            <hr>
-            <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> <?php echo date_format($infosEleve['0']['eleve']->getDateNaissance(), 'd-M-Y'); ?></p>
-            <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> <?php echo utf8_encode($infosEleve['0']['eleve']->getVille()); ?></p>
-            <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> <?php echo utf8_encode($infosEleve['0']['entreprise']->getDesignation()); ?></p>
-          </div>
-        </div>
-        
+        <?php
+          include_once('modules/profile.php');
+        ?>
         <br>
         <!-- Accordion -->
-        <div class="w3-card w3-round">
-          <div class="w3-white">
-            <button onclick="deplierAccordeon('group')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i> Mes groupes</button>
-            <div id="group" class="w3-hide w3-container">
-              <?php
-                $groups = getAllGroupeByEleve($_SESSION['mail_cesi']);
-                //var_dump($groups);
-                if(!empty($groups)) {
-                  foreach($groups as $value) {
-                    echo '<p>'.utf8_encode($value->getNom()).'</p>';
-                  }
-                } else {
-                  echo '<p>Vous n\'avez pas de groupe</p>';
-                }
-              ?>
-            </div>
-            <button onclick="deplierAccordeon('event')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i> Mes événements</button>
-            <div id="event" class="w3-hide w3-container">
-              <p>Some other text..</p>
-            </div>
-            <button onclick="deplierAccordeon('image')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-image fa-fw w3-margin-right"></i> Mes photos</button>
-            <div id="image" class="w3-hide w3-container">
-              <div class="w3-row-padding">
-                <br>
-                <div class="w3-half">
-                  <img src="https://www.w3schools.com/w3images/lights.jpg" style="width:100%" class="w3-margin-bottom">
-                </div>
-                <div class="w3-half">
-                  <img src="https://www.w3schools.com/w3images/nature.jpg" style="width:100%" class="w3-margin-bottom">
-                </div>
-                <div class="w3-half">
-                  <img src="https://www.w3schools.com/w3images/mountains.jpg" style="width:100%" class="w3-margin-bottom">
-                </div>
-                <div class="w3-half">
-                  <img src="https://www.w3schools.com/w3images/forest.jpg" style="width:100%" class="w3-margin-bottom">
-                </div>
-                <div class="w3-half">
-                  <img src="https://www.w3schools.com/w3images/nature.jpg" style="width:100%" class="w3-margin-bottom">
-                </div>
-                <div class="w3-half">
-                  <img src="https://www.w3schools.com/w3images/snow.jpg" style="width:100%" class="w3-margin-bottom">
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <?php
+          include_once('modules/accordeon.php');
+        ?>
         <br>
-
-        <!-- Interests -->
-        <div class="w3-card w3-round w3-white w3-hide-small">
-          <div class="w3-container">
-            <p>Mes Tags</p>
-            <p>
-              <?php
-                $tags = getAllTagByEleve($_SESSION['mail_cesi']);
-
-                if(!empty($tags)){
-                  foreach($tags as $value) {
-                    echo '<span class="w3-tag w3-small w3-theme-l1">'.utf8_encode($value->getLibelle()).'</span>&nbsp;';
-                  }
-                }
-              ?>
-            </p>
-          </div>
-          <div class="w3-container">
-            <p>Tags disponibles</p>
-            <p>
-              <?php
-                foreach(getAllTag() as $value) {
-                  echo '<span class="w3-tag w3-small w3-theme-l1">'.utf8_encode($value->getLibelle()).'</span>&nbsp;';
-                }
-              ?>
-            </p>
-          </div>
-        </div>
+        <?php
+          include_once('modules/tag.php');
+        ?>
         <br>
-
-        <!-- Alert Box -->
-        <div class="w3-container w3-display-container w3-round w3-theme-l4 w3-border w3-theme-border w3-margin-bottom w3-hide-small">
-          <span onclick="this.parentElement.style.display='none'" class="w3-button w3-theme-l3 w3-display-topright">
-            <i class="fa fa-remove"></i>
-          </span>
-          <p><strong>Hey!</strong></p>
-          <p>People are looking at your profile. Find out who.</p>
-        </div>
-
         <!-- End Left Column -->
       </div>
 
@@ -199,43 +112,15 @@
 
       <!-- Right Column -->
       <div class="w3-col m2">
-        <div class="w3-card w3-round w3-white w3-center">
-          <div class="w3-container">
-            <p>Prochain événement :</p>
-            <img src="https://www.w3schools.com/w3images/forest.jpg" alt="Forest" style="width:100%;">
-            <p><strong>Holiday</strong></p>
-            <p>Friday 15:00</p>
-            <p><button class="w3-button w3-block w3-theme-l4">Info</button></p>
-          </div>
-        </div>
+        <?php
+          include_once('modules/evenement.php');
+        ?>
         <br>
 
-        <div class="w3-card w3-round w3-white w3-center">
-          <div class="w3-container">
-            <p>Demande d'ami</p>
-            <img src="https://www.w3schools.com/w3images/avatar6.png" alt="Avatar" style="width:50%"><br>
-            <span>Jane Doe</span>
-            <div class="w3-row w3-opacity">
-              <div class="w3-half">
-                <button class="w3-button w3-block w3-green w3-section" title="Accept"><i class="fa fa-check"></i></button>
-              </div>
-              <div class="w3-half">
-                <button class="w3-button w3-block w3-red w3-section" title="Decline"><i class="fa fa-remove"></i></button>
-              </div>
-            </div>
-          </div>
-        </div>
+        <?php
+          include_once('modules/amitier.php');
+        ?>
         <br>
-
-        <div class="w3-card w3-round w3-white w3-padding-16 w3-center">
-          <p>ADS</p>
-        </div>
-        <br>
-
-        <div class="w3-card w3-round w3-white w3-padding-32 w3-center">
-          <p><i class="fa fa-bug w3-xxlarge"></i></p>
-        </div>
-
         <!-- End Right Column -->
       </div>
 
