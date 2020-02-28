@@ -43,15 +43,16 @@
         }
 
         //creation d'un groupe
-        public function createGroupeEleve(GroupeEleve $idGroupe, $mailCESI) {
+        public function createGroupeEleve(GroupeEleve $groupeEleve) {
             $statement = $this->_db->prepare("INSERT INTO GroupeEleve VALUES (:idGroupe, :mailCESI)");
 
-            $statement->bindParam(':idGroupe', $idGroupe->getIdGroupe(), PDO::PARAM_INT);
-            $statement->bindParam(':mailCESI', $mailCESI->getMailCESI(), PDO::PARAM_STR);
+            $statement->bindParam(':idGroupe', $groupeEleve->getIdGroupe(), PDO::PARAM_INT);
+            $statement->bindParam(':mailCESI', $groupeEleve->getMailCESI(), PDO::PARAM_STR);
 
             $statement->execute() or die(print_r($statement->errorInfo()));
         }
 
+        
         // Supprime un groupe avec son id
         public function deleteEntreprise($idGroupe, $mailCESI) {
 

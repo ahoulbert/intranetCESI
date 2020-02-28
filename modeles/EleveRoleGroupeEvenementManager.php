@@ -45,14 +45,16 @@
             }
         }
 
-        //creation d'un EleveRoleGroupeEvenement
-        public function createEleveRoleGroupeEvenement($idRole, $mailCESI, $idEvenement, $idGroupe) {
+        //creation d'une relation EtreAmis
+        public function createEleveRoleGroupeEvenement(EleveRoleGroupeEvenement $eleveRoleGroupeEvenement) {
+            $statement = $this->_db->prepare("INSERT INTO EtreAmis VALUES (:mailCESIDemandeur, :mailCESIReceveur, :idStatut)");
+
             $statement = $this->_db->prepare("INSERT INTO EleveRoleGroupeEvenement VALUES (:idRole, :mailCESI, :idEvenement, :idGroupe)");
 
-            $statement->bindParam(':idRole', $idRole->getIdRole(), PDO::PARAM_INT);
-            $statement->bindParam(':mailCESI', $mailCESI->getMailCESI(), PDO::PARAM_STR);
-           $statement->bindParam(':idEvenement', $idEvenement->getIdEvenement(), PDO::PARAM_INT);
-            $statement->bindParam(':idGroupe', $idGroupe->getIdGroupe(), PDO::PARAM_INT);
+            $statement->bindParam(':idRole', $eleveRoleGroupeEvenement->getIdRole(), PDO::PARAM_INT);
+            $statement->bindParam(':mailCESI', $eleveRoleGroupeEvenement->getMailCESI(), PDO::PARAM_STR);
+            $statement->bindParam(':idEvenement', $eleveRoleGroupeEvenement->getIdEvenement(), PDO::PARAM_INT);
+            $statement->bindParam(':idGroupe', $eleveRoleGroupeEvenement->getIdGroupe(), PDO::PARAM_INT);
             $statement->execute() or die(print_r($statement->errorInfo()));
         }
 
