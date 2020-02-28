@@ -7,7 +7,6 @@
         ?>
         <link rel="stylesheet" href="css/background_circle.css">
         <link rel="stylesheet" href="css/connexion.css">
-        
     </head>
     <body>
         <div class="area" >

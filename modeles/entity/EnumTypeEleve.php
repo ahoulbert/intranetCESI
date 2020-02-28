@@ -32,5 +32,21 @@
         public function getLibelle() {
             return $this->_libelle;
         }
+
+             /* SETTERS */
+    public function setIdTypeEleve($idTypeEleve)
+    {
+        $idTypeEleve = (int) $idTypeEleve;
+
+        if ($idTypeEleve > 0) {
+            $this->_idTypeEleve = $idTypeEleve;
+        }
     }
-?>
+
+    public function setLibelle($libelle)
+    {
+        if (is_string($libelle)) {
+            $this->_libelle = $libelle;
+        }
+    }
+    }

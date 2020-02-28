@@ -2,16 +2,18 @@
 /* ==========================================================================
    #FONT
    ========================================================================== */
+   @import url('https://fonts.googleapis.com/css?family=Exo:400,700');
+   
    .font-robo {
-    font-family: "Roboto", "Arial", "Helvetica Neue", sans-serif;
+    font-family: 'Exo', sans-serif;
   }
   
   .font-poppins {
-    font-family: "Poppins", "Arial", "Helvetica Neue", sans-serif;
+    font-family: 'Exo', sans-serif;
   }
   
   .font-opensans {
-    font-family: "Open Sans", "Arial", "Helvetica Neue", sans-serif;
+    font-family: 'Exo', sans-serif;
   }
   
   /* ==========================================================================
@@ -234,7 +236,7 @@
   }
   
   body {
-    font-family: "Open Sans", "Arial", "Helvetica Neue", sans-serif;
+    font-family: 'Exo', sans-serif;
     font-weight: 400;
     font-size: 10px;
   }
@@ -478,7 +480,7 @@
   
   .table-condensed td, .table-condensed th {
     font-size: 14px;
-    font-family: "Roboto", "Arial", "Helvetica Neue", sans-serif;
+    font-family: 'Exo', sans-serif;
     font-weight: 400;
   }
   
@@ -738,7 +740,7 @@
   }
   
   .rs-select2 .select2-container .select2-selection--single .select2-selection__arrow:after {
-    font-family: "Material-Design-Iconic-Font";
+    font-family: 'Exo', sans-serif;
     content: '\f2f9';
     font-size: 24px;
     color: #999;

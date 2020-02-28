@@ -41,3 +41,14 @@ INSERT INTO eleverolegroupeevenement VALUES
 (2, "antoine.houlbert@viacesi.fr", null, 1),
 (3, "antoine.houlbert@viacesi.fr", null, 1),
 (4, "antoine.houlbert@viacesi.fr", null, 1);
+
+INSERT INTO tag (libelle) VALUES 
+("News"),
+("Jeux"),
+("Amis"),
+("Nouriture"),
+("Design"),
+("Art"),
+("Photos");
+
+INSERT INTO groupe VALUES (2, "PFR Madera", "2020-02-28", "C'est un groupe pour le PFR");
