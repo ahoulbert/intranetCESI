@@ -44,11 +44,22 @@
         }
 
         //creation d'un EleveEvenement
-
         public function createEleveEvenement(EleveEvenement $eleveEvenement) {
-            $statement = $this->_db->prepare("INSERT INTO EleveEvenement VALUES (:idEvenement, :mailCESI)");
+            $statement = $this->_db->prepare("INSERT INTO EleveEvenement VALUES (:idEvenement, :mailCESI, :estInterese)");
             $statement->bindParam(':idEvenement', $eleveEvenement->getIdEvenement(), PDO::PARAM_INT);
             $statement->bindParam(':mailCESI', $eleveEvenement->getMailCESI(), PDO::PARAM_STR);
+            $statement->bindParam(':estInterese', $eleveEvenement->getEstInterese(), PDO::PARAM_INT);
+            $statement->execute() or die(print_r($statement->errorInfo()));
+        }
+
+        public function updateEleveEvenement(EleveEvenement $eleveEvenement) {
+            $statement = $this->_db->prepare("UPDATE EleveEvenement 
+                                            SET estInterese = :estInterese 
+                                            WHERE idEvenement = :idEvenement AND mailCESI = :mailCESI)");
+                                            
+            $statement->bindParam(':idEvenement', $eleveEvenement->getIdEvenement(), PDO::PARAM_INT);
+            $statement->bindParam(':mailCESI', $eleveEvenement->getMailCESI(), PDO::PARAM_STR);
+            $statement->bindParam(':estInterese', $eleveEvenement->getEstInterese(), PDO::PARAM_INT);
             $statement->execute() or die(print_r($statement->errorInfo()));
         }
 
