@@ -162,6 +162,19 @@ CREATE TABLE `EleveRoleGroupeEvenement` (
     FOREIGN KEY (`idRole`) REFERENCES `Role` (`idRole`)
 );
 
+CREATE TABLE `PostEleve` (
+	`idPost` INT(11) NOT NULL,
+    `mailCESI` VARCHAR(50) NOT NULL,
+    `like` tinyint(1) NOT NULL,
+    `comment` tinyint(1) NOT NULL,
+    `commentaire` VARCHAR(250),
+    
+    PRIMARY KEY (`idPost`, `mailCESI`),
+    
+	FOREIGN KEY (`mailCESI`) REFERENCES `Eleve` (`mailCESI`),
+    FOREIGN KEY (`idPost`) REFERENCES `Post` (`idPost`)
+);
+
 INSERT INTO EnumSexeEleve 
 VALUES 
 (1, "Homme"),
