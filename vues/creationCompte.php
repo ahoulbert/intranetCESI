@@ -30,7 +30,7 @@
             background: #7d97a5;
             background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);
             width: 100%;
-            height: 150vh;
+            height: 160vh;
 
 
         }
@@ -132,7 +132,23 @@
             animation-duration: 11s;
         }
 
+        .button-style {
+            border-radius: 20px;
+            border: 1px solid #4d636f;
+            background-color: #4d636f;
+            color: #FFFFFF;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 12px 45px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: transform 80ms ease-in;
+        }
 
+
+        .obligatoire {
+            color: red;
+        }
 
         @keyframes animate {
 
@@ -153,7 +169,7 @@
 </head>
 
 <body>
-    <div class="area" >
+    <div class="area">
         <ul style='margin-bottom:0px;' class="circles">
             <li></li>
             <li></li>
@@ -166,46 +182,53 @@
             <li></li>
             <li></li>
         </ul>
-        <div class="w3-container w3-content" style="max-width:1400px; padding-top:80px;" >
+        <div class="w3-container w3-content" style="max-width:1400px; padding-top:80px;">
             <div class="wrapper wrapper--w790">
                 <div class="card card-5">
                     <div class="card-heading w3-theme-d2">
-                        <h4 class="title">Modifier votre profil</h4>
+                        <h4 class="title">Formulaire d'inscription</h4>
                     </div>
                     <div class="card-body">
                         <div class="form-row">
-                            <img src="images/logoCesi.jpg" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px;">
-                            <input id="inputChangePicture" type="file" style="display: none" accept="image/png, image/jpeg" />
-                            <button id="changePicture" class="btn btn--change-photo  btn--dark">Changer de photo</button>
+                            <img src="images/logoCesi.jpg" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width: 80px;">
                         </div>
                         <form method="POST">
                             <div class="form-row m-b-55">
-                                <div class="name">Identité</div>
+                                <div class="name">Identité <span class="obligatoire">*</div>
                                 <div class="value">
                                     <div class="row row-space">
                                         <div class="col-2">
                                             <div class="input-group-desc">
-                                                <input placeholder="Entrez votre nom" class="input--style-5" type="text" required name="nom" />
+                                                <input placeholder="Entrer votre nom" class="input--style-5" type="text" required name="nom" />
                                             </div>
                                         </div>
                                         <div class="col-2">
                                             <div class="input-group-desc">
-                                                <input placeholder="Entrez votre prénom" class="input--style-5" type="text" required name="prenom" />
+                                                <input placeholder="Entrer votre prénom" class="input--style-5" type="text" required name="prenom" />
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-row">
-                                <div class="name">Email</div>
+                                <div class="name">Email <span class="obligatoire">*</span></div>
                                 <div class="value">
                                     <div class="input-group">
                                         <input placeholder="Adresse email" class="input--style-5" required type="email" name="email" />
                                     </div>
                                 </div>
                             </div>
+
                             <div class="form-row">
-                                <div class="name">Téléphone</div>
+                                <div class="name">Mot de passe <span class="obligatoire">*</div>
+                                <div class="value">
+                                    <div class="input-group">
+                                        <input type="password" name="mdp_connexion" class="input--style-5" required placeholder="Entrer votre mot de passe" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="name">Téléphone <span class="obligatoire">*</div>
                                 <div class="value">
                                     <div class="input-group">
                                         <input placeholder="Numéro de téléphone" class="input--style-5" required type="text" name="numTel" />
@@ -241,13 +264,13 @@
                                     <div class="row row-space">
                                         <div class="col-2">
                                             <div class="form-row">
-                                                <div class="name">Status</div>
+                                                <div class="name">Status <span class="obligatoire">*</div>
                                                 <div class="input-group">
                                                     <div class="select--no-search">
                                                         <div class="p-t-15">
-                                                            <select name="subject" class="custom-select sources" id="select_type" placeholder="Choix">
-                                                                <option value="2">Alternant</option>
-                                                                <option value="1">Etudiant</option>
+                                                            <select name="subject" class="custom-select sources" required placeholder="Choix">
+                                                                <option>Alternant</option>
+                                                                <option>Etudiant</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -270,14 +293,28 @@
                                     </div>
                                 </div>
                             </div>
-                            <div>
-                                <button class="btn btn--dark" type="submit">Enregistrer</button>
+                            <div class="form-row m-b-55" style="padding-top: 40px;">
+                                <div class="name"></div>
+                                <div class="value">
+                                    <div class="row row-space">
+                                        <div class="col-2">
+                                            <div class="input-group-desc">
+                                                <input type="submit" class="button-style" value="Créer un compte" />
+                                            </div>
+                                        </div>
+                                        <div class="col-2">
+                                            <div class="input-group-desc" ">
+                                                <input  class="button-style" onclick="history.go(-1)" type="button" value="Retour" />
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </form>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </body>
 
