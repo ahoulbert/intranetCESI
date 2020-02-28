@@ -132,13 +132,9 @@
   <br>
 
   <!-- Footer -->
-  <footer class="w3-container w3-theme-d3 w3-padding-16">
-    <h5>Footer</h5>
-  </footer>
-
-  <footer class="w3-container w3-theme-d5">
-    <p>Site réalisé par MCMA Dev <img style="width:20px;height:auto;" src="images/logoMCMA.svg" /></p>
-  </footer>
+  <?php
+    include_once('ressources/footer.php');
+  ?>
 
   <!-- Import du JS perso -->
   <script src="js/index.js"></script>
