@@ -46,7 +46,7 @@
         }
 
         //creation d'un EleveRoleGroupeEvenement
-        public function createEleveRoleGroupeEvenement(EleveRoleGroupeEvenement $idRole, $mailCESI, $idEvenement, $idGroupe) {
+        public function createEleveRoleGroupeEvenement($idRole, $mailCESI, $idEvenement, $idGroupe) {
             $statement = $this->_db->prepare("INSERT INTO EleveRoleGroupeEvenement VALUES (:idRole, :mailCESI, :idEvenement, :idGroupe)");
 
             $statement->bindParam(':idRole', $idRole->getIdRole(), PDO::PARAM_INT);

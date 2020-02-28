@@ -27,11 +27,10 @@
         }
 
         // recupere une relation Etre Amis avec son id
-        public function getEtreAmisById($mailCESIDemandeur, $mailCESIReceveur, $idStatut) {
+        public function getEtreAmisById($mailCESIDemandeur, $mailCESIReceveur) {
             $statement = $this->_db->prepare('SELECT * FROM EtreAmis WHERE mailCESIDemandeur = :mailCESIDemandeur AND mailCESIReceveur = :mailCESIReceveur');
             $statement->bindParam(':mailCESIDemandeur',$mailCESIDemandeur);
             $statement->bindParam(':mailCESIReceveur',$mailCESIReceveur);
-            $statement->bindParam(':idStatut',$idStatut);
             $statement->execute() or die(print_r($statement->errorInfo()));
 
             $donnees = $statement->fetch(PDO::FETCH_ASSOC);
@@ -44,22 +43,26 @@
         }
 
         //creation d'une relation EtreAmis
-        public function createEtreAmis(EtreAmis $mailCESIDemandeur, $mailCESIReceveur) {
-            $statement = $this->_db->prepare("INSERT INTO EtreAmis VALUES (:mailCESIDemandeur, :mailCESIReceveur)");
+        public function createEtreAmis(EtreAmis $etreAmis) {
+            $statement = $this->_db->prepare("INSERT INTO EtreAmis VALUES (:mailCESIDemandeur, :mailCESIReceveur, :idStatut)");
 
-            $statement->bindParam(':mailCESIDemandeur', $mailCESIDemandeur->getMailCESIDemandeur(), PDO::PARAM_STR);
-            $statement->bindParam(':mailCESIReceveur', $mailCESIReceveur->getMailCESIReceveur(), PDO::PARAM_STR);
+            $statement->bindParam(':mailCESIDemandeur', $etreAmis->getMailCESIDemandeur(), PDO::PARAM_STR);
+            $statement->bindParam(':mailCESIReceveur', $etreAmis->getMailCESIReceveur(), PDO::PARAM_STR);
+            $statement->bindParam(':idStatut', $etreAmis->getIdStatut(), PDO::PARAM_INT);
+            
             $statement->execute() or die(print_r($statement->errorInfo()));
         }
 
         // update mettre à jour le champ statut 
-        public function updateStatut (EtreAmis $idStatut) {
+        public function updatEtreAmis (EtreAmis $etreAmis) {
             $statement = $this->_db->prepare("UPDATE idStatut SET 
                                             idStatut = :idStatut,
                                             WHERE mailCESIReceveur = :mailCESIReceveur 
                                             AND mailCESIDemandeur = :mailCESIDemandeur");
 
-            $statement->bindParam(':idStatut', $idStatut->getIdStatut(), PDO::PARAM_STR);
+            $statement->bindParam(':idStatut', $etreAmis->getIdStatut(), PDO::PARAM_INT);
+            $statement->bindParam(':mailCESIDemandeur', $etreAmis->getMailCESIDemandeur(), PDO::PARAM_STR);
+            $statement->bindParam(':mailCESIReceveur', $etreAmis->getMailCESIReceveur(), PDO::PARAM_STR);
             $statement->execute() or die(print_r($statement->errorInfo()));
         }
 
@@ -67,10 +70,9 @@
         // Supprime une relation EtreAmis avec son id
         public function deleteEtreAmis($mailCESIDemandeur, $mailCESIReceveur) {
 
-            $statement = $this->_db->prepare("DELETE FROM EtreAmis where mailCESIDemandeur = :mailCESIDemandeur AND mailCESIReceveur = :mailCESIReceveur AND idStatut = :idStatut");
+            $statement = $this->_db->prepare("DELETE FROM EtreAmis where mailCESIDemandeur = :mailCESIDemandeur AND mailCESIReceveur = :mailCESIReceveur");
             $statement->bindParam(':mailCESIDemandeur', $mailCESIDemandeur);
             $statement->bindParam(':mailCESIReceveur', $mailCESIReceveur);
-            $statement->bindParam(':idStatut', $idStatut);
             $statement->execute() or die(print_r($statement->errorInfo()));
         }
 
