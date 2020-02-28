@@ -32,5 +32,21 @@
         public function getLibelle() {
             return $this->_libelle;
         }
+
+        /* SETTERS */
+    public function setIdStatut($idStatut)
+    {
+        $idStatut = (int) $idStatut;
+
+        if ($idStatut > 0) {
+            $this->_idStatut = $idStatut;
+        }
     }
-?>
+
+    public function setLibelle($libelle)
+    {
+        if (is_string($libelle)) {
+            $this->_libelle = $libelle;
+        }
+    }
+    }
