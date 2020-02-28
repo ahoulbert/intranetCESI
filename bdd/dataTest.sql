@@ -41,3 +41,12 @@ INSERT INTO eleverolegroupeevenement VALUES
 (2, "antoine.houlbert@viacesi.fr", null, 1),
 (3, "antoine.houlbert@viacesi.fr", null, 1),
 (4, "antoine.houlbert@viacesi.fr", null, 1);
+
+INSERT INTO tag (libelle) VALUES 
+("News"),
+("Jeux"),
+("Amis"),
+("Nouriture"),
+("Design"),
+("Art"),
+("Photos");
