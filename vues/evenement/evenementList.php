@@ -1,0 +1,91 @@
+<?php
+    //On demarre la session
+  session_start();
+
+  // On teste si la variable de session existe et contient une valeur
+  if(empty($_SESSION['mail_cesi'])) 
+  {
+    // Si inexistante ou nulle, on redirige vers le formulaire de login
+    header('Location: connexion.php');
+    exit();
+  }
+
+  //Fichiers inclut
+  require_once '../../controleurs/EleveControlleur.php';
+  require_once '../../controleurs/TagControleur.php';
+  require_once '../../controleurs/GroupeControleur.php';
+  //Infos eleves
+  $infosEleve=infosEleve($_SESSION['mail_cesi']);
+?>
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <?php
+    include_once(__DIR__."/../navBar.php");
+  ?>
+  <title>Évenements</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body class="w3-theme-l5">
+  <!-- Page Container -->
+  <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
+    <!-- The Grid -->
+    <div class="w3-row">
+      <!-- Left Column -->
+      <div class="w3-col m3">
+        <?php
+          include_once('../modules/profile.php');
+        ?>
+        <br>
+        <!-- Accordion -->
+        <?php
+          include_once('../modules/accordeon.php');
+        ?>
+        <br>
+        <?php
+          include_once('../modules/tag.php');
+        ?>
+        <br>
+        <!-- End Left Column -->
+      </div>
+
+      <!-- Middle Column -->
+      <div class="w3-col m7">
+
+        <div class="w3-container w3-card w3-white w3-round w3-margin w3-center w3-col m3" style="margin-top:0px!important"><br>
+          
+        </div>
+
+        <!-- End Middle Column -->
+      </div>
+
+      <!-- Right Column -->
+      <div class="w3-col m2">
+
+        <?php
+          include_once('../modules/amitier.php');
+        ?>
+        <br>
+        <!-- End Right Column -->
+      </div>
+
+      <!-- End Grid -->
+    </div>
+
+    <!-- End Page Container -->
+  </div>
+  <br>
+
+  <!-- Footer -->
+  <?php
+    include_once('../ressources/footer.php');
+  ?>
+
+</body>
+
+</html>
