@@ -167,7 +167,6 @@
         }
     </style>
 </head>
-
 <body>
     <div class="area">
         <ul style='margin-bottom:0px;' class="circles">
@@ -192,19 +191,20 @@
                         <div class="form-row">
                             <img src="images/logoCesi.jpg" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width: 80px;">
                         </div>
-                        <form method="POST">
+                        <form action="../controleurs/EleveControlleur.php" method="POST">
+                            <input type="hidden" name="fonctionValeur" value="creationCompte" />
                             <div class="form-row m-b-55">
                                 <div class="name">Identité <span class="obligatoire">*</div>
                                 <div class="value">
                                     <div class="row row-space">
                                         <div class="col-2">
                                             <div class="input-group-desc">
-                                                <input placeholder="Entrer votre nom" class="input--style-5" type="text" required name="nom" />
+                                                <input placeholder="Entrer votre nom" class="input--style-5" type="text" required name="nom" value="<?php echo $_GET['Nom']; ?>"/>
                                             </div>
                                         </div>
                                         <div class="col-2">
                                             <div class="input-group-desc">
-                                                <input placeholder="Entrer votre prénom" class="input--style-5" type="text" required name="prenom" />
+                                                <input placeholder="Entrer votre prénom" class="input--style-5" type="text" required name="prenom" value="<?php echo $_GET['Prenom']; ?>" />
                                             </div>
                                         </div>
                                     </div>
@@ -214,7 +214,7 @@
                                 <div class="name">Email <span class="obligatoire">*</span></div>
                                 <div class="value">
                                     <div class="input-group">
-                                        <input placeholder="Adresse email" class="input--style-5" required type="email" name="email" />
+                                        <input placeholder="Adresse email" class="input--style-5" required type="email" name="mailCESI" value="<?php echo $_GET['mail']; ?>"/>
                                     </div>
                                 </div>
                             </div>
@@ -223,7 +223,7 @@
                                 <div class="name">Mot de passe <span class="obligatoire">*</div>
                                 <div class="value">
                                     <div class="input-group">
-                                        <input type="password" name="mdp_connexion" class="input--style-5" required placeholder="Entrer votre mot de passe" />
+                                        <input type="password" name="mdp" class="input--style-5" required placeholder="Entrer votre mot de passe" />
                                     </div>
                                 </div>
                             </div>
@@ -231,7 +231,7 @@
                                 <div class="name">Téléphone <span class="obligatoire">*</div>
                                 <div class="value">
                                     <div class="input-group">
-                                        <input placeholder="Numéro de téléphone" class="input--style-5" required type="text" name="numTel" />
+                                        <input placeholder="Numéro de téléphone" class="input--style-5" required type="text" name="tel" />
                                     </div>
                                 </div>
                             </div>
@@ -239,7 +239,7 @@
                                 <div class="name">Entreprise</div>
                                 <div class="value">
                                     <div class="input-group">
-                                        <input placeholder="Nom de mon entreprise" class="input--style-5" type="text" name="entreprise" />
+                                        <input placeholder="Nom de mon entreprise" class="input--style-5" type="text" name="idEntreprise" />
                                     </div>
                                 </div>
                             </div>
@@ -247,7 +247,7 @@
                                 <div class="name">Ville</div>
                                 <div class="value">
                                     <div class="input-group">
-                                        <input placeholder="Ville de mon entreprise" class="input--style-5" type="text" name="villeEntreprise">
+                                        <input placeholder="Ville de mon entreprise" class="input--style-5" type="text" name="ville">
                                     </div>
                                 </div>
                             </div>

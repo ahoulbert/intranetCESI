@@ -15,6 +15,9 @@ if(isset($_POST['fonctionValeur'])){
     case 'connexionClient':
         connexionClient();
         break;
+    case 'continueCreationCompte':
+        continueCreationCompte();
+        break;
     case 'creationCompte':
         creationCompte();
         break;
@@ -60,7 +63,7 @@ function connexionClient() {
 
 function creationCompte() {
     //On récupère le champ du formulaire
-    $email = $_POST['email_creationEleve'];
+   /* $email = $_POST['email_creationEleve'];
     $mdp = $_POST['mdp_creationEleve'];
     $nom = $_POST['nom_creationEleve'];
     $prenom = $_POST['prenom_creationEleve'];
@@ -79,7 +82,7 @@ function creationCompte() {
     $eleve->setPrenom($prenom);
     $eleve->setDateNaissance('1999-04-11');
 
-    $eleve = $manager->setcreateEleve($eleve);
+    $eleve = $manager->setcreateEleve($eleve);*/
 }
 
 function deconnexion() {
@@ -107,4 +110,26 @@ $manager = new EntrepriseManager($bdd);
 $entreprise = $manager->getEntrepriseById($eleve->getIdEntreprise());
 
 return array(['eleve' => $eleve, 'entreprise' => $entreprise]);
+}
+
+function continueCreationCompte()
+{
+    $isExiste = true;
+    $nom = $_POST['nom_creationEleve'];
+    $prenom = $_POST['prenom_creationEleve'];
+    $mailCesi = $_POST['email_creationEleve'];
+    
+    $nomDomaine=explode('@', $mailCesi);
+    
+    if($nomDomaine[1] === 'viacesi.fr'){
+        $bdd = connexionBdd();
+        $manager = new EleveManager($bdd);
+        $eleve = $manager->getEleveByMailCesi($mailCesi);
+        if(!$eleve){
+           $isExiste=false;
+           
+        }
+    }
+    header('Content-Type: application/json;charset=utf-8');
+    echo json_encode($isExiste);
 }
