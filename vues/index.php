@@ -1,18 +1,19 @@
 <?php
-//On demarre la session
-session_start();
+  //On demarre la session
+  session_start();
 
-// On teste si la variable de session existe et contient une valeur
-if(empty($_SESSION['mail_cesi'])) 
-{
-  // Si inexistante ou nulle, on redirige vers le formulaire de login
-  header('Location: connexion.php');
-  exit();
-}
-//Fichiers inclut
-require_once '../controleurs/EleveControlleur.php';
-//Infos eleves
-$infosEleve=infosEleve($_SESSION['mail_cesi']);
+  // On teste si la variable de session existe et contient une valeur
+  if(empty($_SESSION['mail_cesi'])) 
+  {
+    // Si inexistante ou nulle, on redirige vers le formulaire de login
+    header('Location: connexion.php');
+    exit();
+  }
+  //Fichiers inclut
+  require_once '../controleurs/EleveControlleur.php';
+  require_once '../controleurs/TagControleur.php';
+  //Infos eleves
+  $infosEleve=infosEleve($_SESSION['mail_cesi']);
 ?>
 <!DOCTYPE html>
 <html>
@@ -92,17 +93,11 @@ $infosEleve=infosEleve($_SESSION['mail_cesi']);
           <div class="w3-container">
             <p>Tags</p>
             <p>
-              <span class="w3-tag w3-small w3-theme-d5">News</span>
-              <span class="w3-tag w3-small w3-theme-d4">W3Schools</span>
-              <span class="w3-tag w3-small w3-theme-d3">Labels</span>
-              <span class="w3-tag w3-small w3-theme-d2">Games</span>
-              <span class="w3-tag w3-small w3-theme-d1">Friends</span>
-              <span class="w3-tag w3-small w3-theme">Games</span>
-              <span class="w3-tag w3-small w3-theme-l1">Friends</span>
-              <span class="w3-tag w3-small w3-theme-l2">Food</span>
-              <span class="w3-tag w3-small w3-theme-l3">Design</span>
-              <span class="w3-tag w3-small w3-theme-l4">Art</span>
-              <span class="w3-tag w3-small w3-theme-l5">Photos</span>
+              <?php
+                foreach(getAllTag() as $value) {
+                  echo '<span class="w3-tag w3-small w3-theme-l1">'.$value->getLibelle().'</span>&nbsp;';
+                }
+              ?>
             </p>
           </div>
         </div>
