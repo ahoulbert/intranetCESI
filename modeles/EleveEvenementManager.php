@@ -55,11 +55,11 @@
         public function updateEleveEvenement(EleveEvenement $eleveEvenement) {
             $statement = $this->_db->prepare("UPDATE EleveEvenement 
                                             SET estInterese = :estInterese 
-                                            WHERE idEvenement = :idEvenement AND mailCESI = :mailCESI)");
+                                            WHERE idEvenement = :idEvenement AND mailCESI = :mailCESI");
                                             
-            $statement->bindParam(':idEvenement', $eleveEvenement->getIdEvenement(), PDO::PARAM_INT);
-            $statement->bindParam(':mailCESI', $eleveEvenement->getMailCESI(), PDO::PARAM_STR);
-            $statement->bindParam(':estInterese', $eleveEvenement->getEstInterese(), PDO::PARAM_INT);
+            $statement->bindValue(':idEvenement', $eleveEvenement->getIdEvenement(), PDO::PARAM_INT);
+            $statement->bindValue(':mailCESI', $eleveEvenement->getMailCESI(), PDO::PARAM_STR);
+            $statement->bindValue(':estInterese', $eleveEvenement->getEstInterese(), PDO::PARAM_INT);
             $statement->execute() or die(print_r($statement->errorInfo()));
         }
 

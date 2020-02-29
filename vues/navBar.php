@@ -12,15 +12,15 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
   <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
   <a href="<?php  echo "http://".$_SERVER['HTTP_HOST']; ?>/intranetCESI/vues/index.php" class="w3-hover-white w3-bar-item w3-button w3-padding-large w3-theme-d4"><img style='height : 23px; width:auto;' src='<?php echo "http://".$_SERVER['HTTP_HOST']; ?>/intranetCESI/vues/images/logoCesi.jpg' /></a>
   
-  <a href="groupes/groupesList.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Groupes"><i class="fa fa-users"></i></a> 
-  <a href="evenement/evenementList.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Évenements"><i class="fa fa-calendar-check-o"></i></a>
+  <a href="<?php  echo "http://".$_SERVER['HTTP_HOST']; ?>/intranetCESI/vues/groupes/groupesList.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Groupes"><i class="fa fa-users"></i></a> 
+  <a href="<?php  echo "http://".$_SERVER['HTTP_HOST']; ?>/intranetCESI/vues/evenement/evenementList.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Évenements"><i class="fa fa-calendar-check-o"></i></a>
   <div class="w3-dropdown-hover w3-right">
     <button class="w3-button w3-padding-large w3-hover-white">
       <i class="fa fa-user"></i>
     </button>  
     <div class="w3-dropdown-content w3-bar-block w3-border" style="right:0; width:200px; font-size:14px;">
-        <a href="./gestionProfil.php" class="w3-bar-item w3-button">Modifier mon profil</a>
-        <form action='../controleurs/EleveControlleur.php' method='POST'>
+        <a href="<?php  echo "http://".$_SERVER['HTTP_HOST']; ?>/intranetCESI/vues/gestionProfil.php" class="w3-bar-item w3-button">Modifier mon profil</a>
+        <form action='<?php  echo "http://".$_SERVER['HTTP_HOST']; ?>/intranetCESI/controleurs/EleveControlleur.php' method='POST'>
             <input type='hidden' name='fonctionValeur' value='deconnexion' />
             <input type='submit'  value='Se déconnecter' class="w3-bar-item w3-button"> 
         </form>

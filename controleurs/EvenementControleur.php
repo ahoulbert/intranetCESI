@@ -23,11 +23,8 @@ function getEleveEvenementManager() {
  */
 if(isset($_POST['fonctionValeur'])){
     switch ($_POST['fonctionValeur']) {
-        case 'eventPast':
-            getAllEvenementAVenir();
-            break;
-        case 'eventPast':
-            getAllEvenementPasses();
+        case 'updateInteresement':
+            updateInteresement();
             break;
     }
 } 
@@ -62,5 +59,25 @@ function getAllEvenementPasses() {
     }
 
     return $events;
+}
+
+function updateInteresement() {
+    $idEvent = $_POST['idEvent'];
+    $estInterese = $_POST['estInterese'];
+    $mailCESI = $_POST['mail_cesi'];
+    $updateStatut = false;
+
+    $eleveEvenement = getEleveEvenementManager()->getEleveEvenementById($idEvent, $mailCESI);
+    
+    if($eleveEvenement) {
+        $eleveEvenement->setEstInterese($estInterese);
+
+        getEleveEvenementManager()->updateEleveEvenement($eleveEvenement);
+
+        $updateStatut = true;
+    }
+
+    header('Content-Type: application/json;charset=utf-8');
+    echo json_encode($updateStatut);
 }
 ?>
