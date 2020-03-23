@@ -75,6 +75,7 @@
                                         <div class="input-group-desc">
                                             <input placeholder="Titre de l'événement" style="font-size: 13px !important;" class="input--style-5" type="text" value="" required name="nom" />
                                         </div>
+                                      <br/>
                                     </div>
                                     <div class="col-2">
                                         <div class="input-group-desc">
