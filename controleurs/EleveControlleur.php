@@ -3,9 +3,7 @@
 /**
  * Import fichier
  */
-require_once __DIR__.'/../modeles/connexionBdd.php';
-require_once __DIR__.'/../modeles/EleveManager.php';
-require_once __DIR__.'/../modeles/EntrepriseManager.php';
+require_once  __DIR__.'/../modeles/Managers.php';
 
 /**
  * Routing
@@ -31,22 +29,6 @@ if (isset($_POST['fonctionValeur'])) {
             uploadImgProfil();
             break;
     }
-}
-
-function getEleveManager() {
-    return new EleveManager(connexionBdd());
-}
-
-function getEntrepriseManager() {
-    return new EntrepriseManager(connexionBdd());
-}
-
-function getEnumTypeEleveManager() {
-    return new EnumTypeEleveManager(connexionBdd());
-}
-
-function getEnumSexeEleveManager() {
-    return new EnumSexeEleveManager(connexionBdd());
 }
 
 /**

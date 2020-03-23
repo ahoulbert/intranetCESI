@@ -25,6 +25,22 @@
             return $result;
         }
 
+        public function getAllPostByGroupe($idGroupe) {
+            $result = [];
+
+            $statement = $this->_db->prepare('SELECT * FROM post WHERE idGroupe = :idGroupe ORDER BY dateCreation');
+            $statement->bindValue(':idGroupe', $idGroupe);
+
+            $statement->execute() or die(print_r($statement->errorInfo()));
+
+            while ($donnees = $statement->fetch(PDO::FETCH_ASSOC))
+            {
+                $result[] = new Post($donnees);
+            }
+
+            return $result;
+        }
+
         public function getPostById($idPost) {
             $statement = $this->_db->prepare('SELECT * FROM post WHERE idPost = :idPost');
             $statement->bindParam(':idPost',$idPost);

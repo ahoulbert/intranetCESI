@@ -19,3 +19,4 @@ html, body, h1, h2, h3, h4, h5 {font-family: 'Exo', sans-serif !important;}
 <link href="<?php  echo "http://".$_SERVER['HTTP_HOST']; ?>/intranetCESI/vues/vendor/notiflix/notiflix-2.1.2.min.css" rel="stylesheet" media="all">
 <script src="<?php  echo "http://".$_SERVER['HTTP_HOST']; ?>/intranetCESI/vues/vendor/notiflix/notiflix-2.1.2.min.js"></script>
 <script src="<?php  echo "http://".$_SERVER['HTTP_HOST']; ?>/intranetCESI/vues/js/index.js"></script>
+<script src="https://unpkg.com/scrollreveal"></script>
