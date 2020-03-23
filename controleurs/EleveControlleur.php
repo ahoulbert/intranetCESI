@@ -10,7 +10,7 @@ require_once __DIR__.'/../modeles/EntrepriseManager.php';
 /**
  * Routing
  */
-if(isset($_POST['fonctionValeur'])){
+if (isset($_POST['fonctionValeur'])) {
     switch ($_POST['fonctionValeur']) {
     case 'connexionClient':
         connexionClient();
@@ -28,8 +28,6 @@ if(isset($_POST['fonctionValeur'])){
         saveEleve();
         break;
 }
-} 
-
 
 /**
  * Function 
@@ -65,72 +63,75 @@ function connexionClient() {
 }
 
 function creationCompte() {
-    //On récupère le champ du formulaire
-   /* $email = $_POST['email_creationEleve'];
-    $mdp = $_POST['mdp_creationEleve'];
-    $nom = $_POST['nom_creationEleve'];
-    $prenom = $_POST['prenom_creationEleve'];
 
-    //On hash le mot de passe
-    $mdp = password_hash($mdp, PASSWORD_DEFAULT);
-
-    //On appelle le manager 
+    $mdp=password_hash($_POST['mdp'], PASSWORD_DEFAULT);
+    
+    
     $bdd = connexionBdd();
     $manager = new EleveManager($bdd);
-    $eleve = new Eleve();
-    //Setter Eleve remplissage des champs pour hydrater l'objet
-    $eleve->setMailCESI($email);
-    $eleve->setMdp($mdp);
-    $eleve->setNom($nom);
-    $eleve->setPrenom($prenom);
-    $eleve->setDateNaissance('1999-04-11');
-
-    $eleve = $manager->setcreateEleve($eleve);*/
+    $eleve = new Eleve(array(
+        'mailCESI' => $_POST['mailCESI'],
+        'mdp' => $mdp,
+        'nom' => $_POST['nom'],
+        'prenom' => $_POST['prenom'],
+        'dateNaissance' => null,
+        'tel' => $_POST['tel'],
+        'ville' => $_POST['ville'],
+        'description' => $_POST['description'],
+        'lienLinkedin' => null,
+        'imgProfil' => null,
+        'idEntreprise' => null,
+        'idPromotion' => null,
+        'idTypeEleve' => $_POST['idTypeEleve'],
+        'idSexeEleve' => $_POST['idSexeEleve']
+    ));
+    
+    $manager->createEleve($eleve);
+    
+    header('Location : ../vues/connexion.php');
+   
 }
 
 function deconnexion() {
-  // Démarrage ou restauration de la session
-  session_start();
-  // Réinitialisation du tableau de session
-  // On le vide intégralement
-  $_SESSION = array();
-  // Destruction de la session
-  session_destroy();
-  // Destruction du tableau de session
-  unset($_SESSION);
-  //Redirection vers la page de connexion
-  header('Location: ../vues/connexion.php');
+    // Démarrage ou restauration de la session
+    session_start();
+    // Réinitialisation du tableau de session
+    // On le vide intégralement
+    $_SESSION = array();
+    // Destruction de la session
+    session_destroy();
+    // Destruction du tableau de session
+    unset($_SESSION);
+    //Redirection vers la page de connexion
+    header('Location: ../vues/connexion.php');
 }
 
-function infosEleve($identifiant)
-{
+function infosEleve($identifiant) {
 //On va chercher l'objet eleve
-$bdd = connexionBdd();
-$manager = new EleveManager($bdd);
-$eleve = $manager->getEleveByMailCESI($identifiant);
+    $bdd = connexionBdd();
+    $manager = new EleveManager($bdd);
+    $eleve = $manager->getEleveByMailCESI($identifiant);
 
-$manager = new EntrepriseManager($bdd);
-$entreprise = $manager->getEntrepriseById($eleve->getIdEntreprise());
+    $manager = new EntrepriseManager($bdd);
+    $entreprise = $manager->getEntrepriseById($eleve->getIdEntreprise());
 
-return array(['eleve' => $eleve, 'entreprise' => $entreprise]);
+    return array(['eleve' => $eleve, 'entreprise' => $entreprise]);
 }
 
-function continueCreationCompte()
-{
+function continueCreationCompte() {
     $isExiste = true;
     $nom = $_POST['nom_creationEleve'];
     $prenom = $_POST['prenom_creationEleve'];
     $mailCesi = $_POST['email_creationEleve'];
-    
-    $nomDomaine=explode('@', $mailCesi);
-    
-    if($nomDomaine[1] === 'viacesi.fr'){
+
+    $nomDomaine = explode('@', $mailCesi);
+
+    if ($nomDomaine[1] === 'viacesi.fr') {
         $bdd = connexionBdd();
         $manager = new EleveManager($bdd);
         $eleve = $manager->getEleveByMailCesi($mailCesi);
-        if(!$eleve){
-           $isExiste=false;
-           
+        if (!$eleve) {
+            $isExiste = false;
         }
     }
     header('Content-Type: application/json;charset=utf-8');
