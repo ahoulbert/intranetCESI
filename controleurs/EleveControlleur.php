@@ -27,6 +27,9 @@ if (isset($_POST['fonctionValeur'])) {
         case 'saveEleve':
             saveEleve();
             break;
+        case 'uploadImgProfil':
+            uploadImgProfil();
+            break;
     }
 }
 
@@ -182,4 +185,43 @@ function saveEleve()
 
     header('Content-type: application/json');
     echo json_encode(true);
+}
+
+function uploadImgProfil() {
+    $target_dir = '../uploads/imgProfil/';
+    $target_file = $target_dir.uniqid();
+    $uploadOk = 1;
+    $imageFileType = pathinfo($_FILES["imgProfil"]["name"], PATHINFO_EXTENSION);
+    $eleve = getEleveManager()->getEleveByMailCESI($_POST['mailCesi']);
+
+    if (file_exists($target_file)) {
+        header('HTTP/1.1 500 Internal Server Error');
+        $uploadOk = 0;
+    }
+
+    if ($uploadOk == 0) {
+        header('HTTP/1.1 500 Internal Server Error');
+    // if everything is ok, try to upload file
+    } else {
+        if (move_uploaded_file($_FILES["imgProfil"]["tmp_name"], $target_file.'.'.$imageFileType)) {
+
+            // Supprime l'ancienne image si elle existe
+            if($eleve->getImgProfil()) {
+                if(file_exists(__DIR__.'/../uploads/imgProfil/'.$eleve->getImgProfil())) {
+                    unlink(__DIR__.'/../uploads/imgProfil/'.$eleve->getImgProfil());
+                }
+            }   
+            $eleve->setImgProfil(basename($target_file.'.'.$imageFileType));
+            getEleveManager()->updateEleve($eleve);
+            
+            $imgProfil = base64_encode(file_get_contents(__DIR__ .'/../uploads/imgProfil/'.$eleve->getImgProfil()));
+
+            echo json_encode(array(
+                'imgProfil'=>$imgProfil,
+                'imgType' => $imageFileType
+            ));
+        } else {
+            header('HTTP/1.1 500 Internal Server Error');
+        }
+    }
 }
