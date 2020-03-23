@@ -140,7 +140,3 @@ function continueCreationCompte()
     echo json_encode($isExiste);
 }
 
-function saveEleve()
-{
-    
-}
