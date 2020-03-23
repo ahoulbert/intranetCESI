@@ -62,9 +62,11 @@
                 <div id="newGroupe">
                     <input type="hidden" value="<?php echo $_SESSION['mail_cesi']; ?>" id="mail_cesi">
                     <div class="w3-container w3-card w3-white w3-round w3-margin w3-center"><br>
+                    
                         <h4>Créer un nouveau groupe</h4>
                         <hr class="w3-clear">
-                        <form method="POST">
+                        <form action="../../controleurs/GroupeControleur.php" method="POST">
+                        <input type="hidden" name="fonctionValeur" value="creationGroupe" />
                         <div class="form-row m-b-55">
                             <div class="name" style="font-size: 15px !important;" >Informations</div>
                             <div class="value">
@@ -76,17 +78,19 @@
                                     </div>
                                     <div class="col-2">
                                         <div class="input-group-desc">
-                                            <input placeholder="Description" style="font-size: 13px !important;" class="input--style-5" type="text" value="" required name="prenom" />
+                                            <input placeholder="Description" style="font-size: 13px !important;"  class="input--style-5" type="text" value="" required name="description" />
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        </form>
                         <div class="w3-right w3-section" style=" float:left;">
-                            <button class="w3-button  w3-theme" id="button-">Créer</button>
-                            <button class="w3-button  w3-theme" style="background-color: #B2B7C0 !important;"  onclick="history.go(-1)" id="button">Retour</button>
+                        <button class="w3-button  w3-theme" style="background-color: #B2B7C0 !important;"  src="./intranetcesi/vues/groupes/creationGroupe.php" id="button">Retour</button>
+                            <button class="w3-button  w3-theme" id="button-" type="submit" >Créer</button>
+                            
                         </div>
+                        </form>
+                        
                     </div>
                 </div>
         <!--

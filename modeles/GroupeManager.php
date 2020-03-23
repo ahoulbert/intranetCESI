@@ -77,16 +77,16 @@
         public function createGroupe(Groupe $groupe) {
             $statement = $this->_db->prepare("INSERT INTO Groupe VALUES (:idGroupe, :nom, :dateCreation, :description)");
 
-            $statement->bindParam(':nom', $groupe->getNom(), PDO::PARAM_STR);
-            $statement->bindParam(':dateCreation', $groupe->getDateCreation(), PDO::PARAM_STR);
-            $statement->bindParam(':description', $groupe->getDescription(), PDO::PARAM_STR);
-            $statement->bindParam(':idGroupe', $groupe->getIdGroupe(), PDO::PARAM_INT);
+            $statement->bindValue(':nom', $groupe->getNom(), PDO::PARAM_STR);
+            $statement->bindValue(':dateCreation', date('Y-m-d'));
+            $statement->bindValue(':description', $groupe->getDescription(), PDO::PARAM_STR);
+            $statement->bindValue(':idGroupe', $groupe->getIdGroupe(), PDO::PARAM_INT);
 
             $statement->execute() or die(print_r($statement->errorInfo()));
         }
 
         // Supprime un groupe avec son id
-        public function deleteEntreprise($idGroupe) {
+        public function deleteGroupe($idGroupe) {
 
             $statement = $this->_db->prepare("DELETE FROM Groupe where idGroupe = :idGroupe");
             $statement->bindParam(':idGroupe', $idGroupe);

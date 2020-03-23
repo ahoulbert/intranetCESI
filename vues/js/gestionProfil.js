@@ -2,38 +2,50 @@ $("#changePicture").on("click", function() {
     $("#inputChangePicture").trigger("click");
 });
 
-$(".custom-select").each(function() {
-    var classes = $(this).attr("class"),
-        id = $(this).attr("id"),
-        name = $(this).attr("name");
-    var template = '<div class="' + classes + '">';
-    template += '<span class="custom-select-trigger">' + $(this).attr("placeholder") + '</span>';
-    template += '<div class="custom-options">';
-    $(this).find("option").each(function() {
-        template += '<span class="custom-option ' + $(this).attr("class") + '" data-value="' + $(this).attr("value") + '">' + $(this).html() + '</span>';
-    });
-    template += '</div></div>';
+var saveEleve = function(e) {
+    e.preventDefault();
+    var nom = $('#nom').val();
+    var prenom = $('#prenom').val();
+    var mail = $('#mail').val();
+    var tel = $('#tel').val();
+    var nomEntreprise = $('#entreprise').val();
+    var villeEleve = $('#ville').val();
+    var description = $('#description').val();
+    var typeEleve = $('#typeEleve').val();
+    var sexe;
 
-    $(this).wrap('<div class="custom-select-wrapper"></div>');
-    $(this).hide();
-    $(this).after(template);
-});
-$(".custom-option:first-of-type").hover(function() {
-    $(this).parents(".custom-options").addClass("option-hover");
-}, function() {
-    $(this).parents(".custom-options").removeClass("option-hover");
-});
-$(".custom-select-trigger").on("click", function() {
-    $('html').one('click', function() {
-        $(".custom-select").removeClass("opened");
+    $('input[name="sexe"]').each(function() {
+        if($(this).is(':checked')){
+            sexe = $(this).val();
+        }
+    })
+
+    Notiflix.Notify.Init({position:"right-bottom",});
+
+    $.ajax({
+        url: '__DIR__../../../controleurs/EleveControlleur.php',
+        data: {
+            "nom" : nom,
+            "prenom" : prenom,
+            "mail" : mail,
+            "tel" : tel,
+            "nomEntreprise" : nomEntreprise,
+            "villeEleve" : villeEleve,
+            "description" : description,
+            "typeEleve" : typeEleve,
+            "sexe" : sexe,
+            "fonctionValeur" : "saveEleve"
+        },
+        type: 'POST',
+        dataType: 'json',
+        timeout: 3000,
+        success: function (data) {
+            console.log(data);
+            Notiflix.Notify.Success('Modification enregistrées');
+        },
+        error: function (e) {
+            console.log(e);
+            Notiflix.Notify.Failure('Une erreur est survenue');
+        }
     });
-    $(this).parents(".custom-select").toggleClass("opened");
-    event.stopPropagation();
-});
-$(".custom-option").on("click", function() {
-    $(this).parents(".custom-select-wrapper").find("select").val($(this).data("value"));
-    $(this).parents(".custom-options").find(".custom-option").removeClass("selection");
-    $(this).addClass("selection");
-    $(this).parents(".custom-select").removeClass("opened");
-    $(this).parents(".custom-select").find(".custom-select-trigger").text($(this).text());
-});
+}
