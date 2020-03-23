@@ -127,7 +127,9 @@ function infosEleve($identifiant) {
     return array(['eleve' => $eleve, 'entreprise' => $entreprise]);
 }
 
-function continueCreationCompte() {
+
+function continueCreationCompte()
+{
     $isExiste = true;
     $nom = $_POST['nom_creationEleve'];
     $prenom = $_POST['prenom_creationEleve'];

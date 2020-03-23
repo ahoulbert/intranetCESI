@@ -41,4 +41,9 @@
 
         return $groups;
     }
+
+   function getAllGroupeSuggest($mailCESI) {
+       return getGroupeManager()->getAllGroupeSuggest($mailCESI);
+   }
+     
 ?>
