@@ -24,12 +24,14 @@ $eleve = $infosEleve['0']['eleve'];
                     <h4 class="title">Modifier votre profil</h4>
                 </div>
                 <div class="card-body">
-                    <div class="form-row">
-                        <img src="images/logoCesi.jpg" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px;">
-                        <input id="inputChangePicture" type="file" style="display: none" accept="image/png, image/jpeg" />
-                        <button id="changePicture" class="btn btn--change-photo  btn--dark">Changer de photo</button>
-                    </div>
-                    <form method="POST">
+                    <form id="formImgProfil" enctype="multipart/form-data">
+                        <input id="inputChangePicture" name="imgProfil" type="file" style="display: none" accept="image/png, image/jpeg" />
+                    </form>
+                        <div class="form-row">
+                            <img src="../uploads/imgProfil/<?php echo $eleve->getImgProfil(); ?>" id="avatarEleve" alt="Avatar" onerror="this.onerror=null;this.src='../uploads/imgProfil/default.jpg'" class="w3-left w3-circle w3-margin-right" style="width:60px;">
+                            <button id="changePicture" class="btn btn--change-photo  btn--dark">Changer de photo</button>
+                        </div>
+                    
                         <div class="form-row m-b-55">
                             <div class="name">Identité</div>
                             <div class="value">
@@ -163,9 +165,7 @@ $eleve = $infosEleve['0']['eleve'];
                                 </div>
                             </div>
                         </div>
-                        </div>
-                            
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,18 +1,10 @@
-$("#changePicture").on("click", function() {
+$("#changePicture").on("click", function(event) {
+    event.preventDefault();
     $("#inputChangePicture").trigger("click");
 });
 
 var saveEleve = function(e) {
     e.preventDefault();
-    var nom = $('#nom').val();
-    var prenom = $('#prenom').val();
-    var mail = $('#mail').val();
-    var tel = $('#tel').val();
-    var nomEntreprise = $('#entreprise').val();
-    var villeEleve = $('#ville').val();
-    var description = $('#description').val();
-    var typeEleve = $('#typeEleve').val();
-    var sexe;
 
     $('input[name="sexe"]').each(function() {
         if($(this).is(':checked')){
@@ -25,14 +17,14 @@ var saveEleve = function(e) {
     $.ajax({
         url: '__DIR__../../../controleurs/EleveControlleur.php',
         data: {
-            "nom" : nom,
-            "prenom" : prenom,
-            "mail" : mail,
-            "tel" : tel,
-            "nomEntreprise" : nomEntreprise,
-            "villeEleve" : villeEleve,
-            "description" : description,
-            "typeEleve" : typeEleve,
+            "nom" : $('#nom').val(),
+            "prenom" : $('#prenom').val(),
+            "mail" : $('#mail').val(),
+            "tel" : $('#tel').val(),
+            "nomEntreprise" : $('#entreprise').val(),
+            "villeEleve" : $('#ville').val(),
+            "description" : $('#description').val(),
+            "typeEleve" : $('#typeEleve').val(),
             "sexe" : sexe,
             "fonctionValeur" : "saveEleve"
         },
@@ -49,3 +41,29 @@ var saveEleve = function(e) {
         }
     });
 }
+
+$("#inputChangePicture").on('change', function(){
+    var formdataToSend = new FormData($('#formImgProfil')[0]);
+    formdataToSend.append("mailCesi", $('#mail').val());
+    formdataToSend.append("fonctionValeur", "uploadImgProfil");
+
+    console.log($('#formImgProfil'))
+
+    $.ajax({
+        url: '__DIR__../../../controleurs/EleveControlleur.php',
+        data: formdataToSend,
+        type: 'POST',
+        dataType: 'json',
+        contentType : false,
+        processData : false,
+        cache : false,
+        timeout: 3000,
+        success: function (data) {
+            console.log(data);
+            $('#avatarEleve').attr("src", "data:image/" + data.imgType +";base64, " + data.imgProfil);
+        },
+        error: function (e) {
+            console.log(e);
+        }
+    });
+});
