@@ -26,6 +26,23 @@
             return $result;
         }
 
+        // recupere tous les groupes dont un eleve ne fait pas partis
+        public function getAllGroupeSuggest($mailCESI) {
+            $result = [];
+
+            $statement = $this->_db->prepare('SELECT * FROM Groupe g WHERE idGroupe NOT IN (SELECT idGroupe FROM groupeeleve WHERE mailCESI = :mailCESI)');
+            $statement->bindParam(':mailCESI', $mailCESI);
+
+            $statement->execute() or die(print_r($statement->errorInfo()));
+
+            while ($donnees = $statement->fetch(PDO::FETCH_ASSOC))
+            {
+                $result[] = new Groupe($donnees);
+            }
+
+            return $result;
+        }
+
         // recupere un groupe avec son id
         public function getGroupeById($idGroupe) {
             $statement = $this->_db->prepare('SELECT * FROM groupe WHERE idGroupe = :idGroupe');
