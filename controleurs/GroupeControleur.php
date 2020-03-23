@@ -8,6 +8,14 @@
 
     define('ID_GROUPE_ALL', 1);
 
+    if (isset($_POST['fonctionValeur'])) {
+        switch ($_POST['fonctionValeur']) {
+            case 'creationGroupe':
+                createGroupe();
+                break;
+        }
+    }
+
     /**
      * Instance du manager
      */
@@ -45,5 +53,21 @@
    function getAllGroupeSuggest($mailCESI) {
        return getGroupeManager()->getAllGroupeSuggest($mailCESI);
    }
+
+
+   function createGroupe()
+{
+
+        $groupe = new Groupe(array(
+            'nom' => $_POST['nom'],
+            'dateCreation' => null,
+            'description' => $_POST['description']
+        ));
+        
+        getGroupeManager()->creategroupe($groupe);    
+      
+        header('Location: http://'.$_SERVER['HTTP_HOST'].'/intranetcesi/vues/groupes/creationGroupe.php');
+
+}
      
 ?>
