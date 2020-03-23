@@ -131,6 +131,7 @@ CREATE TABLE `GroupeEleve` (
 CREATE TABLE `EleveEvenement` (
     `idEvenement` INT(11) NOT NULL,
     `mailCESI` VARCHAR(50) NOT NULL,
+    `estInterese` TINYINT(1) NOT NULL,
 
     PRIMARY KEY (`idEvenement`, `mailCESI`),
 

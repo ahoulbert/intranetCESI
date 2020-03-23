@@ -40,6 +40,36 @@
             }
         }
 
+        public function getAllEvenementAVenir() {
+            $result = [];
+
+            $statement = $this->_db->prepare('SELECT * FROM evenement WHERE date >= NOW()');
+
+            $statement->execute() or die(print_r($statement->errorInfo()));
+            
+            while ($donnees = $statement->fetch(PDO::FETCH_ASSOC))
+            {
+                $result[] = new Evenement($donnees);
+            }
+
+            return $result;
+        }
+
+        public function getAllEvenementPasses() {
+            $result = [];
+
+            $statement = $this->_db->prepare('SELECT * FROM evenement WHERE date < NOW()');
+
+            $statement->execute() or die(print_r($statement->errorInfo()));
+
+            while ($donnees = $statement->fetch(PDO::FETCH_ASSOC))
+            {
+                $result[] = new Evenement($donnees);
+            }
+
+            return $result;
+        }
+
         public function updateEvenement(Evenement $event) {
             $statement = $this->_db->prepare("UPDATE evenement SET
                                         titre = :titre,

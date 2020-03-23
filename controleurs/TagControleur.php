@@ -2,9 +2,9 @@
     /**
      * Import fichier
      */
-    require_once '../modeles/connexionBdd.php';
-    require_once '../modeles/TagManager.php';
-    require_once '../modeles/TagEleveManager.php';
+    require_once __DIR__.'/../modeles/connexionBdd.php';
+    require_once __DIR__.'/../modeles/TagManager.php';
+    require_once __DIR__.'/../modeles/TagEleveManager.php';
 
     /**
      * Instance du manager
