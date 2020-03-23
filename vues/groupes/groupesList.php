@@ -84,8 +84,9 @@
                 echo '<div class="w3-container w3-card w3-white w3-round w3-margin w3-center"><br>';
                 echo '<h4>'.utf8_encode($event->getNom()).'</h4><hr class="w3-clear">';
                 echo '<span class="w3-left w3-opacity">'.utf8_encode($event->getDescription()).'</span>';
-                echo '<div class="dropdown w3-right w3-section style="float:left;">
-                        <button class="w3-button w3-block w3-theme" id="button-'.$event->getIdGroupe().'">Accéder</button>
+                echo '<div class="w3-right w3-section style="float:left;">
+                        <button class="w3-button  w3-theme" id="button-'.$event->getIdGroupe().'">Accéder</button>
+                        <button class="w3-button  w3-theme" style="background-color: #f44336 !important;" id="button-'.$event->getIdGroupe().'">Quitter</button>
                                       </div>';
                 echo '</div>';
               }
@@ -103,7 +104,10 @@
               {
                 echo '<div class="w3-container w3-card w3-white w3-round w3-margin w3-center"><br>';
                 echo '<h4>'.utf8_encode($event->getNom()).'</h4><hr class="w3-clear">';
-                echo '<span class="w3-left w3-opacity">'.date_format($event->getDate(), 'd-M-Y').' - '.utf8_encode($event->getDescription()).' - '.utf8_encode($event->getLieu()).'</span>';
+                echo '<span class="w3-left w3-opacity">'.utf8_encode($event->getDescription()).'</span>';
+                echo '<div class="dropdown w3-right w3-section style="float:left;">
+                <button class="w3-button w3-block w3-theme" id="button-'.$event->getIdGroupe().'">Rejoindre</button>
+                              </div>';
                 echo '</div>';
               }
             }
