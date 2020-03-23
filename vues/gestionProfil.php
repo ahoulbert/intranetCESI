@@ -36,12 +36,12 @@ $eleve = $infosEleve['0']['eleve'];
                                 <div class="row row-space">
                                     <div class="col-2">
                                         <div class="input-group-desc">
-                                            <input placeholder="Entrer votre nom" class="input--style-5" type="text" value="<?php echo $eleve->getNom(); ?>" required name="nom" />
+                                            <input placeholder="Entrer votre nom" class="input--style-5" type="text" id="nom" value="<?php echo utf8_encode($eleve->getNom()); ?>" required/>
                                         </div>
                                     </div>
                                     <div class="col-2">
                                         <div class="input-group-desc">
-                                            <input placeholder="Entrer votre prénom" class="input--style-5" type="text" value="<?php echo $eleve->getPrenom(); ?>" required name="prenom" />
+                                            <input placeholder="Entrer votre prénom" class="input--style-5" type="text" id="prenom" value="<?php echo utf8_encode($eleve->getPrenom()); ?>" required/>
                                         </div>
                                     </div>
                                 </div>
@@ -51,7 +51,7 @@ $eleve = $infosEleve['0']['eleve'];
                             <div class="name">Email</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <input placeholder="Adresse email" class="input--style-5" required type="email" value="<?php echo $eleve->getMailCESI(); ?>"name="email" />
+                                    <input placeholder="Adresse email" class="input--style-5" required disabled type="email" id="mail" style="cursor: not-allowed;" value="<?php echo utf8_encode($eleve->getMailCESI()); ?>" />
                                 </div>
                             </div>
                         </div>
@@ -59,7 +59,7 @@ $eleve = $infosEleve['0']['eleve'];
                             <div class="name">Téléphone</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <input placeholder="Numéro de téléphone" class="input--style-5" required type="text" value="<?php echo $eleve->getTel(); ?>" name="numTel" />
+                                    <input placeholder="Numéro de téléphone" class="input--style-5" required name="tel" type="text" id="tel" value="<?php echo utf8_encode($eleve->getTel()); ?>"/>
                                 </div>
                             </div>
                         </div>
@@ -67,7 +67,7 @@ $eleve = $infosEleve['0']['eleve'];
                             <div class="name">Entreprise</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <input placeholder="Nom de mon entreprise" class="input--style-5" type="text" value="<?php echo $infosEleve['0']['entreprise']->getDesignation(); ?>" name="entreprise" />
+                                    <input placeholder="Nom de mon entreprise" class="input--style-5" type="text" id="entreprise" value="<?php echo utf8_encode($infosEleve['0']['entreprise']->getDesignation()); ?>" />
                                 </div>
                             </div>
                         </div>
@@ -75,7 +75,7 @@ $eleve = $infosEleve['0']['eleve'];
                             <div class="name">Ville</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <input placeholder="Ville de mon entreprise" class="input--style-5" type="text" value="<?php echo $eleve->getVille(); ?>" name="villeEntreprise">
+                                    <input placeholder="" class="input--style-5" type="text" id="ville" value="<?php echo utf8_encode($eleve->getVille()); ?>">
                                 </div>
                             </div>
                         </div>
@@ -83,7 +83,7 @@ $eleve = $infosEleve['0']['eleve'];
                             <div class="name">Description</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <textarea placeholder="Quelques mots à propos de moi ..." class="area--style-5" type="text" name="description" id="story"  name="story"><?php echo $eleve->getDescription(); ?></textarea>
+                                    <textarea placeholder="Quelques mots à propos de moi ..." class="area--style-5" type="text" id="description"><?php echo utf8_encode($eleve->getDescription()); ?></textarea>
                                 </div>
                             </div>
                         </div>
@@ -96,7 +96,7 @@ $eleve = $infosEleve['0']['eleve'];
                                             <div class="input-group">
                                                 <div class="select--no-search">
                                                     <div class="p-t-15">
-                                                        <select name="subject" class="custom-select sources" id="select_type" placeholder="Choix">
+                                                        <select class="w3-select input--style-5" id="typeEleve" placeholder="Choix">
                                                             <option value="2"
                                                                 <?php
                                                                     if($eleve->getIdTypeEleve() == 2) {
@@ -121,7 +121,7 @@ $eleve = $infosEleve['0']['eleve'];
                                         <label class="label label--block">Sexe</label>
                                         <div class="p-t-15">
                                             <label class="radio-container m-r-55">Homme
-                                                <input type="radio" name="exist"
+                                                <input type="radio" id="homme" name="sexe" value="1"
                                                 <?php
                                                     if($eleve->getIdSexeEleve() == 1) {
                                                         echo 'checked';
@@ -131,7 +131,7 @@ $eleve = $infosEleve['0']['eleve'];
                                                 <span class="checkmark"></span>
                                             </label>
                                             <label class="radio-container">Femme
-                                                <input type="radio" name="exist"
+                                                <input type="radio" id="femme" name="sexe" value="2"
                                                 <?php
                                                     if($eleve->getIdSexeEleve() == 2) {
                                                         echo 'checked';
@@ -147,23 +147,23 @@ $eleve = $infosEleve['0']['eleve'];
                         </div>
 
                         <div class="form-row m-b-55" style="padding-top: 40px;">
-                                <div class="name"></div>
-                                <div class="value">
-                                    <div class="row row-space">
-                                        <div class="col-2">
-                                            <div class="input-group-desc" >
-                                            <input type="submit" class="btn--arrondi btn--dark"  value="Enregistrer" />
-                                            </div>
+                            <div class="name"></div>
+                            <div class="value">
+                                <div class="row row-space">
+                                    <div class="col-2">
+                                        <div class="input-group-desc" >
+                                            <input type="submit" class="btn--arrondi btn--dark" value="Enregistrer" onclick="saveEleve(event);"/>
                                         </div>
-                                        <div class="col-2">
-                                            <div class="input-group-desc" ">
-                                            <input type="button" class="btn--arrondi btn--dark" onclick="history.go(-1)"  value="Retour" />
-                                            </div>
+                                    </div>
+                                    <div class="col-2">
+                                        <div class="input-group-desc" ">
+                                        <input type="button" class="btn--arrondi btn--dark" onclick="history.go(-1)"  value="Retour" />
                                         </div>
                                     </div>
                                 </div>
-                                                </div>
                             </div>
+                        </div>
+                        </div>
                             
                     </form>
                 </div>

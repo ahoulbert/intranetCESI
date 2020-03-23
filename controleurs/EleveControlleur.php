@@ -162,11 +162,11 @@ function saveEleve()
     $typeEleve = $_POST['typeEleve'];
     $sexe = $_POST['sexe'];
 
-    $eleve->setNom($nom);
-    $eleve->setPrenom($prenom);
-    $eleve->setTel($tel);
-    $eleve->setVille($ville);
-    $eleve->setDescription($description);
+    $eleve->setNom(utf8_decode($nom));
+    $eleve->setPrenom(utf8_decode($prenom));
+    $eleve->setTel(utf8_decode($tel));
+    $eleve->setVille(utf8_decode($ville));
+    $eleve->setDescription(utf8_decode($description));
     $eleve->setIdTypeEleve($typeEleve);
     $eleve->setIdSexeEleve($sexe);
 
@@ -176,7 +176,10 @@ function saveEleve()
     $nomEntreprise = $_POST['nomEntreprise'];
 
     $entreprise = getEntrepriseManager()->getEntrepriseById($eleve->getIdEntreprise());
-    $entreprise->setDesignation($nomEntreprise);
+    $entreprise->setDesignation(utf8_decode($nomEntreprise));
     
     getEntrepriseManager()->updateEntreprise($entreprise);
+
+    header('Content-type: application/json');
+    echo json_encode(true);
 }
