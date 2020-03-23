@@ -12,23 +12,23 @@ require_once __DIR__.'/../modeles/EntrepriseManager.php';
  */
 if (isset($_POST['fonctionValeur'])) {
     switch ($_POST['fonctionValeur']) {
-    case 'connexionClient':
-        connexionClient();
-        break;
-    case 'continueCreationCompte':
-        continueCreationCompte();
-        break;
-    case 'creationCompte':
-        creationCompte();
-        break;
-    case 'deconnexion':
-        deconnexion();
-        break;
-    case 'Enregistrer':
-        saveEleve();
-        break;
+        case 'connexionClient':
+            connexionClient();
+            break;
+        case 'continueCreationCompte':
+            continueCreationCompte();
+            break;
+        case 'creationCompte':
+            creationCompte();
+            break;
+        case 'deconnexion':
+            deconnexion();
+            break;
+        case 'Enregistrer':
+            saveEleve();
+            break;
+    }
 }
-
 /**
  * Function 
  */
@@ -142,5 +142,5 @@ function continueCreationCompte()
 
 function saveEleve()
 {
-    var_dump($_POST);
+    
 }
