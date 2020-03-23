@@ -24,6 +24,9 @@ if(isset($_POST['fonctionValeur'])){
     case 'deconnexion':
         deconnexion();
         break;
+    case 'Enregistrer':
+        saveEleve();
+        break;
 }
 } 
 
@@ -132,4 +135,9 @@ function continueCreationCompte()
     }
     header('Content-Type: application/json;charset=utf-8');
     echo json_encode($isExiste);
+}
+
+function saveEleve()
+{
+    var_dump($_POST);
 }
