@@ -112,6 +112,7 @@ $entreprise = $manager->getEntrepriseById($eleve->getIdEntreprise());
 return array(['eleve' => $eleve, 'entreprise' => $entreprise]);
 }
 
+
 function continueCreationCompte()
 {
     $isExiste = true;
