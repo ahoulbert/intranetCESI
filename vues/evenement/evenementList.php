@@ -68,6 +68,9 @@
             <div class="w3-half">
               <button class="w3-button w3-block w3-theme w3-section" id="past" onclick="changeEvents(this.id, event)"><i class="fa fa-hourglass-end"></i>&nbsp;Passés</button>
             </div>
+            <div class="w3-half">
+              <button class="w3-button w3-block w3-theme w3-section" id="new" onClick="javascript:document.location.href='CreationEvenement.php'"><i class="fa fa-calendar"></i>&nbsp;Créer un événement</button>
+            </div>
           </div>
         </div>
 
