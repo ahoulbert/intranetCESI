@@ -59,8 +59,9 @@
           <div class="w3-col m12">
             <div class="w3-card w3-round w3-white">
               <div class="w3-container w3-padding">
-                <p contenteditable="true" class="w3-border w3-padding">Status: Feeling Blue</p>
-                <button type="button" class="w3-button w3-theme"><i class="fa fa-pencil"></i>  Publier</button>
+                <textarea style="resize:none" class="w3-input w3-border w3-padding w3-margin-bottom" type="text" placeholder="Que voulez-vous dire, <?php echo utf8_encode($infosEleve['0']['eleve']->getPrenom()); ?> ?"></textarea>
+                <button type="button" class="w3-button w3-theme"><i class="fa fa-pencil"></i>&nbsp;&nbsp;Publier</button>
+                <button type="button" class="w3-button w3-theme"><i class="fa fa-image"></i>&nbsp;&nbsp;Photo</button>
               </div>
             </div>
           </div>
@@ -135,9 +136,6 @@
   <?php
     include_once('ressources/footer.php');
   ?>
-
-  <!-- Import du JS perso -->
-  <script src="js/index.js"></script>
 
 </body>
 
