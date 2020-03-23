@@ -78,5 +78,5 @@ INSERT INTO post (dateCreation, description, titre, mailCESI, idGroupe)
 VALUES
 (now(), "CECI EST UN TEST", "", "clement.azibeiro@viacesi.fr", 1),
 ("2020-02-22", "CECI EST UN TEST", "", "clement.azibeiro@viacesi.fr", 2),
-("2020-02-21", "CECI EST UN TEST", "", "clement.azibeiro@viacesi.fr", 1),
-("2020-02-20", "CECI EST UN TEST", "", "clement.azibeiro@viacesi.fr", 1);
+("2020-02-21", "CECI EST UN TEST", "", "antoine.houlbert@viacesi.fr", 1),
+("2020-02-20", "CECI EST UN TEST", "", "marvyn.rocher@viacesi.fr", 1);
