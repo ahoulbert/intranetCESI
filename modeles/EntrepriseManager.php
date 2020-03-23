@@ -48,9 +48,9 @@
             $statement = $this->_db->prepare("UPDATE entreprise SET designation = :designation,
                                         siteWeb = :siteWeb WHERE idEntreprise = :idEntreprise");
 
-            $statement->bindParam(':designation', $entreprise->getDesignation(), PDO::PARAM_STR);
-            $statement->bindParam(':siteWeb', $entreprise->getSiteWeb(), PDO::PARAM_STR);
-            $statement->bindParam(':idEntreprise', $entreprise->getIdEntreprise(), PDO::PARAM_INT);
+            $statement->bindValue(':designation', $entreprise->getDesignation(), PDO::PARAM_STR);
+            $statement->bindValue(':siteWeb', $entreprise->getSiteWeb(), PDO::PARAM_STR);
+            $statement->bindValue(':idEntreprise', $entreprise->getIdEntreprise(), PDO::PARAM_INT);
 
             $statement->execute() or die(print_r($statement->errorInfo()));
         }

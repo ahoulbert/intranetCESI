@@ -61,24 +61,24 @@
                                         lienLinkedin = :lienLinkedin,
                                         imgProfil = :imgProfil,
                                         idEntreprise = :idEntreprise,
-                                        idPromotion = :idPromotion
+                                        idPromotion = :idPromotion,
                                         idTypeEleve = :idTypeEleve,
                                         idSexeEleve = :idSexeEleve WHERE mailCESI = :mailCESI");
 
-            $statement->bindParam(':mailCESI', $eleve->getMailCESI(), PDO::PARAM_STR);
-            $statement->bindParam(':mdp', $eleve->getMdp(), PDO::PARAM_STR);
-            $statement->bindParam(':nom', $eleve->getNom(), PDO::PARAM_STR);
-            $statement->bindParam(':prenom', $eleve->getPrenom(), PDO::PARAM_STR);
-            $statement->bindParam(':dateNaissance', $eleve->getDateNaissance);
-            $statement->bindParam(':tel', $eleve->getTel(), PDO::PARAM_STR);
-            $statement->bindParam(':ville', $eleve->getVille(), PDO::PARAM_STR);
-            $statement->bindParam(':description', $eleve->getDescription(), PDO::PARAM_STR);
-            $statement->bindParam(':lienLinkedin', $eleve->getLienLinkedin(), PDO::PARAM_STR);
-            $statement->bindParam(':imgProfil', $eleve->getImgProfil(), PDO::PARAM_STR);
-            $statement->bindParam(':idEntreprise', $eleve->getIdEntreprise(), PDO::PARAM_INT);
-            $statement->bindParam(':idPromotion', $eleve->getIdPromotion(), PDO::PARAM_INT);
-            $statement->bindParam(':idTypeEleve', $eleve->getIdTypeEleve(), PDO::PARAM_INT);
-            $statement->bindParam(':idSexeEleve', $eleve->getIdSexeEleve(), PDO::PARAM_INT);
+            $statement->bindValue(':mailCESI', $eleve->getMailCESI(), PDO::PARAM_STR);
+            $statement->bindValue(':mdp', $eleve->getMdp(), PDO::PARAM_STR);
+            $statement->bindValue(':nom', $eleve->getNom(), PDO::PARAM_STR);
+            $statement->bindValue(':prenom', $eleve->getPrenom(), PDO::PARAM_STR);
+            $statement->bindValue(':dateNaissance', date_format($eleve->getDateNaissance(), 'Y-m-d'));
+            $statement->bindValue(':tel', $eleve->getTel(), PDO::PARAM_STR);
+            $statement->bindValue(':ville', $eleve->getVille(), PDO::PARAM_STR);
+            $statement->bindValue(':description', $eleve->getDescription(), PDO::PARAM_STR);
+            $statement->bindValue(':lienLinkedin', $eleve->getLienLinkedin(), PDO::PARAM_STR);
+            $statement->bindValue(':imgProfil', $eleve->getImgProfil(), PDO::PARAM_STR);
+            $statement->bindValue(':idEntreprise', $eleve->getIdEntreprise(), PDO::PARAM_INT);
+            $statement->bindValue(':idPromotion', $eleve->getIdPromotion(), PDO::PARAM_INT);
+            $statement->bindValue(':idTypeEleve', $eleve->getIdTypeEleve(), PDO::PARAM_INT);
+            $statement->bindValue(':idSexeEleve', $eleve->getIdSexeEleve(), PDO::PARAM_INT);
 
             $statement->execute() or die(print_r($statement->errorInfo()));
         }
@@ -101,20 +101,20 @@
                                         :idTypeEleve,
                                         :idSexeEleve)");
 
-            $statement->bindParam(':mailCESI', $eleve->getMailCESI(), PDO::PARAM_STR);
-            $statement->bindParam(':mdp', $eleve->getMdp(), PDO::PARAM_STR);
-            $statement->bindParam(':nom', $eleve->getNom(), PDO::PARAM_STR);
-            $statement->bindParam(':prenom', $eleve->getPrenom(), PDO::PARAM_STR);
-            $statement->bindParam(':dateNaissance', $eleve->getDateNaissance);
-            $statement->bindParam(':tel', $eleve->getTel(), PDO::PARAM_STR);
-            $statement->bindParam(':ville', $eleve->getVille(), PDO::PARAM_STR);
-            $statement->bindParam(':description', $eleve->getDescription(), PDO::PARAM_STR);
-            $statement->bindParam(':lienLinkedin', $eleve->getLienLinkedin(), PDO::PARAM_STR);
-            $statement->bindParam(':imgProfil', $eleve->getImgProfil(), PDO::PARAM_STR);
-            $statement->bindParam(':idEntreprise', $eleve->getIdEntreprise(), PDO::PARAM_INT);
-            $statement->bindParam(':idPromotion', $eleve->getIdPromotion(), PDO::PARAM_INT);
-            $statement->bindParam(':idTypeEleve', $eleve->getIdTypeEleve(), PDO::PARAM_INT);
-            $statement->bindParam(':idSexeEleve', $eleve->getIdSexeEleve(), PDO::PARAM_INT);
+            $statement->bindValue(':mailCESI', $eleve->getMailCESI(), PDO::PARAM_STR);
+            $statement->bindValue(':mdp', $eleve->getMdp(), PDO::PARAM_STR);
+            $statement->bindValue(':nom', $eleve->getNom(), PDO::PARAM_STR);
+            $statement->bindValue(':prenom', $eleve->getPrenom(), PDO::PARAM_STR);
+            $statement->bindValue(':dateNaissance', $eleve->getDateNaissance);
+            $statement->bindValue(':tel', $eleve->getTel(), PDO::PARAM_STR);
+            $statement->bindValue(':ville', $eleve->getVille(), PDO::PARAM_STR);
+            $statement->bindValue(':description', $eleve->getDescription(), PDO::PARAM_STR);
+            $statement->bindValue(':lienLinkedin', $eleve->getLienLinkedin(), PDO::PARAM_STR);
+            $statement->bindValue(':imgProfil', $eleve->getImgProfil(), PDO::PARAM_STR);
+            $statement->bindValue(':idEntreprise', $eleve->getIdEntreprise(), PDO::PARAM_INT);
+            $statement->bindValue(':idPromotion', $eleve->getIdPromotion(), PDO::PARAM_INT);
+            $statement->bindValue(':idTypeEleve', $eleve->getIdTypeEleve(), PDO::PARAM_INT);
+            $statement->bindValue(':idSexeEleve', $eleve->getIdSexeEleve(), PDO::PARAM_INT);
 
             $statement->execute() or die(print_r($statement->errorInfo()));
         }

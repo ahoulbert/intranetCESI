@@ -86,7 +86,7 @@
         }
 
         // Supprime un groupe avec son id
-        public function deleteEntreprise($idGroupe) {
+        public function deleteGroupe($idGroupe) {
 
             $statement = $this->_db->prepare("DELETE FROM Groupe where idGroupe = :idGroupe");
             $statement->bindParam(':idGroupe', $idGroupe);
