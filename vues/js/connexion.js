@@ -62,7 +62,7 @@ function testAdresseMailCreationCompte()
                 document.location.href = getDonneesCreationCompte();
             } else {
                 $('#containerAlert').empty();
-                $('#containerAlert').append('<div class="w3-panel w3-red w3-display-container w3-card-4"><span id="btnAlertClose" onclick="this.parentElement.style.display=\'none\'"class="w3-button w3-large w3-display-topright">&times;</span><p>Votre adresse mail est dÈj‡ existante ou elle n\'est pas une adresse mail cesi.</p></div>');
+                $('#containerAlert').append('<div class="w3-panel w3-red w3-display-container w3-card-4"><span id="btnAlertClose" onclick="this.parentElement.style.display=\'none\'"class="w3-button w3-large w3-display-topright">&times;</span><p>Votre adresse mail est d√©j√† existante ou elle n\'est pas une adresse mail cesi.</p></div>');
                 $('#containerAlert').show(200);
             }
         },

@@ -18,7 +18,6 @@
                 font-family: 'Exo', sans-serif;
             }
 
-
             .context {
                 width: 100%;
                 position: absolute;
@@ -145,7 +144,6 @@
                 transition: transform 80ms ease-in;
             }
 
-
             .obligatoire {
                 color: red;
             }
@@ -201,6 +199,7 @@
                                                 <div class="input-group-desc">
                                                     <input placeholder="Entrer votre nom" class="input--style-5" type="text" required name="nom" value="<?php echo $_GET['Nom']; ?>"/>
                                                 </div>
+
                                             </div>
                                             <div class="col-2">
                                                 <div class="input-group-desc">
@@ -216,6 +215,7 @@
                                         <div class="input-group">
                                             <input placeholder="Adresse email" class="input--style-5" required type="email" name="mailCESI" value="<?php echo $_GET['mail']; ?>"/>
                                         </div>
+
                                     </div>
                                 </div>
 
@@ -299,6 +299,7 @@
                                                     <input  class="button-style" onclick="history.go(-1)" type="button" value="Retour" />
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -306,6 +307,7 @@
                         </div>
                     </div>
                 </div>
+                </form>
             </div>
         </div>
     </body>

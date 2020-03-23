@@ -3,6 +3,7 @@ class EleveEvenement
 {
     private $_idEvenement;
     private $_mailCESI;
+    private $_estInterese;
 
     public function __construct(array $donnees)
     {
@@ -33,6 +34,10 @@ class EleveEvenement
         return $this->_mailCESI;
     }
 
+    public function getEstInterese() {
+        return $this->_estInterese;
+    }
+
     /* SETTERS */
     public function setIdEvenement($idEvenement) {
     // Convertit en int, si ce n'est pas un entier il le met à 0
@@ -45,6 +50,14 @@ class EleveEvenement
     public function setMailCESI($mailCESI) {
         if(is_string($mailCESI)) {
             $this->_mailCESI = $mailCESI;
+        }
+    }
+
+    public function setEstInterese($estInterese) {
+        $estInterese = (int) $estInterese;
+
+        if($estInterese >= 0) {
+            $this->_estInterese = $estInterese;
         }
     }
 }
