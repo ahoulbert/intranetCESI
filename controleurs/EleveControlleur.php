@@ -24,11 +24,28 @@ if (isset($_POST['fonctionValeur'])) {
         case 'deconnexion':
             deconnexion();
             break;
-        case 'Enregistrer':
+        case 'saveEleve':
             saveEleve();
             break;
     }
 }
+
+function getEleveManager() {
+    return new EleveManager(connexionBdd());
+}
+
+function getEntrepriseManager() {
+    return new EntrepriseManager(connexionBdd());
+}
+
+function getEnumTypeEleveManager() {
+    return new EnumTypeEleveManager(connexionBdd());
+}
+
+function getEnumSexeEleveManager() {
+    return new EnumSexeEleveManager(connexionBdd());
+}
+
 /**
  * Function 
  */
@@ -40,9 +57,7 @@ function connexionClient() {
     $mdp = $_POST['mdp_connexion'];
 
     //On va chercher l'objet eleve
-    $bdd = connexionBdd();
-    $manager = new EleveManager($bdd);
-    $eleve = $manager->getEleveByMailCESI($email);
+    $eleve = getEleveManager()->getEleveByMailCESI($email);
     //Si un élève existe avec cette adresse mail alors
     if ($eleve !== false) {
         //On récupère son mot de passe de la base de données
@@ -65,10 +80,7 @@ function connexionClient() {
 function creationCompte() {
 
     $mdp=password_hash($_POST['mdp'], PASSWORD_DEFAULT);
-    
-    
-    $bdd = connexionBdd();
-    $manager = new EleveManager($bdd);
+
     $eleve = new Eleve(array(
         'mailCESI' => $_POST['mailCESI'],
         'mdp' => $mdp,
@@ -86,7 +98,7 @@ function creationCompte() {
         'idSexeEleve' => $_POST['idSexeEleve']
     ));
     
-    $manager->createEleve($eleve);
+    getEleveManager()->createEleve($eleve);
     
     header('Location : ../vues/connexion.php');
    
@@ -108,12 +120,9 @@ function deconnexion() {
 
 function infosEleve($identifiant) {
 //On va chercher l'objet eleve
-    $bdd = connexionBdd();
-    $manager = new EleveManager($bdd);
-    $eleve = $manager->getEleveByMailCESI($identifiant);
+    $eleve = getEleveManager()->getEleveByMailCESI($identifiant);
 
-    $manager = new EntrepriseManager($bdd);
-    $entreprise = $manager->getEntrepriseById($eleve->getIdEntreprise());
+    $entreprise = getEntrepriseManager()->getEntrepriseById($eleve->getIdEntreprise());
 
     return array(['eleve' => $eleve, 'entreprise' => $entreprise]);
 }
@@ -127,9 +136,7 @@ function continueCreationCompte() {
     $nomDomaine = explode('@', $mailCesi);
 
     if ($nomDomaine[1] === 'viacesi.fr') {
-        $bdd = connexionBdd();
-        $manager = new EleveManager($bdd);
-        $eleve = $manager->getEleveByMailCesi($mailCesi);
+        $eleve = getEleveManager()->getEleveByMailCesi($mailCesi);
         if (!$eleve) {
             $isExiste = false;
         }
@@ -140,5 +147,34 @@ function continueCreationCompte() {
 
 function saveEleve()
 {
+    // Récupération de l'eleve a save
+    $mailCessi = $_POST['mail'];
+    $eleve = getEleveManager()->getEleveByMailCESI($mailCessi);
+
+    // Maj de l'eleve
+    $nom = $_POST['nom'];
+    $prenom = $_POST['prenom'];
+    $tel = $_POST['tel'];
+    $ville = $_POST['villeEleve'];
+    $description = $_POST['description'];
+    $typeEleve = $_POST['typeEleve'];
+    $sexe = $_POST['sexe'];
+
+    $eleve->setNom($nom);
+    $eleve->setPrenom($prenom);
+    $eleve->setTel($tel);
+    $eleve->setVille($ville);
+    $eleve->setDescription($description);
+    $eleve->setIdTypeEleve($typeEleve);
+    $eleve->setIdSexeEleve($sexe);
+
+    getEleveManager()->updateEleve($eleve);
+
+    // Maj de l'entreprise de leleve
+    $nomEntreprise = $_POST['nomEntreprise'];
+
+    $entreprise = getEntrepriseManager()->getEntrepriseById($eleve->getIdEntreprise());
+    $entreprise->setDesignation($nomEntreprise);
     
+    getEntrepriseManager()->updateEntreprise($entreprise);
 }
