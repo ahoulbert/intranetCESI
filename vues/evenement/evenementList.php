@@ -89,7 +89,6 @@
                 } else {
                   $estInterese = 'Intéressé(e)';
                 }
-
                 echo '<div class="w3-container w3-card w3-white w3-round w3-margin w3-center"><br>';
                 echo '<h4>'.utf8_encode($event->getTitre()).'</h4><hr class="w3-clear">';
                 echo '<span class="w3-left w3-opacity">'.date_format($event->getDate(), 'd-M-Y').' - '.utf8_encode($event->getDescription()).' - '.utf8_encode($event->getLieu()).'</span>';
