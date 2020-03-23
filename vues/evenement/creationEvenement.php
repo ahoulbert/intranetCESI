@@ -74,20 +74,15 @@
                                     <div class="col-2">
                                         <div class="input-group-desc">
                                             <input placeholder="Titre de l'événement" style="font-size: 13px !important;" class="input--style-5" type="text" value="" required name="nom" />
+                                            <input placeholder="Description" style="font-size: 13px !important;" class="input--style-5" type="text" value="" required name="nom" />
+
                                         </div>
-                                      <br/>
+                                      <br/><br/>
                                     </div>
                                     <div class="col-2">
                                         <div class="input-group-desc">
-                                            <input placeholder="Description" style="font-size: 13px !important;"  class="input--style-5" type="text" value="" required name="description" />
-                                        </div>
-                                        <div class="col-2">
-                                        <div class="input-group-desc">
-                                            <input placeholder="Lieu" style="font-size: 13px !important;"  class="input--style-5" type="text" value="" required name="lieu" />
-                                        </div>
-                                        <div class="col-2">
-                                        <div class="input-group-desc">
-                                            <input placeholder="Date" style="font-size: 13px !important;"  class="input--style-5" type="date" value="" required name="date" />
+                                           <input placeholder="Lieu de l'évenement" style="font-size: 13px !important;" class="input--style-5" type="text" value="" required name="nom" />
+                                            <input placeholder = "date"style="font-size: 13px !important;" class="input--style-5" type="date" value="" required name="nom" />
                                         </div>
                                     </div>
                                     </div>
