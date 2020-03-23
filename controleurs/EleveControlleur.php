@@ -86,21 +86,22 @@ function creationCompte() {
         'mdp' => $mdp,
         'nom' => $_POST['nom'],
         'prenom' => $_POST['prenom'],
-        'dateNaissance' => null,
+        'dateNaissance' => '1999-04-11',
         'tel' => $_POST['tel'],
         'ville' => $_POST['ville'],
         'description' => $_POST['description'],
         'lienLinkedin' => null,
         'imgProfil' => null,
         'idEntreprise' => null,
-        'idPromotion' => null,
-        'idTypeEleve' => $_POST['idTypeEleve'],
-        'idSexeEleve' => $_POST['idSexeEleve']
+        'idPromotion' => 1,
+        'idTypeEleve' => 1,
+        'idSexeEleve' => 1
     ));
     
     getEleveManager()->createEleve($eleve);
-    
-    header('Location : ../vues/connexion.php');
+
+    echo 'l\'élève à bien été ajouté';
+    header('Location: http://'.$_SERVER['HTTP_HOST'].'/intranetcesi/vues/connexion.php');
    
 }
 

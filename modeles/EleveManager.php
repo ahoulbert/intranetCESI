@@ -97,7 +97,7 @@
                                         :lienLinkedin,
                                         :imgProfil,
                                         :idEntreprise,
-                                        :idPromotion
+                                        :idPromotion,
                                         :idTypeEleve,
                                         :idSexeEleve)");
 
