@@ -17,7 +17,13 @@
     /**
      * Routing
      */
-
+    if (isset($_POST['fonctionValeur'])) {
+        switch ($_POST['fonctionValeur']) {
+            case 'updateGroupe':
+                updateGroupe();
+                break;
+        }
+    }
      /**
      * Function 
      */
@@ -53,8 +59,20 @@
         
         getGroupeManager()->creategroupe($groupe);    
       
-        header('Location: http://'.$_SERVER['HTTP_HOST'].'/intranetcesi/vues/groupes/creationGroupe.php');
-
+       header('Location: http://'.$_SERVER['HTTP_HOST'].'/intranetcesi/vues/groupes/creationGroupe.php?statusSave=1');
+      
 }
      
+
+function updateGroupe() 
+{
+$groupEleve = new GroupeEleve(array(
+    'idGroupe' => $_POST['idGroupe'],
+    'mailCESI' => $_POST['mailCESI'],
+));
+
+getGroupeEleveManager() -> createGroupeEleve($groupEleve);
+header('Content-Type: application/json;charset=utf-8');
+        echo json_encode(true);
+}
 ?>
