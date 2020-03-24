@@ -17,6 +17,9 @@ if(isset($_POST['fonctionValeur'])){
         case 'creationEvenement':
                 createEvenement();
                 break;
+        case 'getEventRand':
+            getEventRand();
+            break;
     }
 } 
 
@@ -100,5 +103,14 @@ function updateInteresement() {
         
         header('Location:http://'.$_SERVER['HTTP_HOST'].'/intranetcesi/vues/evenement/creationEvenement.php');
 
+    }
+
+    function getEventRand()
+    {
+        $evenements = getEvenementManager()->getAllEvenementAVenir();
+        $tailleEvenement = count($evenements);
+
+        $evenementRand = $evenements[rand(0,$tailleEvenement-1)];
+        echo '<p><strong>'.$evenementRand->getTitre().'</strong></p><p>'.date_format($evenementRand->getDate(), 'd/m/Y').'</p>';
     }
 ?>
