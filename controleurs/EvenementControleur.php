@@ -7,16 +7,6 @@ require_once __DIR__.'/../modeles/connexionBdd.php';
 require_once __DIR__.'/../modeles/EvenementManager.php';
 require_once __DIR__.'/../modeles/EleveEvenementManager.php';
 
-/**
- * Managers
- */
-function getEvenementManager() {
-    return new EvenementManager(connexionBdd());
-}
-
-function getEleveEvenementManager() {
-    return new EleveEvenementManager(connexionBdd());
-}
 
 /**
  * Routing

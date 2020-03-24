@@ -37,21 +37,6 @@ if (isset($_POST['fonctionValeur'])) {
     }
 }
 
-function getEleveManager() {
-    return new EleveManager(connexionBdd());
-}
-
-function getEntrepriseManager() {
-    return new EntrepriseManager(connexionBdd());
-}
-
-function getEnumTypeEleveManager() {
-    return new EnumTypeEleveManager(connexionBdd());
-}
-
-function getPromotionManager() {
-    return new PromotionManager(connexionBdd());
-}
 
 /**
  * Function 
