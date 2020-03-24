@@ -3,9 +3,7 @@ Intranet du CESI
 
 ## Config :
 Il faut renseigné le fichier `config.json` pour pouvoir connecter l'application à une BDD.
-Les fichiers de création de base sont les suivants : 
-+ `bdd/structure.sql`
-+ `bdd/dataTest.sql`
+Le fichier de création de base avec des données se trouve dans le dossier `bdd/intranetCesi.sql`
 
 ## Done
 ### Page de connexion :
