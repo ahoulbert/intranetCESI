@@ -28,7 +28,7 @@
         public function getAllPostByGroupe($idGroupe) {
             $result = [];
 
-            $statement = $this->_db->prepare('SELECT * FROM post WHERE idGroupe = :idGroupe ORDER BY dateCreation');
+            $statement = $this->_db->prepare('SELECT * FROM post WHERE idGroupe = :idGroupe ORDER BY idPost DESC');
             $statement->bindValue(':idGroupe', $idGroupe);
 
             $statement->execute() or die(print_r($statement->errorInfo()));
@@ -79,13 +79,26 @@
             $statement = $this->_db->prepare("INSERT INTO post (dateCreation, description, titre, mailCESI, idGroupe)
                                             VALUES (:dateCreation, :description, :titre, :mailCESI, :idGroupe)");
 
-            $statement->bindParam(':dateCreation', $post->getDateCreation());
-            $statement->bindParam(':description', $post->getDescription(), PDO::PARAM_STR);
-            $statement->bindParam(':titre', $post->getTitre(), PDO::PARAM_STR);
-            $statement->bindParam(':mailCESI', $post->getMailCESI(), PDO::PARAM_STR);
-            $statement->bindParam(':idGroupe', $post->getIdGroupe(), PDO::PARAM_INT);
+            $statement->bindValue(':dateCreation', date_format($post->getDateCreation(), 'Y-m-d'));
+            $statement->bindValue(':description', $post->getDescription(), PDO::PARAM_STR);
+            $statement->bindValue(':titre', $post->getTitre(), PDO::PARAM_STR);
+            $statement->bindValue(':mailCESI', $post->getMailCESI(), PDO::PARAM_STR);
+            $statement->bindValue(':idGroupe', $post->getIdGroupe(), PDO::PARAM_INT);
 
             $statement->execute() or die(print_r($statement->errorInfo()));
+
+            $statement = $this->_db->prepare("SELECT * FROM post where idPost = :idPost");
+            $statement->bindValue(':idPost', $this->_db->lastInsertId());
+
+            $statement->execute() or die(print_r($statement->errorInfo()));
+
+            $donnees = $statement->fetch(PDO::FETCH_ASSOC);
+
+            if($donnees) {
+                return new Post($donnees);
+            } else {
+                return false;
+            }
         }
 
         public function deletePost($idPost) {

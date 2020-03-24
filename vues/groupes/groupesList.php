@@ -100,11 +100,11 @@ $infosEleve = infosEleve($_SESSION['mail_cesi']);
 
                     if (!empty($eventsPast)) {
                         foreach ($eventsPast as $event) {
-                            echo '<div class="w3-container w3-card w3-white w3-round w3-margin w3-center"><br>';
+                            echo '<div id="suggest-'.$event->getIdGroupe().'" class="w3-container w3-card w3-white w3-round w3-margin w3-center"><br>';
                             echo '<h4>' . utf8_encode($event->getNom()) . '</h4><hr class="w3-clear">';
                             echo '<span class="w3-left w3-opacity">' . utf8_encode($event->getDescription()) . '</span>';
                             echo '<div class="dropdown w3-right w3-section style="float:left;">
-                <button class="w3-button w3-block w3-theme" id="button-' . $event->getIdGroupe() . '">Rejoindre</button>
+                                <button class="w3-button w3-block w3-theme" id="button-' . $event->getIdGroupe() . '">Rejoindre</button>
                               </div>';
                             echo '</div>';
                         }

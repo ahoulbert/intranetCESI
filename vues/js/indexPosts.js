@@ -1,4 +1,4 @@
-ScrollReveal().reveal('.post')
+ScrollReveal().reveal('.post', { delay: 200 })
 
 var updateLike = function(idElement, e) {
     e.preventDefault();
@@ -34,4 +34,44 @@ var updateLike = function(idElement, e) {
             console.log(e);
         }
     });
+}
+
+var newPost = function(e) {
+    e.preventDefault();
+
+    var clonePost = $('#new-post-container').clone(false);
+
+    if($('#new-post').val() != "") {
+        $.ajax({
+            url: '__DIR__../../../controleurs/PostControleur.php',
+            data: {
+                "mailCESI" : $('#mailCESI').val(),
+                "description" : $('#new-post').val(),
+                "fonctionValeur" : 'newPost'
+            },
+            type: 'POST',
+            dataType: 'json',
+            timeout: 3000,
+            success: function (data) {
+                console.log(data);
+                $(clonePost).removeAttr('style');
+                $(clonePost).find('#new-nblike-1').attr('id', data.idPost + '-1');
+                $(clonePost).find('#nbLikes-new').attr('id', 'nbLikes-' + data.idPost);
+                $(clonePost).find('#new-text').html(data.textPost + '');
+                $(clonePost).removeAttr('id');
+
+                $('#blankPost').after(clonePost);
+
+                $('#new-post').val('');
+            },
+            error: function (e) {
+                console.log(e);
+            }
+        });
+    } else {
+        $('#new-post').attr('style', 'border: 1px solid #f00!important;overflow:auto;resize:none');
+        setTimeout(function(){ 
+            $('#new-post').attr('style', 'overflow:auto;resize:none'); 
+        }, 3000);
+    }
 }
