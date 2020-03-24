@@ -3,7 +3,20 @@
 /**
  * Import fichier
  */
-require_once  __DIR__.'/../modeles/Managers.php';
+require_once __DIR__.'/../modeles/connexionBdd.php';
+require_once __DIR__.'/../modeles/EvenementManager.php';
+require_once __DIR__.'/../modeles/EleveEvenementManager.php';
+
+/**
+ * Managers
+ */
+function getEvenementManager() {
+    return new EvenementManager(connexionBdd());
+}
+
+function getEleveEvenementManager() {
+    return new EleveEvenementManager(connexionBdd());
+}
 
 /**
  * Routing
@@ -13,6 +26,9 @@ if(isset($_POST['fonctionValeur'])){
         case 'updateInteresement':
             updateInteresement();
             break;
+        case 'creationEvenement':
+                createEvenement();
+                break;
     }
 } 
 
@@ -66,5 +82,22 @@ function updateInteresement() {
 
     header('Content-Type: application/json;charset=utf-8');
     echo json_encode($updateStatut);
+}
+
+   function createEvenement()
+{
+
+        $evenement = new Evenement(array(
+            'titre' => $_POST['titre'],
+            'dateCreation' => null,
+            'description' => $_POST['description'],
+            'lieu' => $_POST['lieu'],
+            'date' => $_POST['date']
+        ));
+        
+        getEvenementManager()->createEvenement($evenement);    
+      header('Location: http://'.$_SERVER['HTTP_HOST'].'/intranetcesi/vues/groupes/creationGroupe.php');
+        //header('Location: http://'.$_SERVER['HTTP_HOST'].'/intranetcesi/vues/evenement/creationEvenement.php');
+
 }
 ?>
