@@ -20,3 +20,37 @@ function deplierAccordeon(id) {
       x.className = x.className.replace(" w3-show", "");
     }
   }
+
+  function removeEvent(idElement, e) {
+    e.preventDefault();
+
+    idEvent = idElement.split('-')[1];
+
+    $.ajax({
+      url: '__DIR__../../../../../intranetCESI/controleurs/EvenementControleur.php',
+      data: {
+          "idEvent" : idEvent,
+          "estInterese" : 0,
+          "mail_cesi" : $('#mailCESI').val(),
+          "fonctionValeur" : 'updateInteresement'
+      },
+      type: 'POST',
+      dataType: 'json',
+      timeout: 3000,
+      success: function (data) {
+          console.log(data);
+
+          $('#text-event-' + idEvent).fadeOut(300, function(){
+            $('#text-event-' + idEvent).remove();
+
+            if($('#event').find('p').length < 1) {
+              $('#event').append("<p>Vous n'avez pas d'événement(s)</p>");
+            }
+          })
+          
+      },
+      error: function (e) {
+          console.log(e);
+      }
+  });
+  }

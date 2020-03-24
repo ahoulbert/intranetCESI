@@ -32,6 +32,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="../css/evenementList.css">
+  <script src='../js/evenementList.js'></script>
 </head>
 
 <body class="w3-theme-l5">
@@ -151,8 +152,6 @@
   <?php
     include_once('../ressources/footer.php');
   ?>
-
-  <script src='../js/evenementList.js'></script>
   <!--<script src='../js/index.js'></script>-->
 </body>
 </html>

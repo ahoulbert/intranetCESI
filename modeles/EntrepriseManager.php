@@ -42,6 +42,21 @@
             }
         }
 
+        // recupere la dernière entreprise
+        public function recupererIdDerniereEntreprise() {
+            $statement = $this->_db->prepare('SELECT * FROM `entreprise` order by idEntreprise desc limit 1');
+
+            $statement->execute() or die(print_r($statement->errorInfo()));
+
+            $donnees = $statement->fetch(PDO::FETCH_ASSOC);
+
+            if($donnees) {
+                return new Entreprise($donnees);
+            } else {
+                return false;
+            }
+        }
+
         // mise a jour d une entreprise
         public function updateEntreprise(Entreprise $entreprise) {
 
@@ -55,12 +70,16 @@
             $statement->execute() or die(print_r($statement->errorInfo()));
         }
 
+
         //creation d une entreprise
         public function createEntreprise(Entreprise $entreprise) {
             $statement = $this->_db->prepare("INSERT INTO entreprise (designation, siteWeb) VALUES (:designation, :siteWeb)");
 
-            $statement->bindParam(':designation', $entreprise->getDesignation(), PDO::PARAM_STR);
-            $statement->bindParam(':siteWeb', $entreprise->getSiteWeb(), PDO::PARAM_STR);
+            $designation = $entreprise->getDesignation();
+            $siteWeb = $entreprise->getSiteWeb();
+
+            $statement->bindParam(':designation', $designation, PDO::PARAM_STR);
+            $statement->bindParam(':siteWeb', $siteWeb, PDO::PARAM_STR);
 
             $statement->execute() or die(print_r($statement->errorInfo()));
         }

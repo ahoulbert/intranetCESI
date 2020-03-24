@@ -3,6 +3,12 @@
 /**
  * Import fichier
  */
+
+require_once __DIR__.'/../modeles/connexionBdd.php';
+require_once __DIR__.'/../modeles/EleveManager.php';
+require_once __DIR__.'/../modeles/EntrepriseManager.php';
+require_once __DIR__.'/../modeles/PromotionManager.php';
+require_once __DIR__.'/../modeles/EnumTypeEleveManager.php';
 require_once  __DIR__.'/../modeles/Managers.php';
 
 /**
@@ -30,6 +36,7 @@ if (isset($_POST['fonctionValeur'])) {
             break;
     }
 }
+
 
 /**
  * Function 
@@ -66,26 +73,33 @@ function creationCompte() {
 
     $mdp=password_hash($_POST['mdp'], PASSWORD_DEFAULT);
 
+    $entreprise = new Entreprise(array(
+        'designation' => $_POST['nomEntreprise'],
+        'siteWeb' => null
+    ));
+
+    getEntrepriseManager()->createEntreprise($entreprise);
+    $idEntreprise = getEntrepriseManager()->recupererIdDerniereEntreprise();
+
     $eleve = new Eleve(array(
         'mailCESI' => $_POST['mailCESI'],
         'mdp' => $mdp,
         'nom' => $_POST['nom'],
         'prenom' => $_POST['prenom'],
-        'dateNaissance' => '1999-04-11',
+        'dateNaissance' => $_POST['dateNaissance'],
         'tel' => $_POST['tel'],
         'ville' => $_POST['ville'],
         'description' => $_POST['description'],
         'lienLinkedin' => null,
         'imgProfil' => null,
-        'idEntreprise' => null,
-        'idPromotion' => 1,
-        'idTypeEleve' => 1,
-        'idSexeEleve' => 1
+        'idEntreprise' => $idEntreprise->getIdEntreprise(),
+        'idPromotion' => $_POST['idPromotion'],
+        'idTypeEleve' => $_POST['idTypeEleve'],
+        'idSexeEleve' => $_POST['idSexeEleve']
     ));
     
     getEleveManager()->createEleve($eleve);
 
-    echo 'l\'élève à bien été ajouté';
     header('Location: http://'.$_SERVER['HTTP_HOST'].'/intranetcesi/vues/connexion.php');
    
 }
@@ -207,4 +221,14 @@ function uploadImgProfil() {
             header('HTTP/1.1 500 Internal Server Error');
         }
     }
+}
+
+function allPromotion()
+{
+    return  getPromotionManager()->getAllPromotion();
+}
+
+function allTypeEleve()
+{
+    return getEnumTypeEleveManager()->getAllTypeEleve();
 }

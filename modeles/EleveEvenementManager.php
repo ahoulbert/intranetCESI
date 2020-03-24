@@ -29,8 +29,8 @@
         // recupere un EleveEvenement avec son id
         public function getEleveEvenementById($idEvenement, $mailCESI) {
             $statement = $this->_db->prepare('SELECT * FROM EleveEvenement WHERE idEvenement = :idEvenement AND mailCESI = :mailCESI');
-            $statement->bindParam(':idEvenement',$idEvenement);
-            $statement->bindParam(':mailCESI',$mailCESI);
+            $statement->bindValue(':idEvenement',$idEvenement);
+            $statement->bindValue(':mailCESI',$mailCESI);
 
             $statement->execute() or die(print_r($statement->errorInfo()));
 
@@ -46,9 +46,9 @@
         //creation d'un EleveEvenement
         public function createEleveEvenement(EleveEvenement $eleveEvenement) {
             $statement = $this->_db->prepare("INSERT INTO EleveEvenement VALUES (:idEvenement, :mailCESI, :estInterese)");
-            $statement->bindParam(':idEvenement', $eleveEvenement->getIdEvenement(), PDO::PARAM_INT);
-            $statement->bindParam(':mailCESI', $eleveEvenement->getMailCESI(), PDO::PARAM_STR);
-            $statement->bindParam(':estInterese', $eleveEvenement->getEstInterese(), PDO::PARAM_INT);
+            $statement->bindValue(':idEvenement', $eleveEvenement->getIdEvenement(), PDO::PARAM_INT);
+            $statement->bindValue(':mailCESI', $eleveEvenement->getMailCESI(), PDO::PARAM_STR);
+            $statement->bindValue(':estInterese', $eleveEvenement->getEstInterese(), PDO::PARAM_INT);
             $statement->execute() or die(print_r($statement->errorInfo()));
         }
 
@@ -67,8 +67,8 @@
         public function deleteEleveEvenement($idEvenement, $mailCESI) {
 
             $statement = $this->_db->prepare("DELETE FROM EleveEvenement where idEvenement = :idEvenement AND mailCESI = :mailCESI");
-            $statement->bindParam(':idEvenement', $idEvenement);
-            $statement->bindParam(':mailCESI', $mailCESI);
+            $statement->bindValue(':idEvenement', $idEvenement);
+            $statement->bindValue(':mailCESI', $mailCESI);
             $statement->execute() or die(print_r($statement->errorInfo()));
         }
 

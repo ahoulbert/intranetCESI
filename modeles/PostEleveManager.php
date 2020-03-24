@@ -79,11 +79,11 @@
         public function createPostEleve(PostEleve $postEleve) {
             $statement = $this->_db->prepare("INSERT INTO posteleve VALUES (:idPost, :mailCESI, :like, :comment, :commentaire)");
 
-            $statement->bindParam(':idPost', $postEleve->getIdPost(), PDO::PARAM_INT);
-            $statement->bindParam(':mailCESI', $postEleve->getMailCESI(), PDO::PARAM_STR);
-            $statement->bindParam(':like', $postEleve->getLike(), PDO::PARAM_INT);
-            $statement->bindParam(':comment', $postEleve->getComment(), PDO::PARAM_INT);
-            $statement->bindParam(':commentaire', $postEleve->getCommentaire(), PDO::PARAM_STR);
+            $statement->bindValue(':idPost', $postEleve->getIdPost(), PDO::PARAM_INT);
+            $statement->bindValue(':mailCESI', $postEleve->getMailCESI(), PDO::PARAM_STR);
+            $statement->bindValue(':like', $postEleve->getLike(), PDO::PARAM_INT);
+            $statement->bindValue(':comment', $postEleve->getComment(), PDO::PARAM_INT);
+            $statement->bindValue(':commentaire', $postEleve->getCommentaire(), PDO::PARAM_STR);
 
             $statement->execute() or die(print_r($statement->errorInfo()));
         }
