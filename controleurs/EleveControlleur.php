@@ -3,12 +3,13 @@
 /**
  * Import fichier
  */
+
 require_once __DIR__.'/../modeles/connexionBdd.php';
 require_once __DIR__.'/../modeles/EleveManager.php';
 require_once __DIR__.'/../modeles/EntrepriseManager.php';
 require_once __DIR__.'/../modeles/PromotionManager.php';
 require_once __DIR__.'/../modeles/EnumTypeEleveManager.php';
-
+require_once  __DIR__.'/../modeles/Managers.php';
 
 /**
  * Routing

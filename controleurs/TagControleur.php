@@ -2,20 +2,7 @@
     /**
      * Import fichier
      */
-    require_once __DIR__.'/../modeles/connexionBdd.php';
-    require_once __DIR__.'/../modeles/TagManager.php';
-    require_once __DIR__.'/../modeles/TagEleveManager.php';
-
-    /**
-     * Instance du manager
-     */
-    function getTagManager() {
-        return new TagManager(connexionBdd());
-    }
-
-    function getTagEleveManager() {
-        return new TagEleveManager(connexionBdd());
-    }
+    require_once  __DIR__.'/../modeles/Managers.php';
 
     /**
      * Routing
@@ -27,7 +14,7 @@
     function getAllTag() {
         return getTagManager()->getAllTag();
     }
-
+    
     function getAllTagByEleve($mailCESI) {
         $tageleve = getTagEleveManager()->getTagEleveByMail($mailCESI);
         

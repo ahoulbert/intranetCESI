@@ -2,10 +2,8 @@
     /**
      * Import fichier
      */
-    require_once __DIR__.'/../modeles/connexionBdd.php';
-    require_once __DIR__.'/../modeles/GroupeManager.php';
-    require_once __DIR__.'/../modeles/GroupeEleveManager.php';
-
+    require_once  __DIR__.'/../modeles/Managers.php';
+    
     define('ID_GROUPE_ALL', 1);
 
     if (isset($_POST['fonctionValeur'])) {
@@ -14,17 +12,6 @@
                 createGroupe();
                 break;
         }
-    }
-
-    /**
-     * Instance du manager
-     */
-    function getGroupeManager() {
-        return new GroupeManager(connexionBdd());
-    }
-
-    function getGroupeEleveManager() {
-        return new GroupeEleveManager(connexionBdd());
     }
 
     /**

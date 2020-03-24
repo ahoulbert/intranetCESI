@@ -1,3 +1,6 @@
+<?php
+    require_once __DIR__."/../../controleurs/TagControleur.php";
+?>
 <!-- Interests -->
 <div class="w3-card w3-round w3-white w3-hide-small">
     <div class="w3-container">

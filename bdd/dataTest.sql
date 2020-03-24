@@ -8,7 +8,7 @@ INSERT INTO eleve VALUES
 ("clement.azibeiro@viacesi.fr",	"$2y$10$YrkJTI7FX9jouSI/dUEOnOOXLXLxSJSwjHvnqQ/ipJL48kfeqDDPy", "AZIBEIRO", "Clément", "1999-07-13", "0611363675", "Le Mans", "En alternance chez Vinci", null, null, 1, 1, 2, 1),
 ("maxime.villermin@viacesi.fr",	"$2y$10$YrkJTI7FX9jouSI/dUEOnOOXLXLxSJSwjHvnqQ/ipJL48kfeqDDPy", "VILLERMIN", "Maxime", "1998-10-26", "0611459875", "Le Mans", "En alternance chez Vinci", null, null, 1, 1, 2, 1),
 ("antoine.houlbert@viacesi.fr",	"$2y$10$YrkJTI7FX9jouSI/dUEOnOOXLXLxSJSwjHvnqQ/ipJL48kfeqDDPy", "HOULBERT", "Antoine", "1999-01-01", "0611125675", "Spay", "En alternance chez Studefi", null, null, 2, 1, 2, 1),
-("marvyn.rocher@viacesi.fr", "$2y$10$YrkJTI7FX9jouSI/dUEOnOOXLXLxSJSwjHvnqQ/ipJL48kfeqDDPy", "AZIBEIRO", "Clément", "1999-01-01", "06765475", "Le Mans", "En alternance chez ta darone", null, null, null, 1, 2, 1);
+("marvyn.rocher@viacesi.fr", "$2y$10$YrkJTI7FX9jouSI/dUEOnOOXLXLxSJSwjHvnqQ/ipJL48kfeqDDPy", "ROCHER", "Marvyn", "1999-01-01", "06765475", "Le Mans", "En alternance chez ta darone", null, null, null, 1, 2, 1);
 
 INSERT INTO groupe VALUES (1, "ALL", "2020-02-27", "ALL");
 
@@ -80,3 +80,22 @@ VALUES
 ("2020-02-22", "CECI EST UN TEST", "", "clement.azibeiro@viacesi.fr", 2),
 ("2020-02-21", "CECI EST UN TEST", "", "antoine.houlbert@viacesi.fr", 1),
 ("2020-02-20", "CECI EST UN TEST", "", "marvyn.rocher@viacesi.fr", 1);
+
+INSERT INTO posteleve (idPost, mailCESI, `like`, comment, commentaire)
+VALUES
+(7, "marvyn.rocher@viacesi.fr", 0, 0, ""),
+(7, "antoine.houlbert@viacesi.fr", 0, 0, ""),
+(7, "clement.azibeiro@viacesi.fr", 0, 0, ""),
+(7, "maxime.villermin@viacesi.fr", 0, 0, ""),
+(8, "marvyn.rocher@viacesi.fr", 0, 0, ""),
+(8, "antoine.houlbert@viacesi.fr", 0, 0, ""),
+(8, "clement.azibeiro@viacesi.fr", 0, 0, ""),
+(8, "maxime.villermin@viacesi.fr", 0, 0, ""),
+(6, "marvyn.rocher@viacesi.fr", 0, 0, ""),
+(6, "antoine.houlbert@viacesi.fr", 0, 0, ""),
+(6, "clement.azibeiro@viacesi.fr", 0, 0, ""),
+(6, "maxime.villermin@viacesi.fr", 0, 0, ""),
+(5, "marvyn.rocher@viacesi.fr", 0, 0, ""),
+(5, "antoine.houlbert@viacesi.fr", 0, 0, ""),
+(5, "clement.azibeiro@viacesi.fr", 0, 0, ""),
+(5, "maxime.villermin@viacesi.fr", 0, 0, "");

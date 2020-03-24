@@ -3,6 +3,8 @@
     <button onclick="deplierAccordeon('group')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i> Mes groupes</button>
     <div id="group" class="w3-hide w3-container">
         <?php
+        require_once __DIR__."/../../controleurs/GroupeControleur.php";
+
         $groups = getAllGroupeByEleve($_SESSION['mail_cesi']);
         //var_dump($groups);
         if(!empty($groups)) {

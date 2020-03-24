@@ -85,7 +85,6 @@
                             </div>
                         </div>
                         <div class="w3-right w3-section" style=" float:left;">
-                        <button class="w3-button  w3-theme" style="background-color: #B2B7C0 !important;"  src="./intranetcesi/vues/groupes/creationGroupe.php" id="button">Retour</button>
                             <button class="w3-button  w3-theme" id="button-" type="submit" >Créer</button>
                             
                         </div>
