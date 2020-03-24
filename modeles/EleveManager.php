@@ -105,7 +105,7 @@
             $statement->bindValue(':mdp', $eleve->getMdp(), PDO::PARAM_STR);
             $statement->bindValue(':nom', $eleve->getNom(), PDO::PARAM_STR);
             $statement->bindValue(':prenom', $eleve->getPrenom(), PDO::PARAM_STR);
-            $statement->bindValue(':dateNaissance', $eleve->getDateNaissance);
+            $statement->bindValue(':dateNaissance',  date_format($eleve->getDateNaissance(), 'Y-m-d'));
             $statement->bindValue(':tel', $eleve->getTel(), PDO::PARAM_STR);
             $statement->bindValue(':ville', $eleve->getVille(), PDO::PARAM_STR);
             $statement->bindValue(':description', $eleve->getDescription(), PDO::PARAM_STR);
