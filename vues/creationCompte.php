@@ -4,6 +4,7 @@
         <title>Connexion - Intranet CESI</title>
         <?php
         include_once './ressources/header.php';
+        require_once '../controleurs/EleveControlleur.php';
         ?>
         <style>
             /*Background*/
@@ -228,6 +229,14 @@
                                     </div>
                                 </div>
                                 <div class="form-row">
+                                    <div class="name">Date de naissance<span class="obligatoire">*</div>
+                                    <div class="value">
+                                        <div class="input-group">
+                                            <input type="date" name="dateNaissance" class="input--style-5" required placeholder="Entrer votre Date de naissance" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
                                     <div class="name">Téléphone <span class="obligatoire">*</div>
                                     <div class="value">
                                         <div class="input-group">
@@ -239,7 +248,7 @@
                                     <div class="name">Entreprise</div>
                                     <div class="value">
                                         <div class="input-group">
-                                            <input placeholder="Nom de mon entreprise" class="input--style-5" type="text" name="idEntreprise" />
+                                            <input placeholder="Nom de mon entreprise" class="input--style-5" type="text" name="nomEntreprise" />
                                         </div>
                                     </div>
                                 </div>
@@ -264,8 +273,27 @@
                                     <div class="value">
                                         <div class="input-group">
                                             <select style="border : none;width:100%;" name="idTypeEleve" class="input--style-5">
-                                                <option>Etudiant</option>
-                                                <option>Alternant</option>
+                                                <?php
+                                                $types = allTypeEleve();
+                                                foreach($types as $type){
+                                                    echo '<option value="'.$type->getIdTypeEleve().'" >'.$type->getLibelle().'</option>';
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="name">Promotion</div>
+                                    <div class="value">
+                                        <div class="input-group">
+                                            <select style="border : none;width:100%;" name="idPromotion" class="input--style-5">
+                                                <?php
+                                                $promotion = allPromotion();
+                                                foreach($promotion as $promo){
+                                                    echo '<option value="'.$promo->getIdPromotion().'" >'.$promo->getNom().' '.$promo->getAnnee().'</option>';
+                                                }
+                                                ?>
                                             </select>
                                         </div>
                                     </div>

@@ -59,14 +59,14 @@
 
       <!-- Middle Column -->
       <div class="w3-col m7">
-                <div id="newGroupe">
+                <div id="newEvenement">
                     <input type="hidden" value="<?php echo $_SESSION['mail_cesi']; ?>" id="mail_cesi">
                     <div class="w3-container w3-card w3-white w3-round w3-margin w3-center"><br>
                     
                         <h4>Créer un nouvel événement</h4>
                         <hr class="w3-clear">
-                        <form action="../../controleurs/GroupeControleur.php" method="POST">
-                        <input type="hidden" name="fonctionValeur" value="creationGroupe" />
+                        <form action="../../controleurs/EvenementControleur.php" method="POST">
+                        <input type="hidden" name="fonctionValeur" value="creationEvenement" />
                         <div class="form-row m-b-55">
                             <div class="name" style="font-size: 15px !important;" >Informations</div>
                             <div class="value">
@@ -88,8 +88,8 @@
                                     </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+                            
+                
                         <div class="w3-right w3-section" style=" float:left;">
                         <button class="w3-button  w3-theme" style="background-color: #B2B7C0 !important;"  src="./intranetcesi/vues/evenement/creationEvenement.php" id="button">Retour</button>
                             <button class="w3-button  w3-theme" id="button-" type="submit" >Créer</button>
@@ -99,7 +99,7 @@
                         
                     </div>
                 </div>
-        <!--
+   <!--
         <div class="w3-container w3-card w3-white w3-round w3-margin w3-center"><br>
         </div>
         -->
