@@ -70,33 +70,41 @@
                         <div class="form-row m-b-55">
                             <div class="name" style="font-size: 15px !important;" >Informations</div>
                             <div class="value">
-                                <div class="row row-space">
+                                  <div class="row row-space form-row ">
                                     <div class="col-2">
-                                        <div class="input-group-desc">
-                                            <input placeholder="Titre de l'événement" style="font-size: 13px !important;" class="input--style-5" type="text" value="" required name="titre" />
-                                            <input placeholder="Description" style="font-size: 13px !important;" class="input--style-5" type="text" value="" required name="description" />
+                                        <div class="input-group-desc" >
+                                        <input placeholder="Titre de l'événement" style="font-size: 13px !important;" class="input--style-5" type="text" value="" required name="titre" />
+                                        </div>
+                                    </div>
+                                    <div class="col-2">
+                                        <div class="input-group-desc" ">
+                                          <input placeholder="Description" style="font-size: 13px !important;" class="input--style-5" type="text" value="" required name="description" />
+                                        </div>
+                                    </div>
+                                  </div>
+                                  <div class="row row-space form-row ">
+                                    <div class="col-2">
+                                        <div class="input-group-desc" >
+                                        <input placeholder="Lieu de l'évenement" style="font-size: 13px !important;" class="input--style-5" type="text" value="" required name="lieu" />
+                                        </div>
+                                    </div>
+                                    <div class="col-2">
+                                        <div class="input-group-desc" ">
+                                        <input placeholder = "date"style="font-size: 13px !important;" class="input--style-5" type="date" value="" required name="date" />
+                                        </div>
+                                    </div>
+                                  </div>
 
-                                        </div>
-                                      <br/><br/>
-                                    </div>
-                                    <div class="col-2">
-                                        <div class="input-group-desc">
-                                           <input placeholder="Lieu de l'évenement" style="font-size: 13px !important;" class="input--style-5" type="text" value="" required name="lieu" />
-                                            <input placeholder = "date"style="font-size: 13px !important;" class="input--style-5" type="date" value="" required name="date" />
-                                        </div>
-                                    </div>
-                                    </div>
-                                    </div>
+                                </div>
                                 </div>
                             
                 
                         <div class="w3-right w3-section" style=" float:left;">
-                        <button class="w3-button  w3-theme" style="background-color: #B2B7C0 !important;"  src="./intranetcesi/vues/evenement/creationEvenement.php" id="button">Retour</button>
+                        
                             <button class="w3-button  w3-theme" id="button-" type="submit" >Créer</button>
                             
                         </div>
                         </form>
-                        
                     </div>
                 </div>
    <!--

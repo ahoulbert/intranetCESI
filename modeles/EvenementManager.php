@@ -27,7 +27,7 @@
 
         public function getEvenementById($idEvenement) {
             $statement = $this->_db->prepare('SELECT * FROM evenement WHERE idEvenement = :idEvenement');
-            $statement->bindParam(':idEvenement',$idEvenement);
+            $statement->bindValue(':idEvenement',$idEvenement);
 
             $statement->execute() or die(print_r($statement->errorInfo()));
 
@@ -79,12 +79,12 @@
                                         lieu = :lieu
                                         WHERE idEvenement = :idEvenement");
 
-            $statement->bindParam(':titre', $event->getTitre(), PDO::PARAM_STR);
-            $statement->bindParam(':description', $event->getDescription(), PDO::PARAM_STR);
-            $statement->bindParam(':date', $event->getDate());
-            $statement->bindParam(':dateCreation', $event->getDateCreation());
-            $statement->bindParam(':lieu', $event->getLieu(), PDO::PARAM_STR);
-            $statement->bindParam(':idEvenement', $event->getIdEvenement(), PDO::PARAM_INT);
+            $statement->bindValue(':titre', $event->getTitre(), PDO::PARAM_STR);
+            $statement->bindValue(':description', $event->getDescription(), PDO::PARAM_STR);
+            $statement->bindValue(':date', $event->getDate());
+            $statement->bindValue(':dateCreation', date_format($event->getDateCreation(), 'Y-m-d'));
+            $statement->bindValue(':lieu', $event->getLieu(), PDO::PARAM_STR);
+            $statement->bindValue(':idEvenement', $event->getIdEvenement(), PDO::PARAM_INT);
 
             $statement->execute() or die(print_r($statement->errorInfo()));
         }
@@ -99,18 +99,31 @@
                                             :dateCreation,
                                             :lieu)");
 
-            $statement->bindParam(':titre', $event->getTitre(), PDO::PARAM_STR);
-            $statement->bindParam(':description', $event->getDescription(), PDO::PARAM_STR);
-            $statement->bindParam(':date', $event->getDate());
-            $statement->bindParam(':dateCreation', $event->getDateCreation());
-            $statement->bindParam(':lieu', $event->getLieu(), PDO::PARAM_STR);
+            $statement->bindValue(':titre', $event->getTitre(), PDO::PARAM_STR);
+            $statement->bindValue(':description', $event->getDescription(), PDO::PARAM_STR);
+            $statement->bindValue(':date', date_format($event->getDate(), 'Y-m-d'));
+            $statement->bindValue(':dateCreation', date_format($event->getDateCreation(), 'Y-m-d'));
+            $statement->bindValue(':lieu', $event->getLieu(), PDO::PARAM_STR);
 
             $statement->execute() or die(print_r($statement->errorInfo()));
+
+            $statement = $this->_db->prepare("SELECT * FROM evenement where idEvenement = :idEvenement");
+            $statement->bindValue(':idEvenement', $this->_db->lastInsertId());
+
+            $statement->execute() or die(print_r($statement->errorInfo()));
+
+            $donnees = $statement->fetch(PDO::FETCH_ASSOC);
+
+            if($donnees) {
+                return new Evenement($donnees);
+            } else {
+                return false;
+            }
         }
 
         public function deleteEvenement($idEvenement) {
             $statement = $this->_db->prepare("DELETE FROM evenement where idEvenement = :idEvenement");
-            $statement->bindParam(':idEvenement', $idEvenement);
+            $statement->bindValue(':idEvenement', $idEvenement);
 
             $statement->execute() or die(print_r($statement->errorInfo()));
         }
