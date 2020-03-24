@@ -24,7 +24,7 @@ $infosEleve = infosEleve($_SESSION['mail_cesi']);
 <html>
 
 <head>
-<script src='../js/groupList.js'></script>
+    <script src='../js/groupList.js'></script>
     <?php
     include_once(__DIR__ . "/../navBar.php");
     ?>
@@ -37,9 +37,9 @@ $infosEleve = infosEleve($_SESSION['mail_cesi']);
 
 <body class="w3-theme-l5">
 
-<input type="hidden"id="mailCESI"value="<?php echo $_SESSION['mail_cesi']; ?>">
-    
-    
+    <input type="hidden" id="mailCESI" value="<?php echo $_SESSION['mail_cesi']; ?>">
+
+
     <!-- Page Container -->
     <div class="w3-container w3-content" style="max-width:1400px;margin-top:80px">
         <!-- The Grid -->
@@ -90,10 +90,13 @@ $infosEleve = infosEleve($_SESSION['mail_cesi']);
                             echo '<div class="w3-container w3-card w3-white w3-round w3-margin w3-center"><br>';
                             echo '<h4>' . utf8_encode($event->getNom()) . '</h4><hr class="w3-clear">';
                             echo '<span class="w3-left w3-opacity">' . utf8_encode($event->getDescription()) . '</span>';
-                            echo '<div class="w3-right w3-section style="float:left;">
-                        <button class="w3-button  w3-theme" id="button-' . $event->getIdGroupe() . '">Accéder</button>
-                        <button class="w3-button  w3-theme" style="background-color: #f44336 !important;" id="button-' . $event->getIdGroupe() . '">Quitter</button>
+                            echo '<div class="w3-right w3-section style="float:left;" id="mesBouttons">
+                        <button class="w3-button  w3-theme" id="buttonAccess-' . $event->getIdGroupe() . '">Accéder</button>
+                        <button class="w3-button  w3-theme" style="background-color: #f44336 !important;" id="buttonQuitter-' . $event->getIdGroupe() . '">Quitter</button>
                                       </div>';
+                            echo '<div class="dropdown w3-right w3-section style="float:left;" style="display:none;" id="bouttons">
+                <button class="w3-button w3-block w3-theme" onclick="updateGroupe(this.id, event)" id="join-' . $event->getIdGroupe() . '">Rejoindre</button>
+                              </div>';
                             echo '</div>';
                         }
                     }
@@ -106,12 +109,16 @@ $infosEleve = infosEleve($_SESSION['mail_cesi']);
 
                     if (!empty($eventsPast)) {
                         foreach ($eventsPast as $event) {
-                            echo '<div id="suggest-'. $event->getIdGroupe() .'" class="w3-container w3-card w3-white w3-round w3-margin w3-center"><br>';
+                            echo '<div id="suggest-' . $event->getIdGroupe() . '" class="w3-container w3-card w3-white w3-round w3-margin w3-center"><br>';
                             echo '<h4>' . utf8_encode($event->getNom()) . '</h4><hr class="w3-clear">';
                             echo '<span class="w3-left w3-opacity">' . utf8_encode($event->getDescription()) . '</span>';
-                            echo '<div class="dropdown w3-right w3-section style="float:left;">
+                            echo '<div class="dropdown w3-right w3-section style="float:left;" id="bouttons">
                 <button class="w3-button w3-block w3-theme" onclick="updateGroupe(this.id, event)" id="join-' . $event->getIdGroupe() . '">Rejoindre</button>
                               </div>';
+                            echo '<div class="w3-right w3-section style="float:left;" style="display:none;" id="mesBouttons">
+                        <button class="w3-button  w3-theme" id="buttonAccess-' . $event->getIdGroupe() . '">Accéder</button>
+                        <button class="w3-button  w3-theme" style="background-color: #f44336 !important;" id="buttonQuitter-' . $event->getIdGroupe() . '">Quitter</button>
+                                      </div>';
                             echo '</div>';
                         }
                     }
@@ -146,7 +153,7 @@ $infosEleve = infosEleve($_SESSION['mail_cesi']);
     include_once('../ressources/footer.php');
     ?>
 
-    
+
     <!--<script src='../js/index.js'></script>-->
 </body>
 
