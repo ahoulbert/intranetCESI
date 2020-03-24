@@ -925,3 +925,12 @@
     .custom-option.selection {
       background: #f9f9f9;
     }
+
+    .remove {
+      color:#7d97a5;
+    }
+
+    .remove:hover {
+      color:#000;
+      cursor: pointer;
+    }

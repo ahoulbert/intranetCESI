@@ -113,4 +113,7 @@ function updateInteresement() {
         $evenementRand = $evenements[rand(0,$tailleEvenement-1)];
         echo '<p><strong>'.$evenementRand->getTitre().'</strong></p><p>'.date_format($evenementRand->getDate(), 'd/m/Y').'</p>';
     }
+    function getEventsByInterest($mailCESI) {
+        return getEvenementManager()->getEventsByInterest($mailCESI);
+    }
 ?>

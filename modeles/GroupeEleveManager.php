@@ -30,7 +30,7 @@
             $result = [];
 
             $statement = $this->_db->prepare('SELECT * FROM GroupeEleve WHERE mailCESI = :mailCESI');
-            $statement->bindParam(':mailCESI',$mailCESI, PDO::PARAM_STR);
+            $statement->bindValue(':mailCESI',$mailCESI, PDO::PARAM_STR);
 
             $statement->execute() or die(print_r($statement->errorInfo()));
 
@@ -45,8 +45,8 @@
         // recupere un groupe avec son id
         public function getGroupeEleveById($idGroupe, $mailCESI) {
             $statement = $this->_db->prepare('SELECT * FROM GroupeEleve WHERE idGroupe = :idGroupe AND mailCESI = :mailCESI');
-            $statement->bindParam(':idGroupe',$idGroupe);
-            $statement->bindParam(':mailCESI',$mailCESI);
+            $statement->bindValue(':idGroupe',$idGroupe);
+            $statement->bindValue(':mailCESI',$mailCESI);
             $statement->execute() or die(print_r($statement->errorInfo()));
 
             $donnees = $statement->fetch(PDO::FETCH_ASSOC);
@@ -62,8 +62,8 @@
         public function createGroupeEleve(GroupeEleve $groupeEleve) {
             $statement = $this->_db->prepare("INSERT INTO GroupeEleve VALUES (:idGroupe, :mailCESI)");
 
-            $statement->bindParam(':idGroupe', $groupeEleve->getIdGroupe(), PDO::PARAM_INT);
-            $statement->bindParam(':mailCESI', $groupeEleve->getMailCESI(), PDO::PARAM_STR);
+            $statement->bindValue(':idGroupe', $groupeEleve->getIdGroupe(), PDO::PARAM_INT);
+            $statement->bindValue(':mailCESI', $groupeEleve->getMailCESI(), PDO::PARAM_STR);
 
             $statement->execute() or die(print_r($statement->errorInfo()));
         }
@@ -73,8 +73,8 @@
         public function deleteEntreprise($idGroupe, $mailCESI) {
 
             $statement = $this->_db->prepare("DELETE FROM GroupeEleve where idGroupe = :idGroupe AND mailCESI = :mailCESI");
-            $statement->bindParam(':idGroupe', $idGroupe);
-            $statement->bindParam(':mailCESI', $mailCESI);
+            $statement->bindValue(':idGroupe', $idGroupe);
+            $statement->bindValue(':mailCESI', $mailCESI);
             $statement->execute() or die(print_r($statement->errorInfo()));
         }
 

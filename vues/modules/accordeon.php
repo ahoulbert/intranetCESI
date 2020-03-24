@@ -1,4 +1,5 @@
 <div class="w3-card w3-round">
+    <input type="hidden" id="mailCESI" value="<?php echo $_SESSION['mail_cesi']; ?>">
     <div class="w3-white">
     <button onclick="deplierAccordeon('group')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i> Mes groupes</button>
     <div id="group" class="w3-hide w3-container">
@@ -12,13 +13,25 @@
             echo '<p>'.utf8_encode($value->getNom()).'</p>';
             }
         } else {
-            echo '<p>Vous n\'avez pas de groupe</p>';
+            echo '<p>Vous n\'avez pas de groupe(s)</p>';
         }
         ?>
     </div>
     <button onclick="deplierAccordeon('event')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i> Mes événements</button>
     <div id="event" class="w3-hide w3-container">
-        <p>Some other text..</p>
+    <?php
+        require_once __DIR__."/../../controleurs/EvenementControleur.php";
+
+        $events = getEventsByInterest($_SESSION['mail_cesi']);
+        //var_dump($groups);
+        if(!empty($events)) {
+            foreach($events as $value) {
+                echo '<p id="text-event-'.$value->getIdEvenement().'"><i class="fa fa-times w3-margin-right remove" id="event-'.$value->getIdEvenement().'" onclick="removeEvent(this.id, event)"></i>'.utf8_encode($value->getTitre()).' - '.date_format($value->getDate(), 'd-M-Y').'</p>';
+            }
+        } else {
+            echo '<p>Vous n\'avez pas d\'événement(s)</p>';
+        }
+        ?>
     </div>
     <button onclick="deplierAccordeon('image')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-image fa-fw w3-margin-right"></i> Mes photos</button>
         <div id="image" class="w3-hide w3-container">
