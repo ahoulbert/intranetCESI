@@ -1,4 +1,4 @@
-<footer class="w3-container w3-theme-d3 w3-padding-16 w3-center" style="position : absolute;
+<footer class="w3-container w3-theme-d3 w3-padding-16 w3-center" style="position : relative;
   left: 0;
   bottom: 0;
   width: 100%;">
