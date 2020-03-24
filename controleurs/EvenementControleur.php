@@ -101,4 +101,8 @@ function updateInteresement() {
         header('Location:http://'.$_SERVER['HTTP_HOST'].'/intranetcesi/vues/evenement/creationEvenement.php');
 
     }
+
+    function getEventsByInterest($mailCESI) {
+        return getEvenementManager()->getEventsByInterest($mailCESI);
+    }
 ?>
