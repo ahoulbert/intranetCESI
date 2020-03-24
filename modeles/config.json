@@ -1,0 +1,6 @@
+{
+    "SERVEURBDD" : "localhost:3308",
+    "LOGIN" : "root",
+    "PASSWORD" : "",
+    "NOMDELABASE" : "intranetCesi"
+}
