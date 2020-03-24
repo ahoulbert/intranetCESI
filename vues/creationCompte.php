@@ -303,7 +303,7 @@
                                     <div class="value">
                                         <div class="input-group">
                                             <label class="radio-container m-r-55">Homme
-                                                <input type="radio" name="idSexeEleve" value="1">
+                                                <input type="radio" checked name="idSexeEleve" value="1">
                                                 <span class="checkmark"></span>
                                             </label>
                                             <label class="radio-container">Femme

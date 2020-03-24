@@ -100,6 +100,39 @@ function creationCompte() {
     
     getEleveManager()->createEleve($eleve);
 
+    $events = getEvenementManager()->getAllEvenement();
+
+    foreach($events as $event) {
+        $eleveEvent = new EleveEvenement(array(
+            'idEvenement' => $event->getIdEvenement(),
+            'mailCESI' => $_POST['mailCESI'],
+            'estInterese' => 0
+        ));
+
+        getEleveEvenementManager()->createEleveEvenement($eleveEvent);
+    }
+
+    $groupeEleve = new GroupeEleve(array(
+        'idGroupe' => 1,
+        'mailCESI' => $_POST['mailCESI']
+    ));
+
+    getGroupeEleveManager()->createGroupeEleve($groupeEleve);
+
+    $posts = getPostManager()->getAllPostByGroupe(1);
+
+    foreach($posts as $post) {
+        $postEleve = new PostEleve(array(
+            'idPost' => $post->getIdPost(),
+            'mailCESI' => $_POST['mailCESI'],
+            'like' => 0,
+            'comment' => 0,
+            'commentaire' => '',
+        ));
+
+        getPostEleveManager()->createPostEleve($postEleve);
+    }
+
     header('Location: http://'.$_SERVER['HTTP_HOST'].'/intranetcesi/vues/connexion.php');
    
 }
