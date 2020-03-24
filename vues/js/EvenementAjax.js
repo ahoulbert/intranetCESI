@@ -4,7 +4,6 @@ setInterval(changerEvent, 60000);
 //Changer les infos dans évènements
 function changerEvent()
 {
-    console.log('appel de cette fonction ');
     $.ajax({
         url : '../controleurs/EvenementControleur.php',
         type : 'POST',
@@ -13,9 +12,6 @@ function changerEvent()
         success : function(code_html, statut){
             $('#evenementAffichage').empty();
             $('#evenementAffichage').append(code_html);
-        },
-        error : function(resultat, status, erreur){
-            console.log(resultat);
         }
     });
 }
