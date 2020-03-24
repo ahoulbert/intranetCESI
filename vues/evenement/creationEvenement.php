@@ -73,16 +73,16 @@
                                 <div class="row row-space">
                                     <div class="col-2">
                                         <div class="input-group-desc">
-                                            <input placeholder="Titre de l'événement" style="font-size: 13px !important;" class="input--style-5" type="text" value="" required name="nom" />
-                                            <input placeholder="Description" style="font-size: 13px !important;" class="input--style-5" type="text" value="" required name="nom" />
+                                            <input placeholder="Titre de l'événement" style="font-size: 13px !important;" class="input--style-5" type="text" value="" required name="titre" />
+                                            <input placeholder="Description" style="font-size: 13px !important;" class="input--style-5" type="text" value="" required name="description" />
 
                                         </div>
                                       <br/><br/>
                                     </div>
                                     <div class="col-2">
                                         <div class="input-group-desc">
-                                           <input placeholder="Lieu de l'évenement" style="font-size: 13px !important;" class="input--style-5" type="text" value="" required name="nom" />
-                                            <input placeholder = "date"style="font-size: 13px !important;" class="input--style-5" type="date" value="" required name="nom" />
+                                           <input placeholder="Lieu de l'évenement" style="font-size: 13px !important;" class="input--style-5" type="text" value="" required name="lieu" />
+                                            <input placeholder = "date"style="font-size: 13px !important;" class="input--style-5" type="date" value="" required name="date" />
                                         </div>
                                     </div>
                                     </div>
