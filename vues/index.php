@@ -75,7 +75,7 @@
             foreach($posts as $post) {
 
               if($post->auteur->getImgProfil()) {
-                $imgProfilAuteur = "http://".$_SERVER['HTTP_HOST']."/intranetCESI/uploads/imgProfil/".$infosEleve['0']['eleve']->getImgProfil();
+                $imgProfilAuteur = "http://".$_SERVER['HTTP_HOST']."/intranetCESI/uploads/imgProfil/".$post->auteur->getImgProfil();
               } else {
                 $imgProfilAuteur =  "http://".$_SERVER['HTTP_HOST']."/intranetCESI/uploads/imgProfil/default.jpg";
               }
@@ -83,7 +83,7 @@
               
 
               echo '<div class="w3-container w3-card w3-white w3-round w3-margin post"><br>';
-              echo '<img src="'.$imgProfilAuteur.'" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">';
+              echo '<img src="'.$imgProfilAuteur.'" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px" onerror="this.onerror=null;this.src=\'../uploads/imgProfil/default.jpg\'">';
               echo '<h4>'.utf8_encode($post->auteur->getPrenom()).' '.utf8_encode($post->auteur->getNom()).'</h4><br>';
               echo '<hr class="w3-clear">';
               echo '<p>'.utf8_encode($post->getDescription()).'</p><br>';

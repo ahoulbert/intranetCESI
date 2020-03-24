@@ -1,3 +1,5 @@
+
+
 // Accordion
 function deplierAccordeon(id) {
     var x = document.getElementById(id);
@@ -20,6 +22,7 @@ function deplierAccordeon(id) {
       x.className = x.className.replace(" w3-show", "");
     }
   }
+
 
   function removeEvent(idElement, e) {
     e.preventDefault();
@@ -54,3 +57,4 @@ function deplierAccordeon(id) {
       }
   });
   }
+

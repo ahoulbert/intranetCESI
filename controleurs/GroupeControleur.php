@@ -57,7 +57,14 @@
             'description' => $_POST['description']
         ));
         
-        getGroupeManager()->creategroupe($groupe);    
+        $newGroupe = getGroupeManager()->creategroupe($groupe);
+
+        $groupeEleve = new GroupeEleve(array(
+            'idGroupe' => $newGroupe->getIdGroupe(),
+            'mailCESI' => $_POST['mail_cesi']
+        ));
+
+        getGroupeEleveManager()->createGroupeEleve($groupeEleve);
       
        header('Location: http://'.$_SERVER['HTTP_HOST'].'/intranetcesi/vues/groupes/creationGroupe.php?statusSave=1');
       
