@@ -80,13 +80,13 @@
       <!-- Middle Column -->
       <div class="w3-col m7">
                 <div id="newGroupe">
-                    <input type="hidden" value="<?php echo $_SESSION['mail_cesi']; ?>" id="mail_cesi">
                     <div class="w3-container w3-card w3-white w3-round w3-margin w3-center"><br>
                     
                         <h4>Créer un nouveau groupe</h4>
                         <hr class="w3-clear">
                         <form action="../../controleurs/GroupeControleur.php" method="POST">
                         <input type="hidden" name="fonctionValeur" value="creationGroupe" />
+                        <input type="hidden" value="<?php echo $_SESSION['mail_cesi']; ?>" id="mail_cesi" name="mail_cesi">
                         <div class="form-row m-b-55">
                             <div class="name" style="font-size: 15px !important;" >Informations</div>
                             <div class="value">

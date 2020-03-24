@@ -83,6 +83,19 @@
             $statement->bindValue(':idGroupe', $groupe->getIdGroupe(), PDO::PARAM_INT);
 
             $statement->execute() or die(print_r($statement->errorInfo()));
+
+            $statement = $this->_db->prepare("SELECT * FROM Groupe where idGroupe = :idGroupe");
+            $statement->bindValue(':idGroupe', $this->_db->lastInsertId());
+
+            $statement->execute() or die(print_r($statement->errorInfo()));
+
+            $donnees = $statement->fetch(PDO::FETCH_ASSOC);
+
+            if($donnees) {
+                return new Groupe($donnees);
+            } else {
+                return false;
+            }
         }
 
         // Supprime un groupe avec son id
