@@ -1,6 +1,9 @@
 # Intranet CESI
 Intranet du CESI
 
+## Config :
+Il faut renseigné le fichier `config.json` pour pouvoir connecter l'application à une BDD.
+
 ## Done
 ### Page de connexion :
 + Création de compte via un mail en @viacesi
