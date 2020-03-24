@@ -3,6 +3,9 @@ Intranet du CESI
 
 ## Config :
 Il faut renseigné le fichier `config.json` pour pouvoir connecter l'application à une BDD.
+Les fichiers de création de base sont les suivants : 
++ `bdd/structure.sql`
++ `bdd/dataTest.sql`
 
 ## Done
 ### Page de connexion :
@@ -46,3 +49,5 @@ Il faut renseigné le fichier `config.json` pour pouvoir connecter l'application
 + Page d'un événement (photos, ...)
 + Partie `Mes photos`
 + Gestion des commentaires des postes
+
+#### AZIBEIRO Clément - VILLERMIN Maxime - ROCHER Marvyn - HOULBERT Antoine
