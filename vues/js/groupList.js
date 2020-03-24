@@ -35,10 +35,17 @@ function updateGroupe(id, event) {
         timeout: 3000,
         success: function (data) {
             console.log(data);
-            $('#mesGroupes').append($('#suggest-' + idGroupe));
-            $('#join-' + idGroupe).hide();
-            $('#mesGroupes').show($('#mesBouttons'));
-            $('#bouttons').hide();
+            if(estJoin == 'join') {
+                $('#mesGroupes').append($('#suggest-' + idGroupe));
+                $('#mesGroupes').find('#mesBouttons-' + idGroupe).show();
+                $('#btn-join-' + idGroupe).hide();
+                $('#suggest-' + idGroupe).attr('id', 'my-group-' + idGroupe);
+            } else if (estJoin == 'quit') {
+                $('#GroupeSuggere').append($('#my-group-' + idGroupe));
+                $('#mesBouttons-' + idGroupe).hide();
+                $('#btn-join-' + idGroupe).show();
+                $('#my-group-' + idGroupe).attr('id', 'suggest-' + idGroupe);
+            }
         },
         error: function (e) {
             console.log(e);

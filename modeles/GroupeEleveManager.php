@@ -70,7 +70,7 @@
 
         
         // Supprime un groupe avec son id
-        public function deleteEntreprise($idGroupe, $mailCESI) {
+        public function deleteGroupeEleve($idGroupe, $mailCESI) {
 
             $statement = $this->_db->prepare("DELETE FROM GroupeEleve where idGroupe = :idGroupe AND mailCESI = :mailCESI");
             $statement->bindValue(':idGroupe', $idGroupe);

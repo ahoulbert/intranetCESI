@@ -48,9 +48,7 @@
    }
 
 
-   function createGroupe()
-{
-
+   function createGroupe() {
         $groupe = new Groupe(array(
             'nom' => $_POST['nom'],
             'dateCreation' => null,
@@ -73,13 +71,21 @@
 
 function updateGroupe() 
 {
-$groupEleve = new GroupeEleve(array(
-    'idGroupe' => $_POST['idGroupe'],
-    'mailCESI' => $_POST['mailCESI'],
-));
+    if($_POST['estJoin'] == 'join') {
 
-getGroupeEleveManager() -> createGroupeEleve($groupEleve);
-header('Content-Type: application/json;charset=utf-8');
-        echo json_encode(true);
+        $groupEleve = new GroupeEleve(array(
+            'idGroupe' => $_POST['idGroupe'],
+            'mailCESI' => $_POST['mailCESI'],
+        ));
+
+        getGroupeEleveManager() -> createGroupeEleve($groupEleve);
+
+    } else if ($_POST['estJoin'] == 'quit') {
+        getGroupeEleveManager()->deleteGroupeEleve($_POST['idGroupe'], $_POST['mailCESI']);
+    }
+    
+    header('Content-Type: application/json;charset=utf-8');
+    echo json_encode(true);
+    
 }
 ?>
