@@ -90,7 +90,7 @@
                                     </div>
                                     <div class="col-2">
                                         <div class="input-group-desc" ">
-                                        <input placeholder = "date"style="font-size: 13px !important;" class="input--style-5" type="date" value="" required name="date" />
+                                        <input placeholder="Date de l'évenement" style="font-size: 13px !important;" class="input--style-5 datepicker" type="text" value="" required name="date" />
                                         </div>
                                     </div>
                                   </div>
@@ -136,7 +136,6 @@
     include_once('../ressources/footer.php');
   ?>
 
-  <script src='../js/groupList.js'></script>
-  <!--<script src='../js/index.js'></script>-->
+  <script src='../js/creationEvenement.js'></script>
 </body>
 </html>
