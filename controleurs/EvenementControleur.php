@@ -96,8 +96,7 @@ function updateInteresement() {
         ));
         
         getEvenementManager()->createEvenement($evenement);    
-      header('Location: http://'.$_SERVER['HTTP_HOST'].'/intranetcesi/vues/groupes/creationGroupe.php');
-        //header('Location: http://'.$_SERVER['HTTP_HOST'].'/intranetcesi/vues/evenement/creationEvenement.php');
+        header('Location:http://'.$_SERVER['HTTP_HOST'].'/intranetcesi/vues/evenement/creationEvenement.php');
 
 }
 ?>
