@@ -36,6 +36,9 @@ function updateGroupe(id, event) {
         success: function (data) {
             console.log(data);
             $('#mesGroupes').append($('#suggest-' + idGroupe));
+            $('#join-' + idGroupe).hide();
+            $('#mesGroupes').show($('#mesBouttons'));
+            $('#bouttons').hide();
         },
         error: function (e) {
             console.log(e);
