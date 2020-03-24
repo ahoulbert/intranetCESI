@@ -1,7 +1,13 @@
-function changeEvents(id, event) {
+
+
+function notify() {
+    Notiflix.Notify.Init({ position: "right-bottom", });
+    Notiflix.Notify.Success("Le groupe a bien été créé.");
+}
+function changeGroupe(id, event) {
     event.preventDefault();
 
-    if(id == 'past') {
+    if (id == 'past') {
         $('#mesGroupes').hide();
         $('#GroupeSuggere').show();
     } else if (id == 'coming') {
@@ -10,36 +16,30 @@ function changeEvents(id, event) {
     }
 }
 
-function updateInteresement(id, event) {
+function updateGroupe(id, event) {
     event.preventDefault();
 
-    var idEvent = id.split('-')[0];
-    var estInterese = id.split('-')[1];
-
+    var estJoin = id.split('-')[0];
+    var idGroupe = id.split('-')[1];
+   
     $.ajax({
         url: '../../controleurs/GroupeControleur.php',
         data: {
-            "idEvent" : idEvent,
-            "estInterese" : estInterese,
-            "mail_cesi" : $('#mail_cesi').val(),
-            "fonctionValeur" : 'updateInteresement'
+            "idGroupe" : idGroupe,
+            "estJoin" : estJoin,
+            "mailCESI" : $('#mailCESI').val(),
+            "fonctionValeur" : 'updateGroupe'
         },
         type: 'POST',
         dataType: 'json',
         timeout: 3000,
         success: function (data) {
             console.log(data);
-
-            if (data) {
-                if(estInterese == 0) {
-                    $('#button-' + idEvent).html('Pas intéressé(e)');
-                } else {
-                    $('#button-' + idEvent).html('Intéressé(e)');
-                }
-            }
+            $('#mesGroupes').append($('#suggest-' + idGroupe));
         },
         error: function (e) {
             console.log(e);
         }
     });
+
 }

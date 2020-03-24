@@ -1,4 +1,5 @@
 <?php
+include_once(__DIR__."/../ressources/header.php");
   //On demarre la session
   session_start();
 
@@ -18,14 +19,31 @@
 
   //Infos eleves
   $infosEleve=infosEleve($_SESSION['mail_cesi']);
+
+
+
+ 
 ?>
 
 <!DOCTYPE html>
 <html>
 
 <head>
+<script src='../js/groupList.js'></script>
   <?php
     include_once(__DIR__."/../navBar.php");
+    
+    if(isset( $_REQUEST['statusSave'])) 
+    {
+     
+    if($_REQUEST['statusSave'] == "1")
+    {
+       echo '<script type="text/javascript">',
+     // 'Notiflix.Notify.Init({position:"right-bottom",});',
+       'notify()',
+       '</script>';
+    }
+  }
   ?>
   <title>Groupes</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -121,7 +139,7 @@
     include_once('../ressources/footer.php');
   ?>
 
-  <script src='../js/groupList.js'></script>
+  
   <!--<script src='../js/index.js'></script>-->
 </body>
 </html>
